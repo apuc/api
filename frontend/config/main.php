@@ -11,7 +11,22 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
+    'modules' => [
+        'login' => [
+            'class' => 'frontend\modules\login\Login',
+        ],
+    ],
     'components' => [
+        'request'      => [
+            'baseUrl' => '',
+        ],
+        'urlManager'   => [
+            'enablePrettyUrl' => true,
+            'rules'           => [
+                // your rules go here
+            ],
+            // ...
+        ],
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
