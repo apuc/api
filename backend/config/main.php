@@ -13,21 +13,6 @@ return [
     'bootstrap' => ['log'],
     'modules' => [],
     'components' => [
-        'request' => [
-            'baseUrl' => '/secure',
-        ],
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-                'login' => 'login/login/view',
-                '' => 'adminpage/admin/view',
-                'logout' => 'login/login/logout',
-
-                'manager' => 'manager/manager',
-                'manager/<action>' => 'manager/manager/<action>',
-            ],
-        ],
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
