@@ -15,14 +15,15 @@ class m150718_105504_create_user_nable extends Migration
 
         $this->createTable('user', [
             'id' => Schema::TYPE_PK,
-            'money' => Schema::TYPE_BOOLEAN . ' NOT NULL',
-            'cash_id' => Schema::TYPE_STRING . ' NOT NULL',
+            'money' => Schema::TYPE_BOOLEAN,
+            'cash_id' => Schema::TYPE_STRING,
             'email' => Schema::TYPE_STRING . ' NOT NULL',
             'password' => Schema::TYPE_STRING . ' NOT NULL',
             'created_at' => Schema::TYPE_INTEGER . ' NOT NULL',
             'updated_at' => Schema::TYPE_INTEGER . ' NOT NULL',
             'salt' => Schema::TYPE_STRING . ' NOT NULL',
-            'status' => Schema::TYPE_INTEGER . ' NOT NULL',
+            'status' => Schema::TYPE_INTEGER,
+            'username' => Schema::TYPE_STRING . ' NOT NULL',
         ], $tableOptions);
     }
 

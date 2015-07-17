@@ -26,14 +26,12 @@ class RegController extends Controller{
             //Debag::prn($user);
             $user->username = $model->username;
             $user->email = $model->email;
-            $user->setPassword($model->password_hash);
-            $user->generateAuthKey();
+            $user->generatePassword($model->password);
             $user->created_at = time();
+            $user->updated_at = time();
             $user->status = 0;
-            //$user->save();
-            //Debag::prn(Yii::$app->mailer);
-            // делаем что-то полезное с $model ...
-            Email::sendActivateMsg($user);
+            $user->save();
+
             return $this->render('index', ['model' => $model]);
         } else {
             // либо страница отображается первый раз, либо есть ошибка в данных

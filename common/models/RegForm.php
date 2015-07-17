@@ -9,19 +9,20 @@ use yii\base\Model;
  * This is the model class for table "user".
  *
  * @property integer $id
- * @property string $username
- * @property string $auth_key
- * @property string $password_hash
- * @property string $password_reset_token
+ * @property integer $money
+ * @property string $cash_id
  * @property string $email
- * @property integer $status
+ * @property string $password
  * @property integer $created_at
  * @property integer $updated_at
+ * @property string $salt
+ * @property integer $status
+ * @property string $username
  */
 class RegForm extends Model
 {
     public $username;
-    public $password_hash;
+    public $password;
     public $email;
     /**
      * @inheritdoc
@@ -38,21 +39,13 @@ class RegForm extends Model
     {
         return [
             // username and password are both required
-            [['username', 'email', 'password_hash'], 'required'],
+            [['username', 'password', 'email'], 'required'],
             // rememberMe must be a boolean value
-            // password is validated by validatePassword()
+
         ];
     }
 
-    public function validatePassword($attribute, $params)
-    {
-        if (!$this->hasErrors()) {
-            $user = $this->getUser();
-            if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, 'Incorrect username or password.');
-            }
-        }
-    }
+
 
     /**
      * @inheritdoc
@@ -61,14 +54,15 @@ class RegForm extends Model
     {
         return [
             'id' => 'ID',
-            'username' => 'Имя',
-            'auth_key' => 'Auth Key',
-            'password_hash' => 'Пароль',
-            'password_reset_token' => 'Password Reset Token',
+            'money' => 'Money',
+            'cash_id' => 'Cash ID',
             'email' => 'Email',
-            'status' => 'Status',
+            'password' => 'пароль',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
+            'salt' => 'Salt',
+            'status' => 'Status',
+            'username' => 'Имя',
         ];
     }
 }
