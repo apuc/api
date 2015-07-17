@@ -41,9 +41,9 @@ class EmailMsg extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Title',
-            'key' => 'Key',
-            'text' => 'Text',
+            'title' => 'Заголовок',
+            'key' => 'Ключ (латиница)',
+            'text' => 'Текст письма',
         ];
     }
 }
