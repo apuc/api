@@ -1,43 +1,48 @@
 <?php
-    $params = array_merge(
-        require(__DIR__ . '/../../common/config/params.php'),
-        require(__DIR__ . '/../../common/config/params-local.php'),
-        require(__DIR__ . '/params.php'),
-        require(__DIR__ . '/params-local.php')
-    );
+$params = array_merge(
+    require(__DIR__ . '/../../common/config/params.php'),
+    require(__DIR__ . '/../../common/config/params-local.php'),
+    require(__DIR__ . '/params.php'),
+    require(__DIR__ . '/params-local.php')
+);
 
-    return [
-        'id'                  => 'app-frontend',
-        'basePath'            => dirname(__DIR__),
-        'bootstrap'           => ['log'],
-        'controllerNamespace' => 'frontend\controllers',
-        'components'          => [
-            'request'      => [
-                'baseUrl' => '',
-
+return [
+    'id' => 'app-frontend',
+    'basePath' => dirname(__DIR__),
+    'bootstrap' => ['log'],
+    'controllerNamespace' => 'frontend\controllers',
+    'modules' => [
+        'login' => [
+            'class' => 'frontend\modules\login\Login',
+        ],
+    ],
+    'components' => [
+        'request'      => [
+            'baseUrl' => '',
+        ],
+        'urlManager'   => [
+            'enablePrettyUrl' => true,
+            'rules'           => [
+                // your rules go here
             ],
-            'urlManager'   => [
-                'enablePrettyUrl' => true,
-                'showScriptName'  => false,
-                'rules'           => [
+            // ...
+        ],
+        'user' => [
+            'identityClass' => 'common\models\User',
+            'enableAutoLogin' => true,
+        ],
+        'log' => [
+            'traceLevel' => YII_DEBUG ? 3 : 0,
+            'targets' => [
+                [
+                    'class' => 'yii\log\FileTarget',
+                    'levels' => ['error', 'warning'],
                 ],
-            ],
-            'user'         => [
-                'identityClass'   => 'common\models\User',
-                'enableAutoLogin' => true,
-            ],
-            'log'          => [
-                'traceLevel' => YII_DEBUG ? 3 : 0,
-                'targets'    => [
-                    [
-                        'class'  => 'yii\log\FileTarget',
-                        'levels' => ['error', 'warning'],
-                    ],
-                ],
-            ],
-            'errorHandler' => [
-                'errorAction' => 'site/error',
             ],
         ],
-        'params'              => $params,
-    ];
+        'errorHandler' => [
+            'errorAction' => 'site/error',
+        ],
+    ],
+    'params' => $params,
+];

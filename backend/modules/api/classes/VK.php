@@ -27,29 +27,29 @@
             $task = [];
             $task_limit = [];
 
-            $query['token'] = self::$token;
-
-            $text = "Полайкать для проверки";
-
-            $task['kind'] = self::LIKE;
-            $task['title'] = iconv(mb_detect_encoding($text, mb_detect_order(), true), "UTF-8", $text);
-            $task['url'] = "https://vk.com/club89526364?w=wall-89526364_3%2Fall";
-            $task['members_count'] = "10";
-            $task['cost'] = "1";
-            $task['tag_list'] = "";
-            $task['sex'] = "";
-            $task['age_min'] = "";
-            $task['age_max'] = "";
-            $task['friends_count'] = "";
-            $task['country'] = "";
-            $task['city_text'] = "";
-            $task['city'] = "";
-
-            $task_limit['minute_1'] = '';
-            $task_limit['minutes_5'] = '';
-            $task_limit['hour_1'] = '';
-            $task_limit['hours_4'] = '';
-            $task_limit['day_1'] = '';
+//            $query['token'] = self::$token;
+//
+//            $text = "Полайкать для проверки";
+//
+//            $task['kind'] = self::LIKE;
+//            $task['title'] = iconv(mb_detect_encoding($text, mb_detect_order(), true), "UTF-8", $text);
+//            $task['url'] = "https://vk.com/club89526364?w=wall-89526364_3%2Fall";
+//            $task['members_count'] = "10";
+//            $task['cost'] = "1";
+//            $task['tag_list'] = "";
+//            $task['sex'] = "";
+//            $task['age_min'] = "";
+//            $task['age_max'] = "";
+//            $task['friends_count'] = "";
+//            $task['country'] = "";
+//            $task['city_text'] = "";
+//            $task['city'] = "";
+//
+//            $task_limit['minute_1'] = '';
+//            $task_limit['minutes_5'] = '';
+//            $task_limit['hour_1'] = '';
+//            $task_limit['hours_4'] = '';
+//            $task_limit['day_1'] = '';
 
             $query['task_limit'] = $task_limit;
 

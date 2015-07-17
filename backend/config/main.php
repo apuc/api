@@ -6,14 +6,27 @@
         require(__DIR__ . '/params-local.php')
     );
 
+
     return [
         'id'                  => 'app-backend',
         'basePath'            => dirname(__DIR__),
         'controllerNamespace' => 'backend\controllers',
         'bootstrap'           => ['log'],
         'modules'             => [
-            'api' => [
+            'api'       => [
                 'class' => 'backend\modules\api\Api',
+            ],
+            'email'     => [
+                'class' => 'backend\modules\email\Email',
+            ],
+            'login'     => [
+                'class' => 'backend\modules\login\Login',
+            ],
+            'adminpage' => [
+                'class' => 'backend\modules\adminpage\AdminPage',
+            ],
+            'feedback'  => [
+                'class' => 'backend\modules\feedback\Feedback',
             ],
         ],
         'components'          => [
@@ -24,17 +37,15 @@
                 'enablePrettyUrl' => true,
                 'showScriptName'  => false,
                 'rules'           => [
-                    'login'            => 'login/login/view',
-                    ''                 => 'adminpage/admin/view',
-                    'logout'           => 'login/login/logout',
-
-                    'manager'          => 'manager/manager',
-                    'manager/<action>' => 'manager/manager/<action>',
+                    'login'  => 'login/login/view',
+                    ''       => 'adminpage/admin/view',
+                    'logout' => 'login/login/logout',
                 ],
             ],
             'user'         => [
                 'identityClass'   => 'common\models\User',
                 'enableAutoLogin' => true,
+                'loginUrl'        => 'login',
             ],
             'log'          => [
                 'traceLevel' => YII_DEBUG ? 3 : 0,
