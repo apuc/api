@@ -9,7 +9,7 @@
 namespace frontend\modules\login\controllers;
 use yii\web\Controller;
 
-class RegController {
+class RegController extends Controller{
     public function actionIndex()
     {
         return $this->render('index');
