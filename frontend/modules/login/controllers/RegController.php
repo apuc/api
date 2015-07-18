@@ -10,6 +10,7 @@ namespace frontend\modules\login\controllers;
 
 use Yii;
 use common\classes\Debag;
+use common\classes\Email;
 use common\models\RegForm;
 use frontend\modules\login\models\db\User;
 use yii\web\Controller;
@@ -30,9 +31,9 @@ class RegController extends Controller{
             $user->created_at = time();
             $user->status = 0;
             //$user->save();
-            Debag::prn(Yii::$app->mailer);
+            //Debag::prn(Yii::$app->mailer);
             // делаем что-то полезное с $model ...
-
+            Email::sendActivateMsg($user);
             return $this->render('index', ['model' => $model]);
         } else {
             // либо страница отображается первый раз, либо есть ошибка в данных

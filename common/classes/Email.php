@@ -8,11 +8,16 @@
 
 namespace common\classes;
 use Yii;
+use common\models\EmailMsg;
+use common\classes\Debag;
 
 class Email {
 
-    public function sendActivateMsg($model){
-
+    public static function sendActivateMsg($model){
+        $mailMsg = new EmailMsg();
+        $tpl = $mailMsg::findOne(['key' => 'reg']);
+        /*echo "<br><br><br><br>";
+        Debag::prn($model->email);*/
     }
 
 } 

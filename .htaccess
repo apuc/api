@@ -1,3 +1,4 @@
+AddDefaultCharset UTF-8
 # Mod_Autoindex
 <IfModule mod_autoindex.c>
   # Запрещаем просмотр содержимого папок
