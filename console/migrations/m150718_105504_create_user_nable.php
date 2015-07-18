@@ -3,7 +3,7 @@
 use yii\db\Schema;
 use yii\db\Migration;
 
-class m130524_201442_init extends Migration
+class m150718_105504_create_user_nable extends Migration
 {
     public function up()
     {
@@ -13,22 +13,32 @@ class m130524_201442_init extends Migration
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
         }
 
-        $this->createTable('{{%user}}', [
+        $this->createTable('user', [
             'id' => Schema::TYPE_PK,
-            'username' => Schema::TYPE_STRING . ' NOT NULL',
-            'auth_key' => Schema::TYPE_STRING . '(32) NOT NULL',
-            'password_hash' => Schema::TYPE_STRING . ' NOT NULL',
-            'password_reset_token' => Schema::TYPE_STRING,
+            'money' => Schema::TYPE_BOOLEAN . ' NOT NULL',
+            'cash_id' => Schema::TYPE_STRING . ' NOT NULL',
             'email' => Schema::TYPE_STRING . ' NOT NULL',
-
-            'status' => Schema::TYPE_SMALLINT . ' NOT NULL DEFAULT 10',
+            'password' => Schema::TYPE_STRING . ' NOT NULL',
             'created_at' => Schema::TYPE_INTEGER . ' NOT NULL',
             'updated_at' => Schema::TYPE_INTEGER . ' NOT NULL',
+            'salt' => Schema::TYPE_STRING . ' NOT NULL',
+            'status' => Schema::TYPE_INTEGER . ' NOT NULL',
         ], $tableOptions);
     }
 
     public function down()
     {
-        $this->dropTable('{{%user}}');
+        $this->dropTable('user');
     }
+    
+    /*
+    // Use safeUp/safeDown to run migration code within a transaction
+    public function safeUp()
+    {
+    }
+    
+    public function safeDown()
+    {
+    }
+    */
 }
