@@ -28,6 +28,9 @@
             'feedback'  => [
                 'class' => 'backend\modules\feedback\Feedback',
             ],
+            'service' => [
+                'class' => 'backend\modules\service\Service',
+            ],
         ],
         'components'          => [
             'request'      => [

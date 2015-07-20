@@ -16,8 +16,6 @@
         }
 
         /**
-         * Отложен до решения по структуре
-         *
          * @param $task
          * @return mixed id or false
          */
@@ -29,7 +27,7 @@
 
 //            $query['token'] = self::$token;
 //
-//            $text = "Полайкать для проверки";
+//            $text = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
 //
 //            $task['kind'] = self::LIKE;
 //            $task['title'] = iconv(mb_detect_encoding($text, mb_detect_order(), true), "UTF-8", $text);

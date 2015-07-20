@@ -22,6 +22,8 @@
         ];
         public $js = [
             'js/modal.js',
+            'js/service.js',
+
         ];
         public $depends = [
             'yii\web\YiiAsset',

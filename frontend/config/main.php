@@ -23,9 +23,7 @@ return [
         'urlManager'   => [
             'enablePrettyUrl' => true,
             'rules'           => [
-                // your rules go here
             ],
-            // ...
         ],
         'user' => [
             'identityClass' => 'common\models\User',
