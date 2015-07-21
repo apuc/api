@@ -93,7 +93,7 @@ a.desc:after {
 .modal-window {
     position: relative;
     display: none;
-    margin: -45% auto auto;
+    margin: -100px auto auto;
     z-index: 10;
 }
 

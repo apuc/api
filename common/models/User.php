@@ -20,9 +20,13 @@ use yii\web\IdentityInterface;
  * @property string $salt
  * @property integer $status
  * @property string $username
+ * @property string $auth_key
  */
 class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
+    const TYPE_ADMINISTRATOR = 'administrator';
+    const TYPE_USER = 'user';
+
     /**
      * @inheritdoc
      */
@@ -123,7 +127,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public function getAuthKey()
     {
-        // TODO: Implement getAuthKey() method.
+        $this->auth_key = md5(time());
     }
 
     /**
@@ -136,6 +140,12 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public function validateAuthKey($authKey)
     {
-        // TODO: Implement validateAuthKey() method.
+        if ($authKey == $this->auth_key) {
+            return true;
+        } else {
+            return false;
+        }
     }
+
+
 }

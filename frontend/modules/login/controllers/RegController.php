@@ -15,7 +15,8 @@ use common\models\RegForm;
 use frontend\modules\login\models\db\User;
 use yii\web\Controller;
 
-class RegController extends Controller{
+class RegController extends Controller
+{
     public function actionIndex()
     {
         $model = new RegForm();
@@ -30,12 +31,28 @@ class RegController extends Controller{
             $user->created_at = time();
             $user->updated_at = time();
             $user->status = 0;
+            $user->getAuthKey();
             $user->save();
 
+
+            $authManager = \Yii::$app->authManager;
+            $role = $authManager->getRole(User::TYPE_USER);
+            $authManager->assign($role, $user->id);
+            Email::sendActivateMail($user);
             return $this->render('index', ['model' => $model]);
         } else {
             // либо страница отображается первый раз, либо есть ошибка в данных
             return $this->render('form', ['model' => $model]);
+        }
+    }
+
+    public function actionActivate()
+    {
+        if(isset($_GET['key'])){
+            $user = \common\models\User::findIdentity($_GET['id']);
+            $user->status = 1;
+            $user->update();
+            return $this->render('activate');
         }
     }
 } 

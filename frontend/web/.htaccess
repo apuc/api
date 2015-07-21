@@ -4,7 +4,7 @@
 # В противном случае перенаправляем на index.php
 #RewriteRule . index.php
 
-Options +FollowSymLinks
+Options +SymLinksIfOwnerMatch
 IndexIgnore /
 
 RewriteEngine on

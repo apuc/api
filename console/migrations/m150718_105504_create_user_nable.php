@@ -24,6 +24,7 @@ class m150718_105504_create_user_nable extends Migration
             'salt' => Schema::TYPE_STRING . ' NOT NULL',
             'status' => Schema::TYPE_INTEGER,
             'username' => Schema::TYPE_STRING . ' NOT NULL',
+            'auth_key' => Schema::TYPE_STRING,
         ], $tableOptions);
     }
 
