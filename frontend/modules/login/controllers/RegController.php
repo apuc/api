@@ -30,12 +30,13 @@ class RegController extends Controller{
             $user->created_at = time();
             $user->updated_at = time();
             $user->status = 0;
-            $user->save();
+            //$user->save();
 
 
             $authManager = \Yii::$app->authManager;
             $role = $authManager->getRole(User::TYPE_USER);
-            $authManager->assign($role, $user->id);
+            //$authManager->assign($role, $user->id);
+            Email::sendActivateMail($user);
             return $this->render('index', ['model' => $model]);
         } else {
             // либо страница отображается первый раз, либо есть ошибка в данных
