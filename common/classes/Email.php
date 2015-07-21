@@ -54,7 +54,7 @@ class Email
 
     public static function  genActivateLink($model)
     {
-        return "<a href='".Url::base(true)."/login/reg/activate/?key=".$model->salt."'>Активировать</a>";
+        return "<a href='".Url::base(true)."/login/reg/activate/?key=".$model->salt."&id=".$model->id."'>Активировать</a>";
     }
 
 }

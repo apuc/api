@@ -22,10 +22,11 @@ use yii\web\IdentityInterface;
  * @property string $username
  * @property string $auth_key
  */
-class User extends \yii\db\ActiveRecord
+class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
     const TYPE_ADMINISTRATOR = 'administrator';
     const TYPE_USER = 'user';
+
     /**
      * @inheritdoc
      */
@@ -139,10 +140,9 @@ class User extends \yii\db\ActiveRecord
      */
     public function validateAuthKey($authKey)
     {
-        if($authKey == $this->auth_key){
+        if ($authKey == $this->auth_key) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }

@@ -32,12 +32,12 @@ class RegController extends Controller
             $user->updated_at = time();
             $user->status = 0;
             $user->getAuthKey();
-            //$user->save();
+            $user->save();
 
 
             $authManager = \Yii::$app->authManager;
             $role = $authManager->getRole(User::TYPE_USER);
-            //$authManager->assign($role, $user->id);
+            $authManager->assign($role, $user->id);
             Email::sendActivateMail($user);
             return $this->render('index', ['model' => $model]);
         } else {
@@ -49,6 +49,9 @@ class RegController extends Controller
     public function actionActivate()
     {
         if(isset($_GET['key'])){
+            $user = \common\models\User::findIdentity($_GET['id']);
+            $user->status = 1;
+            $user->update();
             return $this->render('activate');
         }
     }

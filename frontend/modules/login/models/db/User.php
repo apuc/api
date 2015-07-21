@@ -6,6 +6,7 @@
  * Time: 15:37
  */
 namespace frontend\modules\login\models\db;
+
 class User extends \common\models\User{
 
 } 
