@@ -19,6 +19,7 @@
         public $baseUrl = '@web';
         public $css = [
             'css/site.css',
+            'css/admin.css',
         ];
         public $js = [
             'js/modal.js',

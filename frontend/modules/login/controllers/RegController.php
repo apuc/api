@@ -32,6 +32,10 @@ class RegController extends Controller{
             $user->status = 0;
             $user->save();
 
+
+            $authManager = \Yii::$app->authManager;
+            $role = $authManager->getRole(User::TYPE_USER);
+            $authManager->assign($role, $user->id);
             return $this->render('index', ['model' => $model]);
         } else {
             // либо страница отображается первый раз, либо есть ошибка в данных
