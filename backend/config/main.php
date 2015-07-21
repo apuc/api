@@ -31,6 +31,9 @@
             'service' => [
                 'class' => 'backend\modules\service\Service',
             ],
+            'task' => [
+                'class' => 'backend\modules\task\Task',
+            ],
         ],
         'components'          => [
             'request'      => [

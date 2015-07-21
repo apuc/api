@@ -21,7 +21,7 @@ use yii\web\IdentityInterface;
  * @property integer $status
  * @property string $username
  */
-class User extends \yii\db\ActiveRecord
+class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
     /**
      * @inheritdoc

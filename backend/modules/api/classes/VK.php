@@ -2,6 +2,7 @@
 
     namespace backend\modules\api\classes;
 
+    use common\models\db\Order;
     use yii\base\Object;
 
     class VK
@@ -16,7 +17,7 @@
         }
 
         /**
-         * @param $task
+         * @param $task Order
          * @return mixed id or false
          */
         public static function setTask($task)
