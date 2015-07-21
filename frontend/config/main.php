@@ -15,6 +15,9 @@ return [
         'login' => [
             'class' => 'frontend\modules\login\Login',
         ],
+        'profile' => [
+            'class' => 'frontend\modules\profile\Profile',
+        ],
     ],
     'components' => [
         'request'      => [
@@ -23,7 +26,10 @@ return [
         'urlManager'   => [
             'enablePrettyUrl' => true,
             'rules'           => [
-                // your rules go here
+                'loginto' => 'login/login/view',
+                'logout' => 'login/login/logout',
+                'registration' => 'login/reg',
+                'profile' => 'profile/profile',
             ],
             // ...
         ],

@@ -19,7 +19,8 @@
             $model = new LoginForm();
 
             if ($model->load(\Yii::$app->request->post()) && $model->login()) {
-                $this->goHome();
+                //$this->goHome();
+                \Yii::$app->getResponse()->redirect(Url::to('profile'));
             } else
                 return $this->render('login', ['model' => $model,]);
         }
@@ -28,6 +29,6 @@
         {
             \Yii::$app->user->logout(true);
 
-            \Yii::$app->response->redirect(Url::to('login'));
+            \Yii::$app->response->redirect(Url::to('loginto'));
         }
     }
