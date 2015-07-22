@@ -17,6 +17,7 @@ use yii\web\Controller;
 
 class RegController extends Controller
 {
+    public $layout = 'no_login';
     public function actionIndex()
     {
         $model = new RegForm();

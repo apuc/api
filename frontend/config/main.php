@@ -30,6 +30,7 @@ return [
                 'logout' => 'login/login/logout',
                 'registration' => 'login/reg',
                 'profile' => 'profile/profile',
+                'profile/edit' => 'profile/profile/edit',
             ],
             // ...
         ],

@@ -57,7 +57,7 @@ class RegForm extends Model
             'money' => 'Money',
             'cash_id' => 'Cash ID',
             'email' => 'Email',
-            'password' => 'пароль',
+            'password' => 'Пароль',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
             'salt' => 'Salt',

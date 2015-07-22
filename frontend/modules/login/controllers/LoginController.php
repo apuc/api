@@ -14,6 +14,7 @@
 
     class LoginController extends Controller
     {
+        public $layout = 'no_login';
         public function actionView()
         {
             $model = new LoginForm();

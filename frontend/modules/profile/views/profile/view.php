@@ -1,3 +1,7 @@
+<?php
+$this->title = 'Профиль '.$model->username;
+$this->params['breadcrumbs'][] = $this->title;
+?>
 <div class="box">
     <div class="box-header with-border">
         <h3 class="box-title">Ваш профиль</h3>
@@ -13,4 +17,4 @@
         <?= $model->email; ?>
     </div><!-- /.box-body -->
 </div>
-<button class="btn btn-block btn-primary btn-sm">Редактировать</button>
+<button onclick="document.location.href='/profile/edit'" class="btn btn-block btn-primary btn-sm">Редактировать</button>
