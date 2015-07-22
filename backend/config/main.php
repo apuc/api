@@ -12,6 +12,10 @@
         'basePath'            => dirname(__DIR__),
         'controllerNamespace' => 'backend\controllers',
         'bootstrap'           => ['log'],
+        'aliases'             => [
+            'feedbackAssets' => Yii::getAlias('@backend') . '\\modules\\feedback\\assets',
+            'serviceAssets' => Yii::getAlias('@backend') . '\\modules\\service\\assets',
+        ],
         'modules'             => [
             'api'       => [
                 'class' => 'backend\modules\api\Api',
@@ -28,10 +32,10 @@
             'feedback'  => [
                 'class' => 'backend\modules\feedback\Feedback',
             ],
-            'service' => [
+            'service'   => [
                 'class' => 'backend\modules\service\Service',
             ],
-            'task' => [
+            'task'      => [
                 'class' => 'backend\modules\task\Task',
             ],
         ],

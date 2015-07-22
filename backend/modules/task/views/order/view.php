@@ -35,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'quantity',
             'status',
             'task:ntext',
-            'limit:ntext',
+            'limits:ntext',
         ],
     ]) ?>
 

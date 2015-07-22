@@ -8,9 +8,9 @@
         {
             return [
                 [['model_name', 'name', 'minimum_all_likes', 'minimum_tasks', 'minimum_likes_per_task',
-                  'price_per_like'], 'required'],
+                  'price_per_one_task'], 'required'],
                 [['minimum_all_likes', 'minimum_tasks', 'minimum_likes_per_task'], 'integer'],
-                [['price_per_like', 'minimum_price_per_task'], 'number'],
+                [['price_per_one_task', 'minimum_price_per_task'], 'number'],
                 [['model_name', 'name'], 'string', 'max' => 255],
 
                 ['minimum_tasks', 'integer', 'min' => 10, 'on' => 'Like'],

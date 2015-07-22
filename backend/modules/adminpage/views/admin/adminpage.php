@@ -7,6 +7,6 @@
         </ul>
     </div>
     <div>
-        <?= \backend\modules\adminpage\widget\Stats::widget() ?>
+        <?= \backend\modules\adminpage\widgets\Stats::widget() ?>
     </div>
 </div>

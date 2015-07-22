@@ -11,12 +11,18 @@
         'basePath'            => dirname(__DIR__),
         'bootstrap'           => ['log'],
         'controllerNamespace' => 'frontend\controllers',
+        'aliases' => [
+          'taskAssets' => Yii::getAlias('@frontend'). '\\modules\\task\\assets'
+        ],
         'modules'             => [
             'login'   => [
                 'class' => 'frontend\modules\login\Login',
             ],
             'profile' => [
                 'class' => 'frontend\modules\profile\Profile',
+            ],
+            'task' => [
+                'class' => 'frontend\modules\task\Task',
             ],
         ],
         'components'          => [
@@ -25,6 +31,7 @@
             ],
             'urlManager'   => [
                 'enablePrettyUrl' => true,
+                'showScriptName'  => false,
                 'rules'           => [
                     'loginto'      => 'login/login/view',
                     'logout'       => 'login/login/logout',

@@ -89,21 +89,3 @@ a.desc:after {
     padding: 10px 20px;
     margin: 0 0 15px 0;
 }
-
-.modal-window {
-    position: relative;
-    display: none;
-    margin: -100px auto auto;
-    z-index: 10;
-}
-
-.modal-layout {
-    background-color: rgba(0, 0, 0, 0.5);
-    height: 100%;
-    left: 0;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    display: none;
-    z-index: 5;
-}

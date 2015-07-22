@@ -23,7 +23,7 @@
                 //минимальное кол-во выполнений задания (к примеру 10 репостов или 10 лайков)
                 'minimum_likes_per_task' => Schema::TYPE_INTEGER . ' NOT NULL',
                 //оплата за задание(1 коммент..), лайков на like4u (нельзя ниже реальной)
-                'price_per_like'         => Schema::TYPE_DOUBLE . ' NOT NULL',//Реальных денег за 1 лайк
+                'price_per_one_task'     => Schema::TYPE_DOUBLE . ' NOT NULL',//Реальных денег за 1 выпонение
                 'minimum_price_per_task' => Schema::TYPE_DOUBLE . ' NOT NULL',//Реальных денег за все задание
 
             ], $tableOptions);
@@ -34,7 +34,7 @@
                 'minimum_all_likes'      => 0,
                 'minimum_tasks'          => 0,
                 'minimum_likes_per_task' => 0,
-                'price_per_like'         => 100,
+                'price_per_one_task'     => 100,
                 'minimum_price_per_task' => 0,
             ]);
             $this->insert('service', [
@@ -43,7 +43,7 @@
                 'minimum_all_likes'      => 0,
                 'minimum_tasks'          => 0,
                 'minimum_likes_per_task' => 0,
-                'price_per_like'         => 100,
+                'price_per_one_task'     => 100,
                 'minimum_price_per_task' => 0,
             ]);
             $this->insert('service', [
@@ -52,7 +52,7 @@
                 'minimum_all_likes'      => 0,
                 'minimum_tasks'          => 0,
                 'minimum_likes_per_task' => 0,
-                'price_per_like'         => 100,
+                'price_per_one_task'     => 100,
                 'minimum_price_per_task' => 0,
             ]);
             $this->insert('service', [
@@ -61,7 +61,7 @@
                 'minimum_all_likes'      => 0,
                 'minimum_tasks'          => 0,
                 'minimum_likes_per_task' => 0,
-                'price_per_like'         => 100,
+                'price_per_one_task'     => 100,
                 'minimum_price_per_task' => 0,
             ]);
             $this->insert('service', [
@@ -70,7 +70,7 @@
                 'minimum_all_likes'      => 0,
                 'minimum_tasks'          => 0,
                 'minimum_likes_per_task' => 0,
-                'price_per_like'         => 100,
+                'price_per_one_task'     => 100,
                 'minimum_price_per_task' => 0,
             ]);
             $this->insert('service', [
@@ -79,7 +79,7 @@
                 'minimum_all_likes'      => 0,
                 'minimum_tasks'          => 0,
                 'minimum_likes_per_task' => 0,
-                'price_per_like'         => 100,
+                'price_per_one_task'     => 100,
                 'minimum_price_per_task' => 0,
             ]);
         }

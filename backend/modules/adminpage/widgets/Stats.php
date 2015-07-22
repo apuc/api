@@ -6,7 +6,7 @@
      * Time: 11:21
      */
 
-    namespace backend\modules\adminpage\widget;
+    namespace backend\modules\adminpage\widgets;
 
 
     use backend\modules\api\classes\VK;
@@ -18,7 +18,7 @@
         public function run()
         {
             $user = VK::getUserInfo();
-            return $this->render('stats', [
+            return $this->render('stats/stats', [
                 'like' => $user->money,
                 'accountType' => $user->type,
             ]);

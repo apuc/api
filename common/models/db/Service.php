@@ -15,7 +15,7 @@
      * @property integer $minimum_all_likes
      * @property integer $minimum_tasks
      * @property integer $minimum_likes_per_task
-     * @property double $price_per_like
+     * @property double $price_per_one_task
      * @property double minimum_price_per_task
      */
     class Service extends ActiveRecord
@@ -45,7 +45,7 @@
                 'minimum_all_likes'      => 'Минимальное кол-во лайков для задания',
                 'minimum_tasks'          => 'Кол-во выполнений',
                 'minimum_likes_per_task' => 'Лайков за выполнение',
-                'price_per_like'         => 'Цена за лайк, руб',
+                'price_per_one_task'     => 'Цена за 1 выполнение, руб',
                 'minimum_price_per_task' => 'Минимальная цена задания',
             ];
         }

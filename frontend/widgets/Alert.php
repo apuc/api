@@ -8,7 +8,7 @@
 namespace frontend\widgets;
 
 /**
- * Alert widget renders a message from session flash. All flash messages are displayed
+ * Alert widgets renders a message from session flash. All flash messages are displayed
  * in the sequence they were assigned using setFlash. You can set message as following:
  *
  * ```php

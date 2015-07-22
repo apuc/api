@@ -16,7 +16,7 @@
         {
             return [
                 [['id', 'user_id', 'service_id', 'date', 'quantity', 'status'], 'integer'],
-                [['task', 'limit'], 'safe'],
+                [['task', 'limits'], 'safe'],
                 [['task_url'], 'string', 'max' => 255],
             ];
         }
@@ -64,7 +64,7 @@
 
             $query->andFilterWhere(['like', 'task', $this->task])
                 ->andFilterWhere(['like', 'task_url', $this->task_url])
-                ->andFilterWhere(['like', 'limit', $this->limit]);
+                ->andFilterWhere(['like', 'limits', $this->limits]);
 
             return $dataProvider;
         }

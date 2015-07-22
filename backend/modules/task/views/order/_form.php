@@ -20,11 +20,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'quantity')->textInput() ?>
 
+    <?= $form->field($model, 'task_url')->textInput() ?>
+
     <?= $form->field($model, 'status')->textInput() ?>
 
     <?= $form->field($model, 'task')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'limit')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'limits')->textarea(['rows' => 6]) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

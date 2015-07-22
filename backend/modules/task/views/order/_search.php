@@ -29,7 +29,7 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'task') ?>
 
-    <?php // echo $form->field($model, 'limit') ?>
+    <?php // echo $form->field($model, 'limits') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

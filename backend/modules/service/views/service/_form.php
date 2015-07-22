@@ -39,7 +39,7 @@
     </div>
     <div class="row">
         <div class="col-lg-6">
-            <?= $form->field($model, 'price_per_like')->textInput(['class' => 'price_per_like form-control',]) ?>
+            <?= $form->field($model, 'price_per_one_task')->textInput(['class' => 'price_per_one_task form-control',]) ?>
         </div>
         <div class="col-lg-6">
             <?= $form->field($model, 'minimum_price_per_task')->textInput([
