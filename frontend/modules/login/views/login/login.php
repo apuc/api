@@ -18,6 +18,10 @@
             <?= $form->field($model, 'email') ?>
             <?= $form->field($model, 'password')->passwordInput()->label('Пароль') ?>
             <div class="form-group">
+                <?= Html::a('Восставлнеие пароля', ["/forgot"]) ?> |
+                <?= Html::a('Регистрация', ["/registration"]) ?>
+            </div>
+            <div class="form-group">
                 <?= Html::submitButton('Войти', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
             </div>
             <?php ActiveForm::end(); ?>

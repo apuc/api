@@ -24,6 +24,22 @@ class ProfileController extends Controller
     }
 
     public function actionEdit(){
-        return $this->render('edit');
+        $user = Yii::$app->user->identity;
+
+        if(Yii::$app->request->post()){
+            $u = Yii::$app->request->post();
+            $user->username = $u['User']['username'];
+            $user->email = $u['User']['email'];
+            if(!empty($u['User']['password'])){
+                $user->genPasswordOnly($u['User']['password']);
+            }
+            $user->update();
+            return $this->render('view', ['model' => $user]);
+        }
+        else {
+            $user->password = '';
+            return $this->render('edit', ['model' => $user]);
+        }
+
     }
 } 

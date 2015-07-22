@@ -25,12 +25,14 @@ return [
         ],
         'urlManager'   => [
             'enablePrettyUrl' => true,
+            'showScriptName' => false,
             'rules'           => [
                 'loginto' => 'login/login/view',
                 'logout' => 'login/login/logout',
                 'registration' => 'login/reg',
                 'profile' => 'profile/profile',
                 'profile/edit' => 'profile/profile/edit',
+                'forgot' => 'login/reg/forgot',
             ],
             // ...
         ],

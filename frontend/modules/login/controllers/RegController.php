@@ -56,4 +56,23 @@ class RegController extends Controller
             return $this->render('activate');
         }
     }
+
+    public function actionForgot(){
+        if(Yii::$app->request->post()){
+            $user = \common\models\User::findByEmail(Yii::$app->request->post()['email']);
+            if(!empty($user)){
+                $pass = $user->generateRandomPassword();
+                $user->update();
+                $msg = "<h3>Новый пароль выслан Вам на указанный Email</h3>";
+                Email::sendForgotPass(Yii::$app->request->post()['email'], $pass);
+            }
+            else {
+                $msg = "<h3>Пользователь с таким паролем не найден</h3>";
+            }
+            return $this->render('new_pass', ['msg'=>$msg]);
+        }
+        else {
+            return $this->render('forgot');
+        }
+    }
 } 
