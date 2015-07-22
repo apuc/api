@@ -35,6 +35,7 @@
                 'city'          => Schema::TYPE_INTEGER,
                 'minute_1'      => Schema::TYPE_INTEGER,
                 'minutes_5'     => Schema::TYPE_INTEGER,
+                'hour_1'        => Schema::TYPE_INTEGER,
                 'hours_4'       => Schema::TYPE_INTEGER,
                 'day_1'         => Schema::TYPE_INTEGER,
 

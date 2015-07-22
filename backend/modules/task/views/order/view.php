@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model backend\modules\task\models\db\Order */
 
-$this->title = $model->id;
+$this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => 'Orders', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -32,10 +32,26 @@ $this->params['breadcrumbs'][] = $this->title;
             'user_id',
             'service_id',
             'date',
-            'quantity',
             'status',
-            'task:ntext',
-            'limits:ntext',
+            'kind',
+            'title',
+            'url:url',
+            'members_count',
+            'cost',
+            'tag_list',
+            'sex',
+            'age_min',
+            'age_max',
+            'friends_count',
+            'country',
+            'city_text',
+            'city',
+            'minute_1',
+            'minutes_5',
+            'hour_1',
+            'hours_4',
+            'day_1',
+            'sum',
         ],
     ]) ?>
 

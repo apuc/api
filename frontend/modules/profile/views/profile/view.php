@@ -22,6 +22,4 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= $model->email; ?>
     </div><!-- /.box-body -->
 </div>
-<?= \yii\helpers\Html::a('лайки', \yii\helpers\Url::to(['/task/order/view-page', 'type' => 'like'])) ?>
-<?= $model->email; ?>
 <button onclick="document.location.href='/profile/edit'" class="btn btn-block btn-primary btn-sm">Редактировать</button>

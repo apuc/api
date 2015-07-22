@@ -1,14 +1,15 @@
 <?php
 
-use yii\helpers\Html;
-use yii\grid\GridView;
+    use yii\helpers\Html;
+    use yii\grid\GridView;
 
-/* @var $this yii\web\View */
-/* @var $searchModel backend\modules\task\models\form\OrderSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
+    /* @var $model \backend\modules\task\models\db\Order
+    /* @var $this yii\web\View */
+    /* @var $searchModel backend\modules\task\models\form\OrderSearch */
+    /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Orders';
-$this->params['breadcrumbs'][] = $this->title;
+    $this->title = 'Orders';
+    $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="order-index">
 
@@ -16,26 +17,72 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-<!--        --><?//= Html::a('Create Order', ['create'], ['class' => 'btn btn-success']) ?>
+        <!--        --><? //= Html::a('Create Order', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            //['class' => 'yii\grid\SerialColumn'],
+        'filterModel'  => $searchModel,
+        'columns'      => [
 
             //'id',
-            'user_id',
-            'service_id',
-            'date',
-            'task_url',
-            'quantity',
-            // 'status',
-            // 'task:ntext',
-            // 'limit:ntext',
+            //            [
+            //                'attribute' => 'user_id',
+            //                'format'    => 'text',
+            //                'value'     => function ($model) {
+            //                    return $model->user->username;
+            //                }
+            //            ],
+            [
+                'attribute' => 'service_id',
+                'format'    => 'text',
+                'value'     => function ($model) {
+                    return $model->service->name;
+                }
+            ],
+            //'date:datetime',
+            [
+                'attribute' => 'status',
+                'format'    => 'text',
+                'filter' => \backend\modules\task\models\db\Order::getStatuses(),
+                'value'     => function ($model) {
+                    return \backend\modules\task\models\db\Order::getStatuses()[$model->status];
+                }
+            ],
+            'title',
+            [
+                'attribute' => 'url',
+                'format'    => 'raw',
+                'value'     => function ($model) {
+                    return '<a href="' . $model->url . '" target=_blank>' . $model->url . '</a>';
+                }
+            ],
+            'sum',
+            [
+                'class'  => \yii\grid\DataColumn::className(),
+                'header' => 'Действия',
+                'format' => 'html',
+                'value'  => function ($model, $index, $widget) {
+                    $apply = Html::a(
+                        "<span class='glyphicon glyphicon-plus'></span>",
+                        Yii::$app->urlManager->createUrl(['task/order/apply', 'id' => $model->id]),
+                        [
+                            'class' => 'btn btn-default',
+                            'title' => 'Принять',
+                        ]);
+                    $cancel = Html::a(
+                        "<span class='glyphicon glyphicon-minus'></span>",
+                        Yii::$app->urlManager->createUrl(['task/order/cancel', 'id' => $model->id]),
+                        [
+                            'class' => 'btn btn-default',
+                            'title' => 'Отклонить',
+                        ]);
 
-            //['class' => 'yii\grid\ActionColumn'],
+                    $buttons = $apply . $cancel;
+
+                    return $model->status == \backend\modules\task\models\db\Order::NOT_MODERATED ? $buttons : '';
+                }
+            ],
         ],
     ]); ?>
 

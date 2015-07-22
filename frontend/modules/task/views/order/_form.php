@@ -94,14 +94,17 @@
         </div>
     </div>
 <? //= $form->field($model, 'city')->textInput(); ?>
-    <div class="row">
+    <div class="row down">
         <div class="col-lg-3">
             <?= $form->field($model, 'minute_1')->input('number', ['min' => 0]); ?>
         </div>
-        <div class="col-lg-3">
+        <div class="col-lg-2">
             <?= $form->field($model, 'minutes_5')->input('number', ['min' => 0]); ?>
         </div>
-        <div class="col-lg-3">
+        <div class="col-lg-2">
+            <?= $form->field($model, 'hour_1')->input('number', ['min' => 0]); ?>
+        </div>
+        <div class="col-lg-2">
             <?= $form->field($model, 'hours_4')->input('number', ['min' => 0]); ?>
         </div>
         <div class="col-lg-3">

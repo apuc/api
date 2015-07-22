@@ -20,7 +20,7 @@ class ServiceSearch extends Service
         return [
             [['id', 'minimum_all_likes', 'minimum_tasks', 'minimum_likes_per_task'], 'integer'],
             [['model_name', 'name'], 'safe'],
-            [['price_per_like'], 'number'],
+            [['price_per_one_task'], 'number'],
         ];
     }
 
@@ -61,7 +61,7 @@ class ServiceSearch extends Service
             'minimum_all_likes' => $this->minimum_all_likes,
             'minimum_tasks' => $this->minimum_tasks,
             'minimum_likes_per_task' => $this->minimum_likes_per_task,
-            'price_per_like' => $this->price_per_like,
+            'price_per_one_task' => $this->price_per_one_task,
         ]);
 
         $query->andFilterWhere(['like', 'model_name', $this->model_name])

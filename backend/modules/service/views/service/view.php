@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'minimum_all_likes',
             'minimum_tasks',
             'minimum_likes_per_task',
-            'price_per_like',
+            'price_per_one_task',
         ],
     ]) ?>
 

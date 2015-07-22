@@ -2,32 +2,46 @@
 
     namespace frontend\modules\task\controllers;
 
-    use common\models\db\Service;
+    use common\classes\Debag;
     use frontend\modules\task\models\db\Order;
     use Yii;
+    use yii\filters\AccessControl;
     use yii\web\Controller;
 
     class OrderController extends Controller
     {
+        public function behaviors()
+        {
+            return [
+                'access' => [
+                    'class' => AccessControl::className(),
+                    'rules' => [
+                        [
+                            'actions' => ['view-page'],
+                            'allow'   => true,
+                            'roles'   => ['@'],
+                        ],
+                    ],
+                ],
+            ];
+        }
 
         public function actionAddTask()
         {
         }
 
+        //todo эмейл оповещение
         public function actionViewPage($type)
         {
-            $order = new Order();
+            $order = new Order($type);
 
-            if ($order->load(\Yii::$app->request->post()) && $order->save()) {
-                Yii::app()->user->setFlash('done',"Задание принято на модерацию");
+            if ($order->load(\Yii::$app->request->post()) && $order->validate()) {
+                if ($order->addTask())
+                    Yii::$app->session->setFlash('done', "Задание принято к модерации");
 
-                $order = new Order();
-
-                return $this->render('view');
+                return $this->render('view', ['type'  => $type,
+                                              'model' => new Order($type)]);
             }
-
-            $order->kind = $order->typeToKind($type);
-            $order->service_id = Service::findOne(['model_name' => $type])->id;
 
             return $this->render('view', ['type' => $type, 'model' => $order]);
         }
