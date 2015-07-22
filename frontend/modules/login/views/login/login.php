@@ -6,7 +6,7 @@
     /* @var $form yii\bootstrap\ActiveForm */
     /* @var $model \backend\modules\login\models\forms\LoginForm */
 
-    $this->title = 'Login';
+    $this->title = 'Вход';
     $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-login">
