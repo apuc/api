@@ -99,6 +99,11 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         $this->password = hash_hmac('sha512', $password, $this->salt);
     }
 
+    public function genPasswordOnly($password){
+        $salt = sha1(time() . '76s3d');
+
+        $this->password = hash_hmac('sha512', $password, $salt);
+    }
 
     /**
      * Finds an identity by the given token.
@@ -148,5 +153,19 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         }
     }
 
+    public function generateRandomPassword($length = 8){
+        $chars = 'abdefhiknrstyzABDEFGHKNQRSTYZ23456789';
+        $numChars = strlen($chars);
+        $string = '';
+        for ($i = 0; $i < $length; $i++) {
+            $string .= substr($chars, rand(1, $numChars) - 1, 1);
+        }
+
+        $this->salt = sha1(time() . '76s3d');
+
+        $this->password = hash_hmac('sha512', $string, $this->salt);
+
+        return $string;
+    }
 
 }

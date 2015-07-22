@@ -14,6 +14,7 @@
         'aliases'             => [
             'taskAssets' => Yii::getAlias('@frontend') . '\\modules\\task\\assets'
         ],
+
         'modules'             => [
             'login'   => [
                 'class' => 'frontend\modules\login\Login',
@@ -27,25 +28,30 @@
             'profile' => [
                 'class' => 'frontend\modules\profile\Profile',
             ],
+
+    ],
+    'components' => [
+        'request'      => [
+            'baseUrl' => '',
         ],
-        'components'          => [
-            'request'      => [
-                'baseUrl' => '',
+        'urlManager'   => [
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+            'rules'           => [
+                'loginto' => 'login/login/view',
+                'logout' => 'login/login/logout',
+                'registration' => 'login/reg',
+                'profile' => 'profile/profile',
+                'profile/edit' => 'profile/profile/edit',
+                'forgot' => 'login/reg/forgot',
             ],
-            'urlManager'   => [
-                'enablePrettyUrl' => true,
-                'showScriptName'  => false,
-                'rules'           => [
-                    'loginto'      => 'login/login/view',
-                    'logout'       => 'login/login/logout',
-                    'registration' => 'login/reg',
-                    'profile'      => 'profile/profile',
+            // ...
+        ],
+        'user' => [
+            'identityClass' => 'common\models\User',
+            'enableAutoLogin' => true,
 
                 ],
-            ],
-            'user'         => [
-                'identityClass'   => 'common\models\User',
-                'enableAutoLogin' => true,
             ],
             'log'          => [
                 'traceLevel' => YII_DEBUG ? 3 : 0,

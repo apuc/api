@@ -57,4 +57,8 @@ class Email
         return "<a href='".Url::base(true)."/login/reg/activate/?key=".$model->salt."&id=".$model->id."'>Активировать</a>";
     }
 
+    public static function sendForgotPass($email,$pass){
+        return mail($email, 'Восстановление пароля', 'Ваш новый пароль: '.$pass);
+    }
+
 }
