@@ -6,7 +6,7 @@
     /* @var $form yii\bootstrap\ActiveForm */
     /* @var $model \backend\modules\login\models\forms\LoginForm */
 
-    $this->title = 'Login';
+    $this->title = 'Вход';
     $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-login">
@@ -16,7 +16,7 @@
         <div class="col-lg-5">
             <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
             <?= $form->field($model, 'email') ?>
-            <?= $form->field($model, 'password')->passwordInput() ?>
+            <?= $form->field($model, 'password')->passwordInput()->label('Пароль') ?>
             <div class="form-group">
                 <?= Html::submitButton('Войти', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
             </div>

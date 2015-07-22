@@ -22,4 +22,8 @@ class ProfileController extends Controller
 
         return $this->render('view', ['model' => $user]);
     }
+
+    public function actionEdit(){
+        return $this->render('edit');
+    }
 } 

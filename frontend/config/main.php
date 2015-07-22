@@ -24,7 +24,10 @@
             'task' => [
                 'class' => 'frontend\modules\task\Task',
             ],
+        'profile' => [
+            'class' => 'frontend\modules\profile\Profile',
         ],
+    ],
         'components'          => [
             'request'      => [
                 'baseUrl' => '',
