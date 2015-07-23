@@ -48,6 +48,7 @@ return [
                 'profile/edit' => 'profile/profile/edit',
                 'forgot' => 'login/reg/forgot',
                 'addphoto' => 'profile/profile/addphoto',
+                '' => 'mainpage/mainpage/',
             ],
             // ...
         ],
