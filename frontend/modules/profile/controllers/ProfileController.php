@@ -31,7 +31,7 @@ class ProfileController extends Controller
             $user->username = $u['User']['username'];
             $user->email = $u['User']['email'];
             if(!empty($u['User']['password'])){
-                $user->genPasswordOnly($u['User']['password']);
+                $user->generatePassword($u['User']['password']);
             }
             $user->update();
             return $this->render('view', ['model' => $user]);
@@ -40,6 +40,10 @@ class ProfileController extends Controller
             $user->password = '';
             return $this->render('edit', ['model' => $user]);
         }
+
+    }
+
+    public function actionAddphoto(){
 
     }
 } 

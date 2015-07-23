@@ -32,7 +32,7 @@ AppAsset::register($this);
             <header class="main-header">
 
                 <!-- Logo -->
-                <a href="index2.html" class="logo">
+                <a href="/" class="logo">
                     <!-- mini logo for sidebar mini 50x50 pixels -->
                     <span class="logo-mini"><b>SMM</b></span>
                     <!-- logo for regular state and mobile devices -->
@@ -177,6 +177,12 @@ AppAsset::register($this);
                             <a href="#">
                                 <i class="fa fa-question"></i>
                                 <span>Тех. поддержка</span>
+                            </a>
+                        </li>
+                        <li class="treeview">
+                            <a href="/logout">
+                                <i class="fa fa-external-link"></i>
+                                <span>Выйти</span>
                             </a>
                         </li>
                     </ul>

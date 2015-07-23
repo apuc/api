@@ -16,5 +16,8 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="box-body">
         <?= $model->email; ?>
     </div><!-- /.box-body -->
+    <div class="box-body">
+        <?= \yii\helpers\Html::a('Загрузить фото', ['/addphoto']) ?>
+    </div><!-- /.box-body -->
 </div>
 <button onclick="document.location.href='/profile/edit'" class="btn btn-block btn-primary btn-sm">Редактировать</button>
