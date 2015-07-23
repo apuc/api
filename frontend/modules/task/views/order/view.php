@@ -17,3 +17,5 @@
 ?>
 
 <?= $this->render('_form', ['model' => $model]) ?>
+
+<?= \frontend\modules\task\widgets\LastTasks::widget() ?>

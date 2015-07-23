@@ -25,33 +25,32 @@
             'task'    => [
                 'class' => 'frontend\modules\task\Task',
             ],
-            'profile' => [
-                'class' => 'frontend\modules\profile\Profile',
+            'statistics' => [
+                'class' => 'frontend\modules\statistics\Statistics',
             ],
 
-    ],
-    'components' => [
-        'request'      => [
-            'baseUrl' => '',
         ],
-        'urlManager'   => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules'           => [
-                'loginto' => 'login/login/view',
-                'logout' => 'login/login/logout',
-                'registration' => 'login/reg',
-                'profile' => 'profile/profile',
-                'profile/edit' => 'profile/profile/edit',
-                'forgot' => 'login/reg/forgot',
+        'components'          => [
+            'request'      => [
+                'baseUrl' => '',
             ],
-            // ...
-        ],
-        'user' => [
-            'identityClass' => 'common\models\User',
-            'enableAutoLogin' => true,
-
+            'urlManager'   => [
+                'enablePrettyUrl' => true,
+                'showScriptName'  => false,
+                'rules'           => [
+                    'loginto'      => 'login/login/view',
+                    'logout'       => 'login/login/logout',
+                    'registration' => 'login/reg',
+                    'profile'      => 'profile/profile',
+                    'profile/edit' => 'profile/profile/edit',
+                    'forgot'       => 'login/reg/forgot',
                 ],
+
+            ],
+            'user'         => [
+                'identityClass'   => 'common\models\User',
+                'enableAutoLogin' => true,
+
             ],
             'log'          => [
                 'traceLevel' => YII_DEBUG ? 3 : 0,

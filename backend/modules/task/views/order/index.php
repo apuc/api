@@ -17,7 +17,7 @@
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <!--        --><? //= Html::a('Create Order', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Синхронизировать все статусы', ['synchronize'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -44,7 +44,7 @@
             [
                 'attribute' => 'status',
                 'format'    => 'text',
-                'filter' => \backend\modules\task\models\db\Order::getStatuses(),
+                'filter'    => \backend\modules\task\models\db\Order::getStatuses(),
                 'value'     => function ($model) {
                     return \backend\modules\task\models\db\Order::getStatuses()[$model->status];
                 }
@@ -78,9 +78,23 @@
                             'title' => 'Отклонить',
                         ]);
 
-                    $buttons = $apply . $cancel;
+                    $delete = Html::a(
+                        "<span class='glyphicon glyphicon-remove'></span>",
+                        Yii::$app->urlManager->createUrl(['task/order/delete', 'id' => $model->id]),
+                        [
+                            'class' => 'btn btn-default',
+                            'title' => 'Удалить',
+                        ]);
 
-                    return $model->status == \backend\modules\task\models\db\Order::NOT_MODERATED ? $buttons : '';
+                    $buttons = '';
+
+                    if ($model->status == \backend\modules\task\models\db\Order::NOT_MODERATED)
+                        $buttons = $apply . $cancel;
+
+                    if ($model->status == \backend\modules\task\models\db\Order::DONE)
+                        $buttons = $delete;
+
+                    return $buttons;
                 }
             ],
         ],
