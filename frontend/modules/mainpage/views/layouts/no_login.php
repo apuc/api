@@ -57,8 +57,8 @@ AppAsset::register($this);
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
-                        <li><?= Html::a('Вход', ['/loginto']) ?></li>
-                        <li><?= Html::a('Регистрация', ['/registrate']) ?></li>
+                       <li><?= Html::a('Вход', ['/loginto']) ?></li>
+                       <li><?= Html::a('Регистрация', ['/registrate']) ?></li>
                     </ul>
                 </li>
                 <!-- Control Sidebar Toggle Button -->

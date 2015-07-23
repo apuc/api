@@ -40,15 +40,18 @@ class RegController extends Controller
             $role = $authManager->getRole(User::TYPE_USER);
             $authManager->assign($role, $user->id);
             Email::sendActivateMail($user);
+            $this->layout = "no_login";
             return $this->render('index', ['model' => $model]);
         } else {
             // либо страница отображается первый раз, либо есть ошибка в данных
+            $this->layout = "login";
             return $this->render('form', ['model' => $model]);
         }
     }
 
     public function actionActivate()
     {
+        $this->layout = "no_login";
         if(isset($_GET['key'])){
             $user = \common\models\User::findIdentity($_GET['id']);
             $user->status = 1;
@@ -58,6 +61,7 @@ class RegController extends Controller
     }
 
     public function actionForgot(){
+        $this->layout = "no_login";
         if(Yii::$app->request->post()){
             $user = \common\models\User::findByEmail(Yii::$app->request->post()['email']);
             if(!empty($user)){

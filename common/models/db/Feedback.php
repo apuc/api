@@ -52,12 +52,11 @@
         public function rules()
         {
             return [
-                [['email', 'name', 'text', 'status', 'created_at', 'updated_at'], 'required'],
+                [['email', 'name', 'text'], 'required'],
                 [['text'], 'string'],
                 [['created_at', 'updated_at'], 'integer'],
                 [['email'], 'string', 'max' => 255],
                 [['name'], 'string', 'max' => 25],
-                [['status'], 'string', 'max' => 1],
                 ['response', 'safe']
             ];
         }

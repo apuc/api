@@ -21,5 +21,16 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="box-body">
         <?= $model->email; ?>
     </div><!-- /.box-body -->
+    <div class="box-body">
+        <?php
+            if(empty($model->photo)){
+                echo \yii\helpers\Html::a('Загрузить фото', ['/addphoto']);
+            }
+            else {
+                echo \yii\helpers\Html::img($model->photo, ['width'=>'300px']);
+                echo "<br>".\yii\helpers\Html::a('Обновить фото', ['/addphoto']);
+            }
+        ?>
+    </div><!-- /.box-body -->
 </div>
 <button onclick="document.location.href='/profile/edit'" class="btn btn-block btn-primary btn-sm">Редактировать</button>
