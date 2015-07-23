@@ -31,7 +31,9 @@ return [
         'mainpage' => [
             'class' => 'frontend\modules\mainpage\Mainpage',
         ],
-
+        'feedback' => [
+            'class' => 'frontend\modules\feedback\Feedback',
+        ],
     ],
     'components' => [
         'request' => [
@@ -49,6 +51,7 @@ return [
                 'forgot' => 'login/reg/forgot',
                 'addphoto' => 'profile/profile/addphoto',
                 '' => 'mainpage/mainpage/',
+                'feedback' => 'feedback/feedback',
             ],
             // ...
         ],

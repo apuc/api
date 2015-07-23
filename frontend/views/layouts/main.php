@@ -248,7 +248,7 @@ if(empty($user->photo)){
                 </a>
             </li>
             <li class="treeview">
-                <a href="#">
+                <a href="/feedback">
                     <i class="fa fa-question"></i>
                     <span>Тех. поддержка</span>
                 </a>
