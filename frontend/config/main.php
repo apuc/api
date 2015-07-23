@@ -12,7 +12,7 @@
         'bootstrap'           => ['log'],
         'controllerNamespace' => 'frontend\controllers',
         'aliases'             => [
-            'taskAssets' => Yii::getAlias('@frontend') . '\\modules\\task\\assets'
+            'taskAssets' => Yii::getAlias('@frontend') . '/modules/task/assets'
         ],
 
         'modules'             => [
@@ -24,9 +24,6 @@
             ],
             'task'       => [
                 'class' => 'frontend\modules\task\Task',
-            ],
-            'profile'    => [
-                'class' => 'frontend\modules\profile\Profile',
             ],
             'mainpage'   => [
                 'class' => 'frontend\modules\mainpage\Mainpage',
@@ -56,13 +53,11 @@
                     ''             => 'mainpage/mainpage/',
                     'feedback'     => 'feedback/feedback',
                 ],
-                // ...
             ],
             'user'         => [
                 'identityClass'   => 'common\models\User',
                 'enableAutoLogin' => true,
             ],
-
             'log'          => [
                 'traceLevel' => YII_DEBUG ? 3 : 0,
                 'targets'    => [
@@ -72,11 +67,7 @@
                     ],
 
                 ],
-                'user'       => [
-                    'identityClass'   => 'common\models\User',
-                    'enableAutoLogin' => true,
 
-                ],
             ],
             'errorHandler' => [
                 'errorAction' => 'site/error',

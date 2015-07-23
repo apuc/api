@@ -13,8 +13,8 @@
         'controllerNamespace' => 'backend\controllers',
         'bootstrap'           => ['log'],
         'aliases'             => [
-            'feedbackAssets' => Yii::getAlias('@backend') . '\\modules\\feedback\\assets',
-            'serviceAssets' => Yii::getAlias('@backend') . '\\modules\\service\\assets',
+            'feedbackAssets' => Yii::getAlias('@backend') . '/modules/feedback/assets',
+            'serviceAssets'  => Yii::getAlias('@backend') . '/modules/service/assets',
         ],
         'modules'             => [
             'api'       => [
