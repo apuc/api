@@ -1,7 +1,12 @@
 <?php
+    /**
+     * @var $model \common\models\User
+     */
 $this->title = 'Профиль '.$model->username;
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<h2>Ваш профиль</h2>
+
 <div class="box">
     <div class="box-header with-border">
         <h3 class="box-title">Ваш профиль</h3>
@@ -17,7 +22,15 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= $model->email; ?>
     </div><!-- /.box-body -->
     <div class="box-body">
-        <?= \yii\helpers\Html::a('Загрузить фото', ['/addphoto']) ?>
+        <?php
+            if(empty($model->photo)){
+                echo \yii\helpers\Html::a('Загрузить фото', ['/addphoto']);
+            }
+            else {
+                echo \yii\helpers\Html::img($model->photo, ['width'=>'300px']);
+                echo "<br>".\yii\helpers\Html::a('Обновить фото', ['/addphoto']);
+            }
+        ?>
     </div><!-- /.box-body -->
 </div>
 <button onclick="document.location.href='/profile/edit'" class="btn btn-block btn-primary btn-sm">Редактировать</button>

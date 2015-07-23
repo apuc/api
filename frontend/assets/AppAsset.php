@@ -38,6 +38,7 @@ class AppAsset extends AssetBundle
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
+        'frontend\\modules\\task\\assets\\TaskAsset'
     ];
     public $img = [
         'img/user2-160x160.jpg'

@@ -10,8 +10,10 @@ namespace frontend\modules\profile\controllers;
 
 
 use common\classes\Debag;
+use common\models\UploadPhoto;
 use common\models\User;
 use yii\web\Controller;
+use yii\web\UploadedFile;
 use Yii;
 
 class ProfileController extends Controller
@@ -44,6 +46,23 @@ class ProfileController extends Controller
     }
 
     public function actionAddphoto(){
+        $model = new UploadPhoto();
+        $user = Yii::$app->user->identity;
+
+        if (Yii::$app->request->isPost) {
+            $model->file = UploadedFile::getInstance($model, 'file');
+
+            if ($model->file && $model->validate()) {
+                $model->file->saveAs('img/ava/' . $user->id . '.' . $model->file->extension);
+            }
+            $user->photo = 'img/ava/' . $user->id . '.' . $model->file->extension;
+            $user->update();
+            return $this->redirect(['/profile']);
+        }
+        else {
+            return $this->render('addphoto', ['model' => $model]);
+        }
+
 
     }
 } 

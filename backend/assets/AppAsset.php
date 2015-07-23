@@ -22,10 +22,11 @@
             'css/admin.css',
         ];
         public $js = [
-            'js/modal.js',
         ];
         public $depends = [
             'yii\web\YiiAsset',
             'yii\bootstrap\BootstrapAsset',
+            'backend\\modules\\feedback\\assets\\FeedbackAsset',
+            'backend\\modules\\service\\assets\\ServiceAsset',
         ];
     }

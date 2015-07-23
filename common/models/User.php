@@ -11,7 +11,7 @@ use yii\web\IdentityInterface;
  * This is the model class for table "user".
  *
  * @property integer $id
- * @property integer $money
+ * @property double $money
  * @property string $cash_id
  * @property string $email
  * @property string $password
@@ -43,6 +43,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return [
             // username and password are both required
             [['username', 'password', 'email'], 'required'],
+            [['money', 'cash_id'], 'safe']
             // rememberMe must be a boolean value
 
         ];
