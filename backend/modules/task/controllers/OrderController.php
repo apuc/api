@@ -63,7 +63,7 @@
                 $model->save();
 
                 $id = VK::setTask($model);
-                if ($id === false)
+                if ($id == false)
                     throw new Exception('Упали');
 
                 $transaction->commit();

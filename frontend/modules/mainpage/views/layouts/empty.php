@@ -11,6 +11,7 @@
     <!DOCTYPE html>
     <html lang="<?= Yii::$app->language ?>">
     <head>
+        <meta name="interkassa-verification" content="20a6e6203abeee743ba065eee429c803" />
         <meta charset="<?= Yii::$app->charset ?>">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <?= Html::csrfMetaTags() ?>
