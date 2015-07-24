@@ -1,3 +1,11 @@
 .admin-left-menu {
-    width: 100%;height: 500px;background-color: lightgrey;
+    width: 100%;
+    height: 500px;
+    background-color: lightgrey;
+    margin-top: 60px;
+}
+
+.admin-left-menu h3{
+    text-align: center;
+    padding: 5px;
 }
