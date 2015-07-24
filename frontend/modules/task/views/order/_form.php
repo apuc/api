@@ -25,7 +25,6 @@
         <div class="col-lg-4">
             <?= $form->field($model, 'members_count')->textInput([
                 'class' => 'members_count form-control',
-
             ]); ?>
         </div>
         <div class="col-lg-4">

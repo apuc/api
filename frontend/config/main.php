@@ -34,6 +34,9 @@
             'statistics' => [
                 'class' => 'frontend\modules\statistics\Statistics',
             ],
+            'interkassa' => [
+                'class' => 'frontend\modules\interkassa\Interkassa',
+            ],
         ],
         'components'          => [
             'request'      => [
@@ -57,6 +60,7 @@
             'user'         => [
                 'identityClass'   => 'common\models\User',
                 'enableAutoLogin' => true,
+                'loginUrl'        => 'loginto',
             ],
             'log'          => [
                 'traceLevel' => YII_DEBUG ? 3 : 0,

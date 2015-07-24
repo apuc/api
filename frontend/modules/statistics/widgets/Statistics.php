@@ -17,7 +17,7 @@
             $like = Order::getDb()->cache(function () {
                 return Order::find(['status' => Order::DONE])
                     ->where(['>', 'date', mktime(strftime('-1 day', time()))])
-                    ->where(['kind' => 1])
+                    ->andWhere(['kind' => 1])
                     ->sum('members_count');
             }, $cacheTime);
 
@@ -28,9 +28,9 @@
             }, $cacheTime);
 
             return $this->render('stat', [
-                'done'   => $done,
-                'like'   => $like,
-                'repost' => $repost,
+                'done'   => isset($done) ? $done : 0,
+                'like'   => isset($like) ? $like : 0,
+                'repost' => isset($repost) ? $repost : 0,
             ]);
         }
     }

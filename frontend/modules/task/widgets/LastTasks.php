@@ -18,15 +18,20 @@
     {
         public function run()
         {
-            $synchronize = OrderSynchronize::getObj();
-            if ($synchronize->timeLeft(300)) {
+            $cache = \Yii::$app->cache;
+
+            if (!$cache->exists('synchronize')) {
                 OrderSynchronize::synchronizeStatuses();
-                $synchronize->updateTime();
+                $updateStatusesCacheTime = \Yii::$app->params['updateStatusesCacheTime'];
+                $cache->set('synchronize', $updateStatusesCacheTime);
             }
 
             $userId = \Yii::$app->user->getId();
 
-            $orders = Order::find()->where(['user_id' => $userId])->limit(4)->all();
+            //todo поправить
+            $orders = Order::getDb()->cache(function () {
+                return Order::find()->where(['user_id' => $userId])->limit(4)->all();
+            });
 
             if (count($orders))
                 return $this->render('lastTasks', ['orders' => $orders]);
