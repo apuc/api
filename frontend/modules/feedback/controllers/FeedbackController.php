@@ -7,6 +7,7 @@
  */
 
 namespace frontend\modules\feedback\controllers;
+use common\classes\Email;
 use common\models\db\Feedback;
 use Yii;
 
@@ -29,6 +30,7 @@ class FeedbackController extends Controller
             $feedback->email = $model->email;
             $feedback->text = $model->text;
             $feedback->save();
+            Email::sendFeedBackToUser($feedback);
             return Yii::$app->response->redirect(['']);
         } else {
             return $this->render('index', [
