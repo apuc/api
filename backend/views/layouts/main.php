@@ -25,20 +25,20 @@ AppAsset::register($this);
     <div class="wrap">
         <?php
             NavBar::begin([
-                'brandLabel' => 'My Company',
+                'brandLabel' => 'AUTOSMM',
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
                     'class' => 'navbar-inverse navbar-fixed-top',
                 ],
             ]);
             $menuItems = [
-                ['label' => 'Home', 'url' => ['/site/index']],
+                ['label' => 'Главная', 'url' => ['/site/index']],
             ];
             if (Yii::$app->user->isGuest) {
                 $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
             } else {
                 $menuItems[] = [
-                    'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
+                    'label' => 'Выход (' . Yii::$app->user->identity->username . ')',
                     'url' => ['/site/logout'],
                     'linkOptions' => ['data-method' => 'post']
                 ];
@@ -52,7 +52,18 @@ AppAsset::register($this);
 
         <div class="container-fluid">
             <div class="col-lg-2">
-                <div class="admin-left-menu"></div>
+                <div class="admin-left-menu">
+                    <h3>Меню</h3>
+                    <ul>
+                        <li><?= Html::a('Консль', ['/']); ?></li>
+                        <li><?= Html::a('Пользователи', ['/user']); ?></li>
+                        <li><?= Html::a('Шаблоны писем', ['/email']); ?></li>
+                        <li><?= Html::a('Обратная связь', ['/feedback']); ?></li>
+                        <li><?= Html::a('Здания', ['/task/order']); ?></li>
+                        <li><?= Html::a('Опции', ['/service']); ?></li>
+                        <li><?= Html::a('Выход', ['/logout']); ?></li>
+                    </ul>
+                </div>
             </div>
             <div class="col-lg-10">
                 <?= Breadcrumbs::widget([

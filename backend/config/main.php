@@ -38,6 +38,9 @@
             'task'      => [
                 'class' => 'backend\modules\task\Task',
             ],
+            'user' => [
+                'class' => 'backend\modules\user\User',
+            ],
         ],
         'components'          => [
             'request'      => [
@@ -50,6 +53,10 @@
                     'login'  => 'login/login/view',
                     ''       => 'adminpage/admin/view',
                     'logout' => 'login/login/logout',
+                    'email' => 'email/email',
+                    'feedback' => 'feedback/feedback',
+                    'service' => 'service/service',
+                    'user' => 'user/user',
                 ],
             ],
             'user'         => [

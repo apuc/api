@@ -26,7 +26,8 @@
             $tpl = $mailMsg::findOne(['key' => 'reg']);
 
             $keyRepl = "{activate_link}";
-            $link = Email::genActivateLink($model);
+            $link = Additional::genActivateLink($model);
+            //$link = Email::genActivateLink($model);
             $msg = preg_replace("/$keyRepl/", $link, $tpl->text);
 
             /* echo "<br><br><br><br>";
@@ -86,14 +87,17 @@
         /**
          * todo Этого метода в классе эмейл быть не должно
          */
-        public static function  genActivateLink($model)
-        {
-            return "<a href='" . Url::base(true) . "/login/reg/activate/?key=" . $model->salt . "&id=" . $model->id . "'>Активировать</a>";
-        }
+
 
         public static function sendForgotPass($email, $pass)
         {
             return mail($email, 'Восстановление пароля', 'Ваш новый пароль: ' . $pass);
+        }
+
+        public static function sendFeedBackToUser($model){
+            $mailMsg = new EmailMsg();
+            $tpl = $mailMsg::findOne(['key' => 'feedback_to_user']);
+            return mail($model->email, $tpl->title, $tpl->text);
         }
 
     }
