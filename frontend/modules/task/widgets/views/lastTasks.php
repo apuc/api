@@ -24,10 +24,10 @@
     </div>
 <?=
     \yii\helpers\Html::a(
-        "<span class='glyphicon glyphicon-trash'></span>",
+        "Посмотреть все заказы",
         Yii::$app->urlManager->createUrl(['task/order/view-all']),
         [
-            'class' => 'btn btn-default',
-            'title' => 'Обработано без ответа',
+            'class' => 'btn btn-default btn-sm',
+            'title' => 'Посмотреть все заказы',
         ]);
 ?>

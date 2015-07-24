@@ -49,8 +49,9 @@
 
             if ($order->load(\Yii::$app->request->post()) && $order->validate()) {
                 if ($order->addTask()) {
-                    Email::sendNewTaskNotice($order);
+
                     Yii::$app->session->setFlash('done', "Задание принято к модерации");
+                    Email::sendNewTaskNotice($order);
                 }
                 return $this->render('view', ['type'  => $type,
                                               'model' => new Order($type)]);

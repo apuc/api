@@ -29,9 +29,8 @@
             $userId = \Yii::$app->user->getId();
 
             //todo поправить
-            $orders = Order::getDb()->cache(function () {
-                return Order::find()->where(['user_id' => $userId])->limit(4)->all();
-            });
+            $orders = Order::find()->where(['user_id' => $userId])->limit(4)->all();
+
 
             if (count($orders))
                 return $this->render('lastTasks', ['orders' => $orders]);
