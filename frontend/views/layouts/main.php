@@ -6,6 +6,7 @@
     use frontend\assets\AppAsset;
     use frontend\widgets\Alert;
     use frontend\modules\news;
+
     /* @var $this \yii\web\View */
     /* @var $content string */
 
@@ -107,7 +108,7 @@
                     <div class="pull-left info">
                         Баланс
                         <p><a href="#"> <?= $user->money; ?> р.<br>
-                                <small><?= \frontend\modules\interkassa\widgets\AddFunds::widget(); ?></small>
+                                <small id="view-interkassa-modal">Пополнить</small>
                             </a></p>
 
                     </div>
@@ -270,7 +271,6 @@
             <section class="content-header">
 
 
-
                 <h1>
                     Автоматический сервис накрутки вконтакте и других социальных сетях
                     <small>V 2.0</small>
@@ -356,6 +356,16 @@
                         <?= Breadcrumbs::widget([
                             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
                         ]) ?>
+
+                        <div id="modal-window-interkassa" class="well modal-window-interkassa">
+                            <a class="close-modal-interkassa btn btn-default pull-right" href="#">x</a>
+
+                            <div class="content">
+                                <?= \frontend\modules\interkassa\widgets\AddFunds::widget() ?>
+                            </div>
+                        </div>
+                        <div class="modal-layout-interkassa"></div>
+
                         <?= Alert::widget() ?>
                         <?= $content ?>
                     </div>

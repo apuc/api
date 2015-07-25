@@ -14,9 +14,10 @@
             }
 
             $this->createTable('payment', [
-                'id'      => Schema::TYPE_PK,
-                'cash_id' => Schema::TYPE_INTEGER . ' NOT NULL',
-                'money'   => Schema::TYPE_DOUBLE,
+                'id'        => Schema::TYPE_PK,
+                'cash_id'   => Schema::TYPE_INTEGER . ' NOT NULL',
+                'money'     => Schema::TYPE_DOUBLE,
+                'ik_inv_id' => Schema::TYPE_INTEGER,
             ], $tableOptions);
 
             $this->addForeignKey('user_cash_id_fk', 'payment', 'cash_id', 'user', 'id');

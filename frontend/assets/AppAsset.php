@@ -38,7 +38,8 @@ class AppAsset extends AssetBundle
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
-        'frontend\\modules\\task\\assets\\TaskAsset'
+        'frontend\\modules\\task\\assets\\TaskAsset',
+        'frontend\\modules\\interkassa\\assets\\InterkassaAsset'
     ];
     public $img = [
         'img/user2-160x160.jpg'

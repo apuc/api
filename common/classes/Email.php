@@ -84,11 +84,6 @@
             return mail($adminEmail, 'Уведомление о новом заказе', $template);
         }
 
-        /**
-         * todo Этого метода в классе эмейл быть не должно
-         */
-
-
         public static function sendForgotPass($email, $pass)
         {
             return mail($email, 'Восстановление пароля', 'Ваш новый пароль: ' . $pass);
