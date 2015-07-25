@@ -1,43 +1,46 @@
 <?php
-    $params = array_merge(
-        require(__DIR__ . '/../../common/config/params.php'),
-        require(__DIR__ . '/../../common/config/params-local.php'),
-        require(__DIR__ . '/params.php'),
-        require(__DIR__ . '/params-local.php')
-    );
+$params = array_merge(
+    require(__DIR__ . '/../../common/config/params.php'),
+    require(__DIR__ . '/../../common/config/params-local.php'),
+    require(__DIR__ . '/params.php'),
+    require(__DIR__ . '/params-local.php')
+);
 
-    return [
-        'id'                  => 'app-frontend',
-        'basePath'            => dirname(__DIR__),
-        'bootstrap'           => ['log'],
-        'controllerNamespace' => 'frontend\controllers',
-        'aliases'             => [
-            'taskAssets' => Yii::getAlias('@frontend') . '\\modules\\task\\assets'
+return [
+    'id' => 'app-frontend',
+    'basePath' => dirname(__DIR__),
+    'bootstrap' => ['log'],
+    'controllerNamespace' => 'frontend\controllers',
+    'aliases' => [
+        'taskAssets' => Yii::getAlias('@frontend') . '\\modules\\task\\assets'
+    ],
+
+    'modules' => [
+        'login' => [
+            'class' => 'frontend\modules\login\Login',
         ],
-
-        'modules'             => [
-            'login'   => [
-                'class' => 'frontend\modules\login\Login',
-            ],
-            'profile' => [
-                'class' => 'frontend\modules\profile\Profile',
-            ],
-            'task'    => [
-                'class' => 'frontend\modules\task\Task',
-            ],
-            'profile' => [
-                'class' => 'frontend\modules\profile\Profile',
-            ],
+        'profile' => [
+            'class' => 'frontend\modules\profile\Profile',
+        ],
+        'task' => [
+            'class' => 'frontend\modules\task\Task',
+        ],
+        'profile' => [
+            'class' => 'frontend\modules\profile\Profile',
+        ],
+        'news' => [
+            'class' => 'frontend\modules\news\News',
+        ],
 
     ],
     'components' => [
-        'request'      => [
+        'request' => [
             'baseUrl' => '',
         ],
-        'urlManager'   => [
+        'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'rules'           => [
+            'rules' => [
                 'loginto' => 'login/login/view',
                 'logout' => 'login/login/logout',
                 'registration' => 'login/reg',
@@ -51,20 +54,20 @@
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
 
+        ],
+
+        'log' => [
+            'traceLevel' => YII_DEBUG ? 3 : 0,
+            'targets' => [
+                [
+                    'class' => 'yii\log\FileTarget',
+                    'levels' => ['error', 'warning'],
                 ],
-            ],
-            'log'          => [
-                'traceLevel' => YII_DEBUG ? 3 : 0,
-                'targets'    => [
-                    [
-                        'class'  => 'yii\log\FileTarget',
-                        'levels' => ['error', 'warning'],
-                    ],
-                ],
-            ],
-            'errorHandler' => [
-                'errorAction' => 'site/error',
             ],
         ],
-        'params'              => $params,
-    ];
+        'errorHandler' => [
+            'errorAction' => 'site/error',
+        ],
+    ],
+    'params' => $params,
+];

@@ -5,7 +5,7 @@
     use yii\widgets\Breadcrumbs;
     use frontend\assets\AppAsset;
     use frontend\widgets\Alert;
-
+    use frontend\modules\news;
     /* @var $this \yii\web\View */
     /* @var $content string */
 
@@ -269,6 +269,9 @@
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <section class="content-header">
+
+
+
                 <h1>
                     Автоматический сервис накрутки вконтакте и других социальных сетях
                     <small>V 2.0</small>
@@ -352,6 +355,8 @@
                         <?= Alert::widget() ?>
                         <?= $content ?>
                     </div>
+
+                    <div class="col-md-4"><?= news\widgets\LastNews::widget() ?></div>
                 </div>
         </div>
         <?php
