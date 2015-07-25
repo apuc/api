@@ -2,6 +2,7 @@
 
     namespace common\models\db;
 
+    use backend\modules\api\classes\VK;
     use common\models\User;
     use Yii;
     use yii\db\ActiveRecord;
@@ -78,7 +79,7 @@
                 'id'            => 'ID',
                 'user_id'       => 'Пользователь',
                 'service_id'    => 'Тип задания',
-                'foreign_id'   => 'id на внешнем ресурсе',
+                'foreign_id'    => 'id на внешнем ресурсе',
                 'date'          => 'Дата',
                 'status'        => 'Статус',
                 'kind'          => 'Kind',
@@ -156,7 +157,7 @@
 
         public static function getStatuses()
         {
-            return[
+            return [
                 self::NOT_MODERATED => 'На модерации',
                 self::PROCESSED     => 'Выполняется',
                 self::DONE          => 'Выполнено',

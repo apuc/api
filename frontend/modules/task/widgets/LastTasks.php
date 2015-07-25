@@ -6,17 +6,35 @@
      * Time: 22:32
      */
 
-    namespace backend\modules\task\widgets;
+    namespace frontend\modules\task\widgets;
 
 
+    use common\classes\Debag;
+    use common\models\db\OrderSynchronize;
+    use frontend\modules\task\models\db\Order;
     use yii\base\Widget;
 
     class LastTasks extends Widget
     {
         public function run()
         {
-//            $user = VK::getUserInfo();
-//            return $this->render('stats/stats', [
-//            ]);
+            $cache = \Yii::$app->cache;
+
+            if (!$cache->exists('synchronize')) {
+                OrderSynchronize::synchronizeStatuses();
+                $updateStatusesCacheTime = \Yii::$app->params['updateStatusesCacheTime'];
+                $cache->set('synchronize', $updateStatusesCacheTime);
+            }
+
+            $userId = \Yii::$app->user->getId();
+
+            //todo поправить
+            $orders = Order::find()->where(['user_id' => $userId])->limit(4)->all();
+
+
+            if (count($orders))
+                return $this->render('lastTasks', ['orders' => $orders]);
+            else
+                echo 'Вы еще не давали заданий.';
         }
     }

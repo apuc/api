@@ -10,8 +10,10 @@ namespace frontend\modules\profile\controllers;
 
 
 use common\classes\Debag;
+use common\models\UploadPhoto;
 use common\models\User;
 use yii\web\Controller;
+use yii\web\UploadedFile;
 use Yii;
 
 class ProfileController extends Controller
@@ -31,7 +33,7 @@ class ProfileController extends Controller
             $user->username = $u['User']['username'];
             $user->email = $u['User']['email'];
             if(!empty($u['User']['password'])){
-                $user->genPasswordOnly($u['User']['password']);
+                $user->generatePassword($u['User']['password']);
             }
             $user->update();
             return $this->render('view', ['model' => $user]);
@@ -40,6 +42,27 @@ class ProfileController extends Controller
             $user->password = '';
             return $this->render('edit', ['model' => $user]);
         }
+
+    }
+
+    public function actionAddphoto(){
+        $model = new UploadPhoto();
+        $user = Yii::$app->user->identity;
+
+        if (Yii::$app->request->isPost) {
+            $model->file = UploadedFile::getInstance($model, 'file');
+
+            if ($model->file && $model->validate()) {
+                $model->file->saveAs('img/ava/' . $user->id . '.' . $model->file->extension);
+            }
+            $user->photo = 'img/ava/' . $user->id . '.' . $model->file->extension;
+            $user->update();
+            return $this->redirect(['/profile']);
+        }
+        else {
+            return $this->render('addphoto', ['model' => $model]);
+        }
+
 
     }
 } 

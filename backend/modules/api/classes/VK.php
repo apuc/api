@@ -41,6 +41,9 @@
             return $id;
         }
 
+        /**
+         * @return mixed
+         */
         public static function getTasks()
         {
             $result = file_get_contents('https://like4u.ru/tasks.json?token=' . self::$token);
@@ -48,11 +51,21 @@
             return json_decode($result);
         }
 
+        /**
+         * Вытянуть одно задание по id
+         *
+         * @param $id integer
+         * @return mixed
+         */
         public static function getTask($id)
         {
             return json_decode(file_get_contents('https://like4u.ru/tasks/' . $id . '.json?token=' . self::$token));
         }
 
+        /**
+         * @param $id integer
+         * @return mixed
+         */
         public static function deleteTask($id)
         {
             $curl = curl_init();

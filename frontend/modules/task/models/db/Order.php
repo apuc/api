@@ -5,7 +5,7 @@
 
     class Order extends \common\models\db\Order
     {
-        public function __construct($kind)
+        public function __construct1($kind)
         {
             $this->kind = $this->typeToKind($kind);
             $this->service_id = Service::findOne(['model_name' => $kind])->id;
@@ -15,5 +15,13 @@
 
             if ($this->isNewRecord)
                 $this->status = self::NOT_MODERATED;
+        }
+
+        public function __construct(){
+            $a = func_get_args();
+            $i = func_num_args();
+            if (method_exists($this,$f='__construct'.$i)) {
+                call_user_func_array(array($this,$f),$a);
+            }
         }
     }

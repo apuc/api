@@ -56,14 +56,16 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return [
             'id' => 'ID',
-            'money' => 'Money',
+            'money' => 'Счет',
             'cash_id' => 'Cash ID',
             'email' => 'Email',
             'password' => 'Password',
-            'created_at' => 'Created At',
+            'created_at' => 'Дата регистрации',
             'updated_at' => 'Updated At',
             'salt' => 'Salt',
-            'status' => 'Status',
+            'status' => 'Статус',
+            'username' => 'ФИО',
+            'photo' => 'Фото',
         ];
     }
 

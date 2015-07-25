@@ -1,25 +1,26 @@
 <?php
-    /**
-     * Created by PhpStorm.
-     * User: admin
-     * Date: 17.07.2015
-     * Time: 11:21
-     */
-
     namespace backend\modules\adminpage\widgets;
-
 
     use backend\modules\api\classes\VK;
     use yii\base\Widget;
-    use yii\helpers\Html;
 
     class Stats extends Widget
     {
         public function run()
         {
-            $user = VK::getUserInfo();
+            $cache = \Yii::$app->cache;
+
+            $user = null;
+            if ($cache->exists('user_cache')) {
+                $user = $cache->get('user_cache');
+            } else {
+                $user = VK::getUserInfo();
+
+                $cache->set('user_cache', $user, 300);
+            }
+
             return $this->render('stats/stats', [
-                'like' => $user->money,
+                'like'        => $user->money,
                 'accountType' => $user->type,
             ]);
         }

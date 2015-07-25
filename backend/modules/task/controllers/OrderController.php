@@ -3,6 +3,8 @@
     namespace backend\modules\task\controllers;
 
     use backend\modules\api\classes\VK;
+    use common\classes\Debag;
+    use common\models\db\OrderSynchronize;
     use common\models\User;
     use Yii;
     use backend\modules\task\models\db\Order;
@@ -32,11 +34,6 @@
             ]);
         }
 
-        /**
-         * Displays a single Order model.
-         * @param integer $id
-         * @return mixed
-         */
         public function actionView($id)
         {
             return $this->render('view', [
@@ -45,11 +42,15 @@
         }
 
         /**
-         * Updates an existing Order model.
-         * If update is successful, the browser will be redirected to the 'view' page.
-         * @param integer $id
-         * @return mixed
+         * @return bool
          */
+        public function actionSynchronize()
+        {
+            OrderSynchronize::synchronizeStatuses();
+
+            return $this->redirect(['index']);
+        }
+
         public function actionApply($id)
         {
             $model = $this->findModel($id);
@@ -62,7 +63,7 @@
                 $model->save();
 
                 $id = VK::setTask($model);
-                if ($id === false)
+                if ($id == false)
                     throw new Exception('Упали');
 
                 $transaction->commit();
@@ -103,13 +104,17 @@
             return $this->redirect(['index']);
         }
 
-        /**
-         * Finds the Order model based on its primary key value.
-         * If the model is not found, a 404 HTTP exception will be thrown.
-         * @param integer $id
-         * @return Order the loaded model
-         * @throws NotFoundHttpException if the model cannot be found
-         */
+        public function actionDelete($id)
+        {
+            $model = $this->findModel($id);
+
+            if (isset($model->foreign_id)) {
+                $result = VK::deleteTask($model->foreign_id);
+                Debag::prn($result);
+                return $this->redirect(['index']);
+            }
+        }
+
         protected function findModel($id)
         {
             if (($model = Order::findOne($id)) !== null) {

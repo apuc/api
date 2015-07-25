@@ -10,11 +10,18 @@
     /* @var $content string */
 
     AppAsset::register($this);
+    $user = Yii::$app->user->identity;
+    if (empty($user->photo)) {
+        $user->photo = "img/avatar5.png";
+    }
+
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
+    <meta name="interkassa-verification" content="20a6e6203abeee743ba065eee429c803"/>
+
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
@@ -31,15 +38,13 @@
 <div class="skin-blue sidebar-mini">
     <div class="wrapper">
         <header class="main-header">
-
             <!-- Logo -->
-            <a href="index2.html" class="logo">
+            <a href="/" class="logo">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini"><b>SMM</b></span>
                 <!-- logo for regular state and mobile devices -->
                 <span class="logo-lg">AUTO<b>SMM</b></span>
             </a>
-
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top" role="navigation">
                 <!-- Sidebar toggle button-->
@@ -55,40 +60,29 @@
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
-                                <img src="<?= \yii\helpers\Url::base(true); ?>/img/user2-160x160.jpg" class="user-image"
+                                <img src="<?= \yii\helpers\Url::base(true) . "/" . $user->photo; ?>" class="user-image"
                                      alt="User Image"/>
-                                <span class="hidden-xs">Alexander Pierce</span>
+                                <span class="hidden-xs"><?= $user->username; ?></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header">
-                                    <img src="<?= \yii\helpers\Url::base(true); ?>/img/user2-160x160.jpg"
+                                    <img src="<?= \yii\helpers\Url::base(true) . "/" . $user->photo; ?>"
                                          class="img-circle" alt="User Image"/>
 
                                     <p>
-                                        Alexander Pierce - Web Developer
-                                        <small>Member since Nov. 2012</small>
+                                        <?= $user->username . " - " . $user->email; ?>
                                     </p>
                                 </li>
                                 <!-- Menu Body -->
-                                <li class="user-body">
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Followers</a>
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Sales</a>
-                                    </div>
-                                    <div class="col-xs-4 text-center">
-                                        <a href="#">Friends</a>
-                                    </div>
-                                </li>
+
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-left">
-                                        <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                        <a href="/profile" class="btn btn-default btn-flat">Профиль</a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                        <a href="/logout" class="btn btn-default btn-flat">Выход</a>
                                     </div>
                                 </li>
                             </ul>
@@ -99,7 +93,6 @@
                         </li>
                     </ul>
                 </div>
-
             </nav>
         </header>
         <!-- Left side column. contains the logo and sidebar -->
@@ -108,13 +101,13 @@
             <section class="sidebar">
                 <div class="user-panel">
                     <div class="pull-left image">
-                        <img src="<?= \yii\helpers\Url::base(true); ?>/img/user2-160x160.jpg" class="img-circle"
+                        <img src="<?= \yii\helpers\Url::base(true) . "/" . $user->photo; ?>" class="img-circle"
                              alt="User Image"/>
                     </div>
                     <div class="pull-left info">
                         Баланс
-                        <p><a href="#"> 2000.0 р.<br>
-                                <small>пополнить</small>
+                        <p><a href="#"> <?= $user->money; ?> р.<br>
+                                <small><?= \frontend\modules\interkassa\widgets\AddFunds::widget(); ?></small>
                             </a></p>
 
                     </div>
@@ -256,9 +249,15 @@
                         </a>
                     </li>
                     <li class="treeview">
-                        <a href="#">
+                        <a href="/feedback">
                             <i class="fa fa-question"></i>
                             <span>Тех. поддержка</span>
+                        </a>
+                    </li>
+                    <li class="treeview">
+                        <a href="/logout">
+                            <i class="fa fa-external-link"></i>
+                            <span>Выход</span>
                         </a>
                     </li>
                 </ul>
@@ -286,6 +285,9 @@
             <section class="content">
                 <!-- Info boxes -->
                 <div class="row">
+                    <?= \frontend\modules\statistics\widgets\Statistics::widget() ?>
+                </div>
+                <div class="row">
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="info-box">
                             <span class="info-box-icon bg-aqua"><i class="ion ion-person-stalker"></i></span>
@@ -303,6 +305,7 @@
                         <div class="info-box">
                             <span class="info-box-icon bg-red"><i class="ion ion-checkmark"></i></span>
 
+
                             <div class="info-box-content">
                                 <span class="info-box-text">Заказов выполнено за 24 часа</span>
                                 <span class="info-box-number">1560</span>
@@ -312,6 +315,7 @@
                         <!-- /.info-box -->
                     </div>
                     <!-- /.col -->
+
 
                     <!-- fix for small devices only -->
                     <div class="clearfix visible-sm-block"></div>
@@ -387,7 +391,8 @@
                             'items' => $menuItems,
                         ]);
                         NavBar::end();
-                    */ ?>
+                    */
+        ?>
 
         <footer class="main-footer">
             <div class="pull-right hidden-xs">

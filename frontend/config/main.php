@@ -12,9 +12,8 @@ return [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'aliases' => [
-        'taskAssets' => Yii::getAlias('@frontend') . '\\modules\\task\\assets'
+        'taskAssets' => Yii::getAlias('@frontend') . '/modules/task/assets'
     ],
-
     'modules' => [
         'login' => [
             'class' => 'frontend\modules\login\Login',
@@ -25,13 +24,18 @@ return [
         'task' => [
             'class' => 'frontend\modules\task\Task',
         ],
-        'profile' => [
-            'class' => 'frontend\modules\profile\Profile',
+        'mainpage' => [
+            'class' => 'frontend\modules\mainpage\Mainpage',
         ],
-        'news' => [
-            'class' => 'frontend\modules\news\News',
+        'feedback' => [
+            'class' => 'frontend\modules\feedback\Feedback',
         ],
-
+        'statistics' => [
+            'class' => 'frontend\modules\statistics\Statistics',
+        ],
+        'interkassa' => [
+            'class' => 'frontend\modules\interkassa\Interkassa',
+        ],
     ],
     'components' => [
         'request' => [
@@ -47,15 +51,16 @@ return [
                 'profile' => 'profile/profile',
                 'profile/edit' => 'profile/profile/edit',
                 'forgot' => 'login/reg/forgot',
+                'addphoto' => 'profile/profile/addphoto',
+                '' => 'mainpage/mainpage/',
+                'feedback' => 'feedback/feedback',
             ],
-            // ...
         ],
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
-
+            'loginUrl' => 'loginto',
         ],
-
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
@@ -63,6 +68,9 @@ return [
                     'class' => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning'],
                 ],
+            ],
+            'errorHandler' => [
+                'errorAction' => 'site/error',
             ],
         ],
         'errorHandler' => [
