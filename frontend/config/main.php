@@ -12,7 +12,7 @@
         'bootstrap'           => ['log'],
         'controllerNamespace' => 'frontend\controllers',
         'aliases'             => [
-            'taskAssets' => Yii::getAlias('@frontend') . '/modules/task/assets',
+            'taskAssets'       => Yii::getAlias('@frontend') . '/modules/task/assets',
             'interkassaAssets' => Yii::getAlias('@frontend') . '/modules/interkassa/assets',
         ],
         'modules'             => [
@@ -63,8 +63,8 @@
                 'loginUrl'        => 'loginto',
             ],
             'log'          => [
-                'traceLevel'   => YII_DEBUG ? 3 : 0,
-                'targets'      => [
+                'traceLevel' => YII_DEBUG ? 3 : 0,
+                'targets'    => [
                     [
                         'class'  => 'yii\log\FileTarget',
                         'levels' => ['error', 'warning'],

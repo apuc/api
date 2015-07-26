@@ -3,6 +3,8 @@
     display: none;
     margin: -100px auto auto;
     z-index: 10;
+    width: 350px;
+    height: 250px;
 }
 
 .modal-layout-interkassa {

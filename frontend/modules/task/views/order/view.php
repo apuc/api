@@ -8,14 +8,22 @@
     $this->title = $model->service->name
 ?>
 
-<?= $this->title ?>
-
 <?php
     if (Yii::$app->session->getFlash('done')) {
         echo "<script>alert(" . Yii::$app->session->getFlash('done') . ")</script>";
     }
 ?>
-
-<?= $this->render('_form', ['model' => $model]) ?>
+<div class="box box-success">
+    <div class="box-header with-border">
+        <h3 class="box-title">Накрутка - <?= $this->title; ?></h3>
+    </div>
+    <div class="box-body no-padding">
+        <div class="row">
+            <div class="col-md-12">
+                <?= $this->render('_form', ['model' => $model]) ?>
+            </div>
+        </div>
+    </div>
+</div>
 
 <?= \frontend\modules\task\widgets\LastTasks::widget() ?>

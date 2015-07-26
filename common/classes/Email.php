@@ -78,8 +78,7 @@
                 "Название задания: " . $order->title . "<br />" .
                 "Ссылка на задание: " . '<a href="' . $order->url . '" target=_blank>' . $order->url . '</a>' . "<br />" .
                 "Сумма, руб: " . $order->sum . "<br /><br />" .
-                "<a href=".Yii::$app->urlManager->createAbsoluteUrl('secure/task/order/index').">В раздел модерации</a>"
-            ;
+                "<a href=" . Yii::$app->urlManager->createAbsoluteUrl('secure/task/order/index') . ">В раздел модерации</a>";
 
             return mail($adminEmail, 'Уведомление о новом заказе', $template);
         }
@@ -89,7 +88,8 @@
             return mail($email, 'Восстановление пароля', 'Ваш новый пароль: ' . $pass);
         }
 
-        public static function sendFeedBackToUser($model){
+        public static function sendFeedBackToUser($model)
+        {
             $mailMsg = new EmailMsg();
             $tpl = $mailMsg::findOne(['key' => 'feedback_to_user']);
             return mail($model->email, $tpl->title, $tpl->text);

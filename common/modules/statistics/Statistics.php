@@ -1,10 +1,10 @@
 <?php
 
-namespace frontend\modules\statistics;
+namespace common\modules\stastistics;
 
 class Statistics extends \yii\base\Module
 {
-    public $controllerNamespace = 'frontend\modules\statistics\controllers';
+    public $controllerNamespace = 'common\modules\statistics\controllers';
 
     public function init()
     {

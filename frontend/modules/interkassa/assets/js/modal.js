@@ -7,7 +7,7 @@ $('body').on('click', '#view-interkassa-modal', function () {
     return false;
 });
 
-$("body").on('click', '.close-modal', function () {
+$("body").on('click', '.close-modal-interkassa', function () {
     $(".modal-layout-interkassa").fadeOut();
     $("#modal-window-interkassa").fadeOut();
 });

@@ -12,10 +12,7 @@
 
         private static $token = false;
 
-        public static function getUserInfo()
-        {
-            return json_decode(file_get_contents('https://like4u.ru/client/user_info.json?token=' . self::$token));
-        }
+
 
         private static function checkToken(){
             if (self::$token === false) {
@@ -23,6 +20,12 @@
             }
         }
 
+        public static function getUserInfo()
+        {
+            self::checkToken();
+
+            return json_decode(file_get_contents('https://like4u.ru/client/user_info.json?token=' . self::$token));
+        }
         /**
          * @param $model Order
          * @return mixed id or false

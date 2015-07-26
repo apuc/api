@@ -72,7 +72,8 @@
             return self::findOne(['id' => 1]);
         }
 
-        public static function synchronizeStatuses(){
+        public static function synchronizeStatuses()
+        {
             $tasks = Vk::getTasks();
 
             foreach ($tasks as $task) {

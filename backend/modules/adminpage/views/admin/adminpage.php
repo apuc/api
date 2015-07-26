@@ -9,4 +9,8 @@
     <div>
         <?= \backend\modules\adminpage\widgets\Stats::widget() ?>
     </div>
+    <div>
+        <?= \common\modules\statistics\widgets\StatisticsFull::widget() ?>
+    </div>
+
 </div>
