@@ -3,11 +3,12 @@
     namespace frontend\modules\profile\classes;
 
     use yii\db\ActiveRecord;
+    use yii\web\UploadedFile;
 
     class UploadPhoto extends ActiveRecord
     {
         /**
-         * @var UploadedFile file attribute
+         * @var UploadedFile $file
          */
         public $file;
 

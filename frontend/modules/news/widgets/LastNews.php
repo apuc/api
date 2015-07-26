@@ -1,41 +1,20 @@
 <?php
 
-namespace frontend\modules\news\widgets;
+    namespace frontend\modules\news\widgets;
 
-use backend\modules\news\models\db\News;
-use yii\helpers\Html;
-use yii\base\Widget;
-use yii\db\ActiveRecord;
+    use backend\modules\news\models\db\News;
+    use yii\base\Widget;
 
-class LastNews extends Widget
-{
-    /*public $news;
-
-    public function init()
+    class LastNews extends Widget
     {
-        parent::init();
+        public $message;
 
-            $news = News::find()->orderBy('dt_add')->all();
+        public function run()
+        {
+            $news = News::getDb()->cache(function () {
+                return News::find()->orderBy('dt_add DESC')->limit(4)->all();
+            });
 
-           print_r($news->title);
-
+            return $this->render('last_news', ['news' => $news]);
+        }
     }
-
-    public function run()
-    {
-        return Html::encode($this->news);
-    }*/
-
-    public $message;
-
-    public function run()
-    {
-        $news = News::getDb()->cache(function () {
-            return News::find()->orderBy('dt_add DESC')->limit(4)->all();
-        });
-
-        return $this->render('last_news', ['news' => $news]);
-    }
-
-
-}

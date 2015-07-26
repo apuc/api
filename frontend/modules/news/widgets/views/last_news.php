@@ -34,7 +34,7 @@
             </ul>
         </div><!-- /.box-body -->
         <div class="box-footer text-center">
-            <a href=<?= \yii\helpers\Url::toRoute('news/news/all-news');?> class="uppercase">Все новости</a>
+            <a href=<?= \Yii::$app->urlManager->createUrl('news/news/all-news');?> class="uppercase">Все новости</a>
         </div><!-- /.box-footer -->
     </div>
 
