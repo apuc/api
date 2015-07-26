@@ -57,7 +57,7 @@ AppAsset::register($this);
                     <ul>
                         <li><?= Html::a('Главная', ['/']); ?></li>
                         <li><?= Html::a('Пользователи', ['/user']); ?></li>
-                        <li><?= Html::a('Шаблоны писем', ['/email']); ?></li>
+                        
                         <li><?= Html::a('Обратная связь', ['/feedback']); ?></li>
                         <li><?= Html::a('Задания', ['/task/order']); ?></li>
                         <li><?= Html::a('Опции', ['/service']); ?></li>
