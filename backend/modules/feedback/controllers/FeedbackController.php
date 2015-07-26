@@ -2,6 +2,7 @@
 
 namespace backend\modules\feedback\controllers;
 
+use backend\controllers\BackendController;
 use Yii;
 use backend\modules\feedback\models\db\Feedback;
 use backend\modules\feedback\models\form\FeedbackSearch;
@@ -12,7 +13,7 @@ use yii\filters\VerbFilter;
 /**
  * FeedbackController implements the CRUD actions for Feedback model.
  */
-class FeedbackController extends Controller
+class FeedbackController extends BackendController
 {
     /**
      * Lists all Feedback models.

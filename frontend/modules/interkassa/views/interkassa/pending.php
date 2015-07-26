@@ -1,3 +1,3 @@
 <?php
-    \common\classes\Debag::prn($_POST);
+    echo 'Платеж не проведен, ожидаем подтверждения';
 ?>

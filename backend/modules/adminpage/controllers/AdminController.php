@@ -2,26 +2,12 @@
 
     namespace backend\modules\adminpage\controllers;
 
+    use backend\controllers\BackendController;
     use yii\filters\AccessControl;
     use yii\web\Controller;
 
-    class AdminController extends Controller
+    class AdminController extends BackendController
     {
-//        public function behaviors()
-//        {
-//            return [
-//                'access' => [
-//                    'class' => AccessControl::className(),
-//                    'rules' => [
-//                        [
-//                            'actions' => ['view', 'error'],
-//                            'allow'   => true,
-//                            'roles'   => ['administrator', 'moderator'],
-//                        ],
-//                    ],
-//                ],
-//            ];
-//        }
 
         public function actionView()
         {

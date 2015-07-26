@@ -3,10 +3,8 @@
     namespace frontend\modules\interkassa\controllers;
 
 
-    use common\classes\Debag;
     use frontend\modules\interkassa\models\Payment;
     use frontend\modules\interkassa\models\User;
-    use yii\filters\AccessControl;
     use yii\filters\VerbFilter;
     use yii\web\Controller;
 

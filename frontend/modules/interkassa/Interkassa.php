@@ -1,15 +1,15 @@
 <?php
 
-namespace frontend\modules\interkassa;
+    namespace frontend\modules\interkassa;
 
-class Interkassa extends \yii\base\Module
-{
-    public $controllerNamespace = 'frontend\modules\interkassa\controllers';
-
-    public function init()
+    class Interkassa extends \yii\base\Module
     {
-        parent::init();
+        public $controllerNamespace = 'frontend\modules\interkassa\controllers';
 
-        // custom initialization code goes here
+        public function init()
+        {
+            parent::init();
+
+            // custom initialization code goes here
+        }
     }
-}

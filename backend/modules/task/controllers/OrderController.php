@@ -2,6 +2,7 @@
 
     namespace backend\modules\task\controllers;
 
+    use backend\controllers\BackendController;
     use backend\modules\api\classes\VK;
     use common\classes\Debag;
     use common\models\db\OrderSynchronize;
@@ -17,7 +18,7 @@
     /**
      * OrderController implements the CRUD actions for Order model.
      */
-    class OrderController extends Controller
+    class OrderController extends BackendController
     {
         /**
          * Lists all Order models.
