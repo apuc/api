@@ -1,7 +1,7 @@
 <?php
     namespace frontend\models;
 
-    use common\models\User;
+    use common\models\db\User;
     use yii\base\InvalidParamException;
     use yii\base\Model;
     use Yii;
@@ -14,7 +14,7 @@
         public $password;
 
         /**
-         * @var \common\models\User
+         * @var \common\models\db\User
          */
         private $_user;
 

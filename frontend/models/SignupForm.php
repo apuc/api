@@ -1,7 +1,7 @@
 <?php
     namespace frontend\models;
 
-    use common\models\User;
+    use common\models\db\User;
     use yii\base\Model;
     use Yii;
 
@@ -22,14 +22,14 @@
             return [
                 ['username', 'filter', 'filter' => 'trim'],
                 ['username', 'required'],
-                ['username', 'unique', 'targetClass' => '\common\models\User',
+                ['username', 'unique', 'targetClass' => '\common\models\db\User',
                  'message'                           => 'This username has already been taken.'],
                 ['username', 'string', 'min' => 2, 'max' => 255],
 
                 ['email', 'filter', 'filter' => 'trim'],
                 ['email', 'required'],
                 ['email', 'email'],
-                ['email', 'unique', 'targetClass' => '\common\models\User',
+                ['email', 'unique', 'targetClass' => '\common\models\db\User',
                  'message'                        => 'This email address has already been taken.'],
 
                 ['password', 'required'],

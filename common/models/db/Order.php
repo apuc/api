@@ -2,8 +2,6 @@
 
     namespace common\models\db;
 
-    use backend\modules\api\classes\VK;
-    use common\models\User;
     use Yii;
     use yii\db\ActiveRecord;
 
@@ -52,6 +50,23 @@
 
         public function __construct()
         {
+            $a = func_get_args();
+            $i = func_num_args();
+            if (method_exists($this, $f = '__construct' . $i)) {
+                call_user_func_array([$this, $f], $a);
+            }
+        }
+
+        protected function __construct1($kind)
+        {
+            $this->kind = $this->typeToKind($kind);
+            $this->service_id = Service::findOne(['model_name' => $kind])->id;
+            $this->user_id = \Yii::$app->user->getId();
+            $this->cost = $this->service->minimum_likes_per_task;
+            $this->date = time();
+
+            if ($this->isNewRecord)
+                $this->status = self::NOT_MODERATED;
         }
 
         public function rules()

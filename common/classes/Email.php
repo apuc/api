@@ -10,7 +10,7 @@
 
     use frontend\modules\task\models\db\Order;
     use Yii;
-    use common\models\EmailMsg;
+    use common\models\db\EmailMsg;
     use common\classes\Debag;
     use yii\helpers\Url;
 

@@ -1,17 +1,10 @@
 <?php
-    /**
-     * Created by PhpStorm.
-     * User: Кирилл
-     * Date: 23.07.2015
-     * Time: 10:28
-     */
 
-    namespace common\models;
+    namespace frontend\modules\profile\classes;
 
-    use yii\base\Model;
-    use yii\web\UploadedFile;
+    use yii\db\ActiveRecord;
 
-    class UploadPhoto extends Model
+    class UploadPhoto extends ActiveRecord
     {
         /**
          * @var UploadedFile file attribute

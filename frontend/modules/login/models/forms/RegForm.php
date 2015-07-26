@@ -1,41 +1,27 @@
 <?php
 
-    namespace common\models;
+    namespace forntend\modules\login\models\forms;
 
     use Yii;
-    use yii\base\Model;
+    use yii\db\ActiveRecord;
 
     /**
-     * This is the model class for table "user".
-     *
      * @property integer $id
-     * @property integer $money
-     * @property string $cash_id
      * @property string $email
      * @property string $password
-     * @property integer $created_at
-     * @property integer $updated_at
-     * @property string $salt
-     * @property integer $status
      * @property string $username
      */
-    class RegForm extends Model
+    class RegForm extends ActiveRecord
     {
         public $username;
         public $password;
         public $email;
 
-        /**
-         * @inheritdoc
-         */
         public static function tableName()
         {
             return 'user';
         }
 
-        /**
-         * @inheritdoc
-         */
         public function rules()
         {
             return [
@@ -46,10 +32,6 @@
             ];
         }
 
-
-        /**
-         * @inheritdoc
-         */
         public function attributeLabels()
         {
             return [

@@ -1,6 +1,7 @@
 <?php
-namespace backend\modules\news\models\db;
+    namespace backend\modules\news\models\db;
 
-class News extends \common\models\News{
+    class News extends \common\models\db\News
+    {
 
-} 
+    }

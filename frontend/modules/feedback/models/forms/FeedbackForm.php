@@ -1,17 +1,9 @@
 <?php
-    /**
-     * Created by PhpStorm.
-     * User: Кирилл
-     * Date: 23.07.2015
-     * Time: 16:05
-     */
+    namespace frontend\modules\feedback\models\forms;
 
-    namespace common\models;
+    use yii\db\ActiveRecord;
 
-
-    use yii\base\Model;
-
-    class FeedbackForm extends Model
+    class FeedbackForm extends ActiveRecord
     {
         public $name;
         public $text;

@@ -4,16 +4,13 @@
 
     use backend\controllers\BackendController;
     use backend\modules\api\classes\VK;
-    use common\classes\Debag;
-    use common\models\db\OrderSynchronize;
-    use common\models\User;
-    use Yii;
     use backend\modules\task\models\db\Order;
     use backend\modules\task\models\form\OrderSearch;
+    use common\classes\Debag;
+    use common\models\db\OrderSynchronize;
+    use Yii;
     use yii\db\Exception;
-    use yii\web\Controller;
     use yii\web\NotFoundHttpException;
-    use yii\filters\VerbFilter;
 
     /**
      * OrderController implements the CRUD actions for Order model.
@@ -40,6 +37,15 @@
             return $this->render('view', [
                 'model' => $this->findModel($id),
             ]);
+        }
+
+        protected function findModel($id)
+        {
+            if (($model = Order::findOne($id)) !== null) {
+                return $model;
+            } else {
+                throw new NotFoundHttpException('The requested page does not exist.');
+            }
         }
 
         /**
@@ -111,17 +117,8 @@
 
             if (isset($model->foreign_id)) {
                 $result = VK::deleteTask($model->foreign_id);
-                Debag::prn($result);
-                return $this->redirect(['index']);
-            }
-        }
 
-        protected function findModel($id)
-        {
-            if (($model = Order::findOne($id)) !== null) {
-                return $model;
-            } else {
-                throw new NotFoundHttpException('The requested page does not exist.');
+                return $this->redirect(['index']);
             }
         }
     }

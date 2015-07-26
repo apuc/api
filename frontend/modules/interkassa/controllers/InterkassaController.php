@@ -3,8 +3,8 @@
     namespace frontend\modules\interkassa\controllers;
 
 
-    use frontend\modules\interkassa\models\Payment;
-    use frontend\modules\interkassa\models\User;
+    use frontend\modules\interkassa\models\db\Payment;
+    use frontend\modules\interkassa\models\db\User;
     use yii\filters\VerbFilter;
     use yii\web\Controller;
 

@@ -53,7 +53,7 @@ class RegController extends Controller
     {
         $this->layout = "no_login";
         if(isset($_GET['key'])){
-            $user = \common\models\User::findIdentity($_GET['id']);
+            $user = \common\models\db\User::findIdentity($_GET['id']);
             $user->status = 1;
             $user->update();
             return $this->render('activate');
@@ -63,7 +63,7 @@ class RegController extends Controller
     public function actionForgot(){
         $this->layout = "no_login";
         if(Yii::$app->request->post()){
-            $user = \common\models\User::findByEmail(Yii::$app->request->post()['email']);
+            $user = \common\models\db\User::findByEmail(Yii::$app->request->post()['email']);
             if(!empty($user)){
                 $pass = $user->generateRandomPassword();
                 $user->update();

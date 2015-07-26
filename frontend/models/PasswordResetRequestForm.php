@@ -1,7 +1,7 @@
 <?php
     namespace frontend\models;
 
-    use common\models\User;
+    use common\models\db\User;
     use yii\base\Model;
 
     /**
@@ -21,7 +21,10 @@
                 ['email', 'required'],
                 ['email', 'email'],
                 ['email', 'exist',
-                 'targetClass' => '\common\models\User',
+                 'targetClass' => '\common\models\db\User',
+                 /**
+                  * todo в юзере этих констант нет!!!
+                  */
                  'filter'      => ['status' => User::STATUS_ACTIVE],
                  'message'     => 'There is no user with such email.'
                 ],

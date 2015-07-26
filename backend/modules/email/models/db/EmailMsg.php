@@ -8,7 +8,7 @@
 
     namespace backend\modules\email\models\db;
 
-    class EmailMsg extends \common\models\EmailMsg
+    class EmailMsg extends \common\models\db\EmailMsg
     {
 
     }
