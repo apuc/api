@@ -55,6 +55,8 @@
                     'addphoto'     => 'profile/profile/addphoto',
                     ''             => 'mainpage/mainpage/',
                     'feedback'     => 'feedback/feedback',
+                    'order'        => 'task/order/view-page',
+                    'order/all'    => 'task/order/view-all',
                 ],
             ],
             'user'         => [
