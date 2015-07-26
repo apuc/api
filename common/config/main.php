@@ -2,7 +2,8 @@
     return [
         'language'      => 'ru',
         'vendorPath'    => dirname(dirname(__DIR__)) . '/vendor',
-        'modules' => [
+        'bootstrap'     => ['debug'],
+        'modules'       => [
             'statistics' => [
                 'class' => 'common\modules\statistics\Statistics',
             ],
@@ -13,8 +14,8 @@
             ],
             'authManager' => [
                 'class' => 'yii\rbac\DbManager',
-
             ],
+
         ],
         'controllerMap' => [
             'elfinder' => [

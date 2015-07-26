@@ -38,7 +38,6 @@
             'task'      => [
                 'class' => 'backend\modules\task\Task',
             ],
-
             'news'      => [
                 'class' => 'backend\modules\news\News',
             ],
