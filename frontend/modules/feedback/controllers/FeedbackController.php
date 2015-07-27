@@ -19,6 +19,10 @@ class FeedbackController extends Controller
 
     public function actionIndex()
     {
+        if(empty(Yii::$app->user->identity)){
+            $this->layout = "no_login";
+        }
+
         $model = new FeedbackForm();
         $feedback = new Feedback();
 
@@ -29,13 +33,20 @@ class FeedbackController extends Controller
             $feedback->name = $model->name;
             $feedback->email = $model->email;
             $feedback->text = $model->text;
+
+            Yii::$app->session->setFlash('feedBackDone', 'Сообщение отправленно');
             $feedback->save();
             Email::sendFeedBackToUser($feedback);
-            return Yii::$app->response->redirect(['']);
-        } else {
+            $model = new FeedbackForm();
             return $this->render('index', [
                 'model' => $model,
             ]);
         }
+        else {
+            return $this->render('index', [
+                'model' => $model,
+            ]);
+        }
+
     }
 } 

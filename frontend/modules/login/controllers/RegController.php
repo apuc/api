@@ -35,6 +35,8 @@ class RegController extends Controller
             $user->getAuthKey();
             $user->save();
 
+            $user->cash_id = md5($user->id);
+            $user->save();
 
             $authManager = \Yii::$app->authManager;
             $role = $authManager->getRole(User::TYPE_USER);

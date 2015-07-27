@@ -24,6 +24,13 @@ use yii\web\IdentityInterface;
  */
 class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
+    public function behaviors()
+    {
+        return [
+            TimestampBehavior::className(),
+        ];
+    }
+
     const TYPE_ADMINISTRATOR = 'administrator';
     const TYPE_USER = 'user';
 
@@ -101,7 +108,8 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         $this->password = hash_hmac('sha512', $password, $this->salt);
     }
 
-    public function genPasswordOnly($password){
+    public function genPasswordOnly($password)
+    {
         $salt = sha1(time() . '76s3d');
 
         $this->password = hash_hmac('sha512', $password, $salt);
@@ -155,7 +163,8 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         }
     }
 
-    public function generateRandomPassword($length = 8){
+    public function generateRandomPassword($length = 8)
+    {
         $chars = 'abdefhiknrstyzABDEFGHKNQRSTYZ23456789';
         $numChars = strlen($chars);
         $string = '';

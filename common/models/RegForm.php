@@ -40,6 +40,8 @@ class RegForm extends Model
         return [
             // username and password are both required
             [['username', 'password', 'email'], 'required'],
+            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
+
             // rememberMe must be a boolean value
 
         ];

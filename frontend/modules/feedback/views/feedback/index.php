@@ -8,6 +8,9 @@ use yii\bootstrap\ActiveForm;
 
 $this->title = 'Обратная связь';
 $this->params['breadcrumbs'][] = $this->title;
+if(Yii::$app->session->hasFlash('feedBackDone')){
+    echo "<script>alert('Сообщение отправлено');</script>";
+}
 ?>
 <div style="padding: 20px">
 <?php
