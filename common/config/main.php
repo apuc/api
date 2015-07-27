@@ -2,7 +2,6 @@
     return [
         'language'      => 'ru',
         'vendorPath'    => dirname(dirname(__DIR__)) . '/vendor',
-        'bootstrap'     => ['debug'],
         'modules'       => [
             'statistics' => [
                 'class' => 'common\modules\statistics\Statistics',

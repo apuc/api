@@ -42,7 +42,7 @@
         private function getCount($type, $kind)
         {
             $result = '';
-            
+
             if (\Yii::$app->cache->exists($type))
                 $result = \Yii::$app->cache->get($type);
             else {
