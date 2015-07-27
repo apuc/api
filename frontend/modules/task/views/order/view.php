@@ -9,6 +9,7 @@
 ?>
 
 <?php
+    // todo поправить этот костыль, который еще и упал
     if (Yii::$app->session->getFlash('done')) {
         echo "<script>alert(" . Yii::$app->session->getFlash('done') . ")</script>";
     }

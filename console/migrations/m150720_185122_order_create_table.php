@@ -1,7 +1,7 @@
 <?php
 
-    use yii\db\Schema;
     use yii\db\Migration;
+    use yii\db\Schema;
 
     class m150720_185122_order_create_table extends Migration
     {
@@ -38,9 +38,14 @@
                 'hour_1'        => Schema::TYPE_INTEGER,
                 'hours_4'       => Schema::TYPE_INTEGER,
                 'day_1'         => Schema::TYPE_INTEGER,
-
                 'sum'           => Schema::TYPE_DOUBLE,
+                'min_followers' => Schema::TYPE_INTEGER,
+                'min_media'     => Schema::TYPE_INTEGER,
+                'has_avatar'    => Schema::TYPE_BOOLEAN,
+                'foreign_id'    => Schema::TYPE_INTEGER,
             ], $tableOptions);
+
+            $this->createIndex('order_foreign_id_index', 'order', 'foreign_id', true);
 
             $this->addForeignKey('user_order_fk', 'order', 'user_id', 'user', 'id', 'RESTRICT', 'CASCADE');
             $this->addForeignKey('service_order_fk', 'order', 'service_id', 'service', 'id', 'RESTRICT', 'CASCADE');
@@ -48,6 +53,8 @@
 
         public function down()
         {
+            $this->dropIndex('order_foreign_id_index', 'order');
+
             $this->dropForeignKey('user_order_fk', 'order');
             $this->dropForeignKey('service_order_fk', 'order');
 

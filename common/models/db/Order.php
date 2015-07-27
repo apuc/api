@@ -33,6 +33,9 @@
      * @property integer $hours_4
      * @property integer $day_1
      * @property double $sum
+     * @property integer $min_followers
+     * @property integer $min_media
+     * @property bool $has_avatar
      *
      * @property Service $service
      * @property User $user
@@ -43,11 +46,6 @@
         const PROCESSED = 1;
         const DONE = 2;
 
-        public static function tableName()
-        {
-            return 'order';
-        }
-
         public function __construct()
         {
             $a = func_get_args();
@@ -57,16 +55,18 @@
             }
         }
 
-        protected function __construct1($kind)
+        public static function tableName()
         {
-            $this->kind = $this->typeToKind($kind);
-            $this->service_id = Service::findOne(['model_name' => $kind])->id;
-            $this->user_id = \Yii::$app->user->getId();
-            $this->cost = $this->service->minimum_likes_per_task;
-            $this->date = time();
+            return 'order';
+        }
 
-            if ($this->isNewRecord)
-                $this->status = self::NOT_MODERATED;
+        public static function getStatuses()
+        {
+            return [
+                self::NOT_MODERATED => 'На модерации',
+                self::PROCESSED     => 'Выполняется',
+                self::DONE          => 'Выполнено',
+            ];
         }
 
         public function rules()
@@ -76,10 +76,12 @@
                  'required'],
                 [['user_id', 'service_id', 'foreign_id', 'date', 'status', 'kind', 'members_count', 'cost', 'sex',
                   'age_min',
-                  'age_max', 'friends_count', 'country', 'city', 'minute_1', 'minutes_5', 'hour_1', 'hours_4', 'day_1'],
+                  'age_max', 'friends_count', 'country', 'city', 'minute_1', 'minutes_5', 'hour_1', 'hours_4', 'day_1',
+                  'min_followers', 'min_media'],
                  'integer'],
                 [['title', 'tag_list'], 'string', 'max' => 250],
                 [['url', 'city_text'], 'string', 'max' => 255],
+                ['has_avatar', 'boolean'],
 
                 ['members_count', 'integer', 'min' => $this->service->minimum_tasks],
                 ['sum', 'double', 'min' => $this->service->minimum_price_per_task],
@@ -115,26 +117,11 @@
                 'hour_1'        => 'Кол-во выполнений за 1 час',
                 'hours_4'       => 'Кол-во выполнений за 4 часа',
                 'day_1'         => 'Кол-во выполнений за 1 сутки',
-                'sum'           => 'Сумма, руб'
+                'sum'           => 'Сумма, руб',
+                'min_followers' => 'Мин.коли-во подписчиков',
+                'min_media'     => 'Мин. кол-во записей',
+                'has_avatar'    => 'Наличие аватара',
             ];
-        }
-
-        public function typeToKind($type)
-        {
-            switch ($type) {
-                case 'like':
-                    return 1;//        1 - лайки
-                case 'subscriber':
-                    return 2;//        2 - группы
-                case 'repost':
-                    return 3;//        3 - рассказать друзьям
-                case 'friend':
-                    return 4;//        4 - друзья
-                case 'comment':
-                    return 5;//        5 - комментарии
-                case 'interview':
-                    return 6;//        6 - опросы
-            }
         }
 
         public function getService()
@@ -170,16 +157,24 @@
             return true;
         }
 
-        public static function getStatuses()
+        public function getQueryParams()
         {
-            return [
-                self::NOT_MODERATED => 'На модерации',
-                self::PROCESSED     => 'Выполняется',
-                self::DONE          => 'Выполнено',
-            ];
+            $network = $this->service->network;
+
+            if ($network === Service::VK)
+                return $this->getVKSetParams();
+
+            if ($network === Service::INSTAGRAM)
+                return $this->getInstagramSetParams();
+
+            if ($network === Service::TWITTER)
+                return $this->getTwitterSetParams();
+
+            if ($network === Service::ASKFM)
+                return $this->getAskFMSetParams();
         }
 
-        public function getArray()
+        protected function getVKSetParams()
         {
             $query = [];
             $task = [];
@@ -212,5 +207,61 @@
             $query['task'] = $task;
 
             return $query;
+        }
+
+        protected function getInstagramSetParams()
+        {
+            return $this->getInstOrTwitterOrAskFMSetParams();
+        }
+
+        protected function getTwitterSetParams()
+        {
+            return $this->getInstOrTwitterOrAskFMSetParams();
+        }
+
+        protected function getAskFMSetParams()
+        {
+            return $this->getInstOrTwitterOrAskFMSetParams();
+        }
+
+        protected function getInstOrTwitterOrAskFMSetParams()
+        {
+            $task = [];
+            $task_limit = [];
+
+            $text = $this->title;
+
+            $task['title'] = iconv(mb_detect_encoding($text, mb_detect_order(), true), "UTF-8", $text);
+            $task['url'] = $this->url;
+            $task['members_count'] = $this->members_count;
+            $task['cost'] = $this->cost;
+            $task['tag_list'] = $this->tag_list;
+            $task['min_followers'] = $this->min_followers;
+            $task['min_media'] = $this->min_media;
+            $task['has_avatar'] = $this->has_avatar;
+
+            $task_limit['minute_1'] = $this->minute_1;
+            $task_limit['minutes_5'] = $this->minutes_5;
+            $task_limit['hour_1'] = $this->hour_1;
+            $task_limit['hours_4'] = $this->hours_4;
+            $task_limit['day_1'] = $this->day_1;
+
+            $task['task_limit_attributes'] = $task_limit;
+
+            return $task;
+        }
+
+        protected function __construct1($type)
+        {
+
+            $this->service_id = Service::findOne(['model_name' => $type])->id;
+            $this->kind = $this->service_id;
+
+            $this->user_id = \Yii::$app->user->getId();
+            $this->cost = $this->service->minimum_likes_per_task;
+            $this->date = time();
+
+            if ($this->isNewRecord)
+                $this->status = self::NOT_MODERATED;
         }
     }

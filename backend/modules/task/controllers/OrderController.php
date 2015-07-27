@@ -3,11 +3,16 @@
     namespace backend\modules\task\controllers;
 
     use backend\controllers\BackendController;
+    use backend\modules\api\classes\Api;
+    use backend\modules\api\classes\AskFM;
+    use backend\modules\api\classes\Instagram;
+    use backend\modules\api\classes\Twitter;
     use backend\modules\api\classes\VK;
     use backend\modules\task\models\db\Order;
     use backend\modules\task\models\form\OrderSearch;
     use common\classes\Debag;
     use common\models\db\OrderSynchronize;
+    use common\models\db\Service;
     use Yii;
     use yii\db\Exception;
     use yii\web\NotFoundHttpException;
@@ -17,10 +22,6 @@
      */
     class OrderController extends BackendController
     {
-        /**
-         * Lists all Order models.
-         * @return mixed
-         */
         public function actionIndex()
         {
             $searchModel = new OrderSearch();
@@ -65,11 +66,23 @@
             $db = Yii::$app->db;
 
             $model->status = Order::PROCESSED;
+
+            $network = $model->service->network;
             $transaction = $db->beginTransaction();
             try {
                 $model->save();
 
-                $id = VK::setTask($model);
+                $id = false;
+
+                if ($network == Service::VK)
+                    $id = VK::setTask($model);
+                if ($network == Service::INSTAGRAM)
+                    $id = Instagram::setTask($model);
+                if ($network == Service::TWITTER)
+                    $id = Twitter::setTask($model);
+                if ($network == Service::ASKFM)
+                    $id = AskFM::setTask($model);
+
                 if ($id == false)
                     throw new Exception('Упали');
 
@@ -116,7 +129,7 @@
             $model = $this->findModel($id);
 
             if (isset($model->foreign_id)) {
-                $result = VK::deleteTask($model->foreign_id);
+                $result = Api::deleteTask($model->foreign_id);
 
                 return $this->redirect(['index']);
             }

@@ -6,12 +6,11 @@
      */
 
     use yii\helpers\Html;
-
 ?>
 
-<form role="form">
+<div role="form">
     <div class="box-body">
-        <?php $form = \yii\widgets\ActiveForm::begin(['id' => 'task-form']); ?>
+        <?php $form = \yii\widgets\ActiveForm::begin(['id' => 'task-form', 'method' => 'post']); ?>
         <?= $form->field($model, 'kind', ['template' => ''])->hiddenInput(); ?>
         <?= $form->field($model, 'service_id', ['template' => ''])->hiddenInput(); ?>
 
@@ -48,22 +47,25 @@
                 <?= $form->field($model, 'tag_list')->textInput(); ?>
             </div>
         </div>
+        <? if ($model->service->network == \common\models\db\Service::VK): ?>
         <div class="row">
-            <div class="col-lg-3">
+            <div class="col-lg-6">
                 <?= $form->field($model, 'sex')->dropDownList([
                     ''  => 'Не выбрано',
                     '1' => 'Женский',
                     '2' => 'Мужской',
                 ]); ?>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-6">
+                <?= $form->field($model, 'friends_count')->input('number', ['min' => 0]); ?>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
                 <?= $form->field($model, 'age_min')->input('number', ['min' => 0]); ?>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-6">
                 <?= $form->field($model, 'age_max')->input('number', ['min' => 0]); ?>
-            </div>
-            <div class="col-lg-3">
-                <?= $form->field($model, 'friends_count')->input('number', ['min' => 0]); ?>
             </div>
         </div>
         <div class="row">
@@ -94,8 +96,9 @@
                 <?= $form->field($model, 'city_text')->textInput(); ?>
             </div>
         </div>
+        <? endif; ?>
         <? //= $form->field($model, 'city')->textInput(); ?>
-        <div class="row down">
+        <div class="row">
             <div class="col-lg-3">
                 <?= $form->field($model, 'minute_1')->input('number', ['min' => 0]); ?>
             </div>
@@ -112,9 +115,25 @@
                 <?= $form->field($model, 'day_1')->input('number', ['min' => 0]); ?>
             </div>
         </div>
+        <? if ($model->service->network != \common\models\db\Service::VK): ?>
+            <div class="row">
+                <div class="col-lg-4">
+                    <?= $form->field($model, 'min_followers')->input('number', ['min' => 0]); ?>
+                </div>
+                <div class="col-lg-4">
+                    <?= $form->field($model, 'min_media')->input('number', ['min' => 0]); ?>
+                </div>
+                <div class="col-lg-4">
+                    <?= $form->field($model, 'has_avatar')->dropDownList([
+                        '0' => 'Нет',
+                        '1' => 'Да',
+                    ]); ?>
+                </div>
+            </div>
+        <? endif; ?>
     </div>
     <div class="box-footer">
         <?= Html::submitButton('Отправить', ['class' => 'btn btn-primary']); ?>
     </div>
     <?php $form->end(); ?>
-</form>
+</div>

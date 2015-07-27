@@ -16,37 +16,46 @@
      * @property integer $minimum_tasks
      * @property integer $minimum_likes_per_task
      * @property double $price_per_one_task
-     * @property double minimum_price_per_task
+     * @property double $minimum_price_per_task
+     * @property integer $network
      */
     class Service extends ActiveRecord
     {
-        /**
-         * @inheritdoc
-         */
+        const VK = 1;
+        const INSTAGRAM = 2;
+        const TWITTER = 3;
+        const ASKFM = 4;
+
+        const LIKE_VK = 1;
+        const FRIEND_VK = 2;
+        const SUBSCRIBER_VK = 3;
+        const REPOST_VK = 4;
+        const COMMENT_VK = 5;
+        const INTERVIEW_VK = 6;
+        const LIKE_INSTAGRAM = 7;
+        const SUBSCRIBER_INSTAGRAM = 8;
+        const RETWIT_TWITTER = 9;
+        const SUBSCRIBER_TWITTER = 10;
+        const FAVORITE_TWITTER = 11;
+        const LIKE_ASKFM = 12;
+
         public static function tableName()
         {
             return 'service';
         }
 
-        /**
-         * @inheritdoc
-         */
-
-
-        /**
-         * @inheritdoc
-         */
         public function attributeLabels()
         {
             return [
                 'id'                     => 'ID',
-                'model_name'             => 'Имя модели',
+                'model_name'             => 'Имя сценария',
                 'name'                   => 'Название',
-                'minimum_all_likes'      => 'Минимальное кол-во лайков для задания',
+                'minimum_all_likes'      => 'Мин. кол-во лайков для задания',
                 'minimum_tasks'          => 'Кол-во выполнений',
                 'minimum_likes_per_task' => 'Лайков за выполнение',
                 'price_per_one_task'     => 'Цена за 1 выполнение, руб',
-                'minimum_price_per_task' => 'Минимальная цена задания',
+                'minimum_price_per_task' => 'Мин. цена задания',
+                'network'                => 'Сайт',
             ];
         }
     }
