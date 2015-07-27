@@ -1,6 +1,6 @@
 <?php
     /**
-     * @var $model \common\models\User
+     * @var $model \common\models\db\User
      */
 $this->title = 'Профиль '.$model->username;
 $this->params['breadcrumbs'][] = $this->title;

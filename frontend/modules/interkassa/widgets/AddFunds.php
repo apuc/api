@@ -7,9 +7,10 @@
 
     class AddFunds extends Widget
     {
-        public function run(){
-            $cash = md5(\Yii::$app->user->getId());
+        public function run()
+        {
+            $cash = \Yii::$app->user->identity->cash_id;
 
-            return $this->render('form',['cash_id' => $cash]);
+            return $this->render('form', ['cash_id' => $cash]);
         }
     }

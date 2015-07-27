@@ -10,19 +10,30 @@
     {
         const LIKE = 1;
 
-        private static $token = 'a2e1b443299068f68e49e39c1ccff3fa';
+        private static $token = false;
+
+
+
+        private static function checkToken(){
+            if (self::$token === false) {
+                self::$token = \Yii::$app->params['like4uAccessToken'];
+            }
+        }
 
         public static function getUserInfo()
         {
+            self::checkToken();
+
             return json_decode(file_get_contents('https://like4u.ru/client/user_info.json?token=' . self::$token));
         }
-
         /**
          * @param $model Order
          * @return mixed id or false
          */
         public static function setTask($model)
         {
+            self::checkToken();
+
             $query = $model->getArray();
             $query['token'] = self::$token;
 
@@ -46,6 +57,8 @@
          */
         public static function getTasks()
         {
+            self::checkToken();
+
             $result = file_get_contents('https://like4u.ru/tasks.json?token=' . self::$token);
 
             return json_decode($result);
@@ -59,6 +72,8 @@
          */
         public static function getTask($id)
         {
+            self::checkToken();
+
             return json_decode(file_get_contents('https://like4u.ru/tasks/' . $id . '.json?token=' . self::$token));
         }
 
@@ -68,6 +83,8 @@
          */
         public static function deleteTask($id)
         {
+            self::checkToken();
+
             $curl = curl_init();
 
             curl_setopt($curl, CURLOPT_URL, 'https://like4u.ru/tasks/' . $id . '.json?token=' . self::$token);

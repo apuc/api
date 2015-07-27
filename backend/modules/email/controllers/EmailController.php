@@ -14,6 +14,7 @@ use yii\filters\VerbFilter;
  */
 class EmailController extends Controller
 {
+
     public function behaviors()
     {
         return [

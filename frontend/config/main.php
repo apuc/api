@@ -12,9 +12,9 @@
         'bootstrap'           => ['log'],
         'controllerNamespace' => 'frontend\controllers',
         'aliases'             => [
-            'taskAssets' => Yii::getAlias('@frontend') . '/modules/task/assets'
+            'taskAssets'       => Yii::getAlias('@frontend') . '/modules/task/assets',
+            'interkassaAssets' => Yii::getAlias('@frontend') . '/modules/interkassa/assets',
         ],
-
         'modules'             => [
             'login'      => [
                 'class' => 'frontend\modules\login\Login',
@@ -46,19 +46,22 @@
                 'enablePrettyUrl' => true,
                 'showScriptName'  => false,
                 'rules'           => [
-                    'loginto'      => 'login/login/view',
-                    'logout'       => 'login/login/logout',
-                    'registration' => 'login/reg',
-                    'profile'      => 'profile/profile',
-                    'profile/edit' => 'profile/profile/edit',
-                    'forgot'       => 'login/reg/forgot',
-                    'addphoto'     => 'profile/profile/addphoto',
-                    ''             => 'mainpage/mainpage/',
-                    'feedback'     => 'feedback/feedback',
+                    'loginto'            => 'login/login/view',
+                    'logout'             => 'login/login/logout',
+                    'registration'       => 'login/reg',
+                    'profile'            => 'profile/profile',
+                    'profile/edit'       => 'profile/profile/edit',
+                    'forgot'             => 'login/reg/forgot',
+                    'addphoto'           => 'profile/profile/addphoto',
+                    ''                   => 'mainpage/mainpage/',
+                    'feedback'           => 'feedback/feedback',
+                    'order'              => 'task/order/view-page',
+                    'order/all'          => 'task/order/view-all',
+                    'interkassa/<action>' => 'interkassa/interkassa/<action>',
                 ],
             ],
             'user'         => [
-                'identityClass'   => 'common\models\User',
+                'identityClass'   => 'common\models\db\User',
                 'enableAutoLogin' => true,
                 'loginUrl'        => 'loginto',
             ],
@@ -69,9 +72,7 @@
                         'class'  => 'yii\log\FileTarget',
                         'levels' => ['error', 'warning'],
                     ],
-
                 ],
-
             ],
             'errorHandler' => [
                 'errorAction' => 'site/error',

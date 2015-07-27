@@ -1,10 +1,9 @@
 <?php
-    use yii\helpers\Html;
-    use yii\bootstrap\Nav;
-    use yii\bootstrap\NavBar;
-    use yii\widgets\Breadcrumbs;
     use frontend\assets\AppAsset;
+    use frontend\modules\news;
     use frontend\widgets\Alert;
+    use yii\helpers\Html;
+    use yii\widgets\Breadcrumbs;
 
     /* @var $this \yii\web\View */
     /* @var $content string */
@@ -107,7 +106,7 @@
                     <div class="pull-left info">
                         Баланс
                         <p><a href="#"> <?= $user->money; ?> р.<br>
-                                <small><?= \frontend\modules\interkassa\widgets\AddFunds::widget(); ?></small>
+                                <small id="view-interkassa-modal">Пополнить</small>
                             </a></p>
 
                     </div>
@@ -237,7 +236,7 @@
                 <ul class="sidebar-menu">
                     <li class="header">Меню</li>
                     <li class="treeview">
-                        <a href="#">
+                        <a href=<?= Yii::$app->urlManager->createUrl('/task/order/view-all'); ?>
                             <i class="fa fa-shopping-cart"></i>
                             <span>История заказов</span>
                         </a>
@@ -268,82 +267,22 @@
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
             <section class="content-header">
+
+
                 <h1>
                     Автоматический сервис накрутки вконтакте и других социальных сетях
                     <small>V 2.0</small>
                 </h1>
-                <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                    <li class="active">Dashboard</li>
-                </ol>
+<!--                <ol class="breadcrumb">-->
+<!--                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>-->
+<!--                    <li class="active">Dashboard</li>-->
+<!--                </ol>-->
             </section>
 
             <!-- Main content -->
             <section class="content">
                 <!-- Info boxes -->
-                <div class="row">
-                    <?= \frontend\modules\statistics\widgets\Statistics::widget() ?>
-                </div>
-                <div class="row">
-                    <div class="col-md-3 col-sm-6 col-xs-12">
-                        <div class="info-box">
-                            <span class="info-box-icon bg-aqua"><i class="ion ion-person-stalker"></i></span>
-
-                            <div class="info-box-content">
-                                <span class="info-box-text">Исполнителей</span>
-                                <span class="info-box-number">635 933</span>
-                            </div>
-                            <!-- /.info-box-content -->
-                        </div>
-                        <!-- /.info-box -->
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-md-3 col-sm-6 col-xs-12">
-                        <div class="info-box">
-                            <span class="info-box-icon bg-red"><i class="ion ion-checkmark"></i></span>
-
-
-                            <div class="info-box-content">
-                                <span class="info-box-text">Заказов выполнено за 24 часа</span>
-                                <span class="info-box-number">1560</span>
-                            </div>
-                            <!-- /.info-box-content -->
-                        </div>
-                        <!-- /.info-box -->
-                    </div>
-                    <!-- /.col -->
-
-
-                    <!-- fix for small devices only -->
-                    <div class="clearfix visible-sm-block"></div>
-
-                    <div class="col-md-3 col-sm-6 col-xs-12">
-                        <div class="info-box">
-                            <span class="info-box-icon bg-green"><i class="ion ion-heart"></i></span>
-
-                            <div class="info-box-content">
-                                <span class="info-box-text">Лайков поставлено за 24 часа</span>
-                                <span class="info-box-number">760 221</span>
-                            </div>
-                            <!-- /.info-box-content -->
-                        </div>
-                        <!-- /.info-box -->
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-md-3 col-sm-6 col-xs-12">
-                        <div class="info-box">
-                            <span class="info-box-icon bg-yellow"><i class="ion ion-arrow-return-left"></i></span>
-
-                            <div class="info-box-content">
-                                <span class="info-box-text">Репостов за 24 часа</span>
-                                <span class="info-box-number">43 005</span>
-                            </div>
-                            <!-- /.info-box-content -->
-                        </div>
-                        <!-- /.info-box -->
-                    </div>
-                    <!-- /.col -->
-                </div>
+                <?= \common\modules\statistics\widgets\StatisticsMenu::widget() ?>
                 <!-- /.row -->
 
                 <!-- MAIN -->
@@ -353,10 +292,23 @@
                         <?= Breadcrumbs::widget([
                             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
                         ]) ?>
+
+                        <div id="modal-window-interkassa" class="well modal-window-interkassa">
+                            <a class="close-modal-interkassa btn btn-default pull-right" href="#">x</a>
+
+                            <div class="content">
+                                <?= \frontend\modules\interkassa\widgets\AddFunds::widget() ?>
+                            </div>
+                        </div>
+                        <div class="modal-layout-interkassa"></div>
+
                         <?= Alert::widget() ?>
                         <?= $content ?>
                     </div>
+
+                    <div class="col-md-4"><?= news\widgets\LastNews::widget() ?></div>
                 </div>
+            </section>
         </div>
         <?php
             /*            NavBar::begin([

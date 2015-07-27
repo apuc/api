@@ -3,11 +3,12 @@
     namespace backend\modules\feedback\controllers;
 
 
+    use backend\controllers\BackendController;
     use backend\modules\feedback\models\db\Feedback;
     use common\classes\Email;
     use yii\web\Controller;
 
-    class AjaxController extends Controller
+    class AjaxController extends BackendController
     {
         public function actionViewForm()
         {

@@ -2,6 +2,7 @@
 
 namespace backend\modules\service\controllers;
 
+use backend\controllers\BackendController;
 use backend\modules\service\models\db\Comment;
 use backend\modules\service\models\db\Friend;
 use backend\modules\service\models\db\Interview;
@@ -14,7 +15,7 @@ use backend\modules\service\models\form\ServiceSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
-class ServiceController extends Controller
+class ServiceController extends BackendController
 {
     public function actionIndex()
     {

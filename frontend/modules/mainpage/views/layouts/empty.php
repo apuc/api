@@ -28,7 +28,7 @@
 
     <footer class="footer">
         <div class="container">
-            <p class="pull-left">&copy; NovoJob <?= date('Y') ?></p>
+            <p class="pull-left">&copy;  <?= date('Y') ?></p>
         </div>
     </footer>
 

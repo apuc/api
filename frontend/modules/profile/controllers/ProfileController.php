@@ -1,17 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Кирилл
- * Date: 21.07.2015
- * Time: 16:32
- */
 
 namespace frontend\modules\profile\controllers;
 
-
-use common\classes\Debag;
-use common\models\UploadPhoto;
-use common\models\User;
+use frontend\modules\profile\classes\UploadPhoto;
 use yii\web\Controller;
 use yii\web\UploadedFile;
 use Yii;

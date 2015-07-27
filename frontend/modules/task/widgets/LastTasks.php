@@ -28,7 +28,6 @@
 
             $userId = \Yii::$app->user->getId();
 
-            //todo поправить
             $orders = Order::find()->where(['user_id' => $userId])->limit(4)->all();
 
 

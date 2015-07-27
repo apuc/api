@@ -10,7 +10,7 @@
 
     use frontend\modules\task\models\db\Order;
     use Yii;
-    use common\models\EmailMsg;
+    use common\models\db\EmailMsg;
     use common\classes\Debag;
     use yii\helpers\Url;
 
@@ -78,23 +78,18 @@
                 "Название задания: " . $order->title . "<br />" .
                 "Ссылка на задание: " . '<a href="' . $order->url . '" target=_blank>' . $order->url . '</a>' . "<br />" .
                 "Сумма, руб: " . $order->sum . "<br /><br />" .
-                "<a href=".Yii::$app->urlManager->createAbsoluteUrl('secure/task/order/index').">В раздел модерации</a>"
-            ;
+                "<a href=" . Yii::$app->urlManager->createAbsoluteUrl('secure/task/order/index') . ">В раздел модерации</a>";
 
             return mail($adminEmail, 'Уведомление о новом заказе', $template);
         }
-
-        /**
-         * todo Этого метода в классе эмейл быть не должно
-         */
-
 
         public static function sendForgotPass($email, $pass)
         {
             return mail($email, 'Восстановление пароля', 'Ваш новый пароль: ' . $pass);
         }
 
-        public static function sendFeedBackToUser($model){
+        public static function sendFeedBackToUser($model)
+        {
             $mailMsg = new EmailMsg();
             $tpl = $mailMsg::findOne(['key' => 'feedback_to_user']);
             return mail($model->email, $tpl->title, $tpl->text);

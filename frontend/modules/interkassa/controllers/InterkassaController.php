@@ -3,8 +3,8 @@
     namespace frontend\modules\interkassa\controllers;
 
 
-    use common\classes\Debag;
-    use yii\filters\AccessControl;
+    use frontend\modules\interkassa\models\db\Payment;
+    use frontend\modules\interkassa\models\db\User;
     use yii\filters\VerbFilter;
     use yii\web\Controller;
 
@@ -18,12 +18,10 @@
                 'verbs' => [
                     'class'   => VerbFilter::className(),
                     'actions' => [
-                        'view'         => ['get', 'post'],
                         'success'      => ['post'],
                         'fail'         => ['post'],
                         'pending'      => ['post'],
                         'info73234234' => ['post'],
-                        //'delete' => ['post', 'delete'],
                     ],
                 ],
             ];
@@ -60,25 +58,38 @@
         {
             $information = \Yii::$app->request->post();
 
-            if ($information['ik_inv_st'] == 'success') {
-                $payment = $information['ik_pm_no'];
+            if ($information['ik_inv_st'] == 'success' && $this->checkSign()) {//проверка подписи и проведенности
 
-                $money = $information['ik_co_rfn']; // денюжка после всех процентов
+                $payment = Payment::findOne(['ik_inv_id']);
 
+                if (!isset($payment)) {//что-бы не прислали проведенный платеж еще раз
+                    $payment = new Payment();
+                    $cash_id = $information['ik_pm_no'];
+                    $money = $information['ik_ps_price'];
+
+                    $payment->cash_id;
+                    $payment->money = $money;
+                    $payment->ik_inv_id = $information['ik_inv_id'];
+
+                    $payment->save();
+
+                    $user = User::findOne(['cash_id' => $cash_id]);
+                    $user->money += $money;
+                    $user->save();
+                }
             }
         }
 
-        private function checkIP(){
-            if (!empty($_SERVER['HTTP_CLIENT_IP'])){
-                //check ip from share internet
-                $ip = $_SERVER['HTTP_CLIENT_IP'];
-            }elseif(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
-                //to check ip is pass from proxy
-                $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-            } else {
-                $ip = $_SERVER['REMOTE_ADDR'];
-            }
+        private function checkSign()
+        {
+            $info = \Yii::$app->request->post();
+            $post_sign = $info['ik_sign'];
+            unset($info["ik_sign"]);
+            ksort($info, SORT_STRING);
+            array_push($info, \Yii::$app->params['interkassaSecretKey']);
+            $signString = implode(':', $info);
+            $sign = base64_encode(md5($signString, true));
 
-            return $ip;
+            return $sign == $post_sign;
         }
     }

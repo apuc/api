@@ -55,11 +55,10 @@ AppAsset::register($this);
                 <div class="admin-left-menu">
                     <h3>Меню</h3>
                     <ul>
-                        <li><?= Html::a('Консль', ['/']); ?></li>
+                        <li><?= Html::a('Главная', ['/']); ?></li>
                         <li><?= Html::a('Пользователи', ['/user']); ?></li>
-                        <li><?= Html::a('Шаблоны писем', ['/email']); ?></li>
                         <li><?= Html::a('Обратная связь', ['/feedback']); ?></li>
-                        <li><?= Html::a('Здания', ['/task/order']); ?></li>
+                        <li><?= Html::a('Задания', ['/task/order']); ?></li>
                         <li><?= Html::a('Опции', ['/service']); ?></li>
                         <li><?= Html::a('Выход', ['/logout']); ?></li>
                     </ul>

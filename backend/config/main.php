@@ -38,10 +38,14 @@
             'task'      => [
                 'class' => 'backend\modules\task\Task',
             ],
-            'user' => [
+            'news'      => [
+                'class' => 'backend\modules\news\News',
+            ],
+            'user'      => [
                 'class' => 'backend\modules\user\User',
             ],
         ],
+
         'components'          => [
             'request'      => [
                 'baseUrl' => '/secure',
@@ -50,17 +54,17 @@
                 'enablePrettyUrl' => true,
                 'showScriptName'  => false,
                 'rules'           => [
-                    'login'  => 'login/login/view',
-                    ''       => 'adminpage/admin/view',
-                    'logout' => 'login/login/logout',
-                    'email' => 'email/email',
+                    'login'    => 'login/login/view',
+                    ''         => 'adminpage/admin/view',
+                    'logout'   => 'login/login/logout',
+                    'email'    => 'email/email',
                     'feedback' => 'feedback/feedback',
-                    'service' => 'service/service',
-                    'user' => 'user/user',
+                    'service'  => 'service/service',
+                    'user'     => 'user/user',
                 ],
             ],
             'user'         => [
-                'identityClass'   => 'common\models\User',
+                'identityClass'   => 'common\models\db\User',
                 'enableAutoLogin' => true,
                 'loginUrl'        => 'login',
             ],
