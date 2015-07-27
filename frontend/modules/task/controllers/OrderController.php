@@ -2,7 +2,6 @@
 
     namespace frontend\modules\task\controllers;
 
-    use common\classes\Debag;
     use common\classes\Email;
     use frontend\modules\task\behaviors\SynchronizeControl;
     use frontend\modules\task\models\db\Order;
@@ -34,7 +33,7 @@
             $userId = \Yii::$app->user->getId();
 
             $provider = new ActiveDataProvider([
-                'query' => Order::find()->where(['user_id'=>$userId]),
+                'query'      => Order::find()->where(['user_id' => $userId]),
                 'pagination' => [
                     'pageSize' => 20,
                 ]
@@ -47,14 +46,18 @@
         {
             $order = new Order($type);
 
-            if ($order->load(\Yii::$app->request->post()) && $order->validate()) {
-                if ($order->addTask()) {
-
-                    Yii::$app->session->setFlash('done', "Задание принято к модерации");
-                    Email::sendNewTaskNotice($order);
+            if ($order->load(\Yii::$app->request->post())) {
+                if ($order->validate()) {
+                    if ($order->addTask()) {
+                        Yii::$app->session->setFlash('message', ['type'    => 'success',
+                                                                 'message' => 'Задание принято к модерации']);
+                        Email::sendNewTaskNotice($order);
+                        $order = new Order($type);
+                    }
+                } else {
+                    Yii::$app->session->setFlash('message', ['type'    => 'danger',
+                                                             'message' => 'Пожалуйста, повторите ввод']);
                 }
-                return $this->render('view', ['type'  => $type,
-                                              'model' => new Order($type)]);
             }
 
             return $this->render('view', ['type' => $type, 'model' => $order]);

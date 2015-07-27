@@ -32,7 +32,8 @@
             'js/jquery-jvectormap-world-mill-en.js',
             'js/jquery.slimscroll.min.js',
             'js/Chart.min.js',
-            'js/dashboard2.js',
+            // todo этот файл порит подсказки
+            //'js/dashboard2.js',
             'js/demo.js',
         ];
         public $depends = [

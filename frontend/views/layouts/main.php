@@ -310,7 +310,7 @@
                     <li class="header">Меню</li>
                     <li class="treeview">
                         <a href=<?= Yii::$app->urlManager->createUrl('/task/order/view-all'); ?>
-                            <i class="fa fa-shopping-cart"></i>
+                           <i class="fa fa-shopping-cart"></i>
                             <span>История заказов</span>
                         </a>
                     </li>
@@ -346,10 +346,10 @@
                     Автоматический сервис накрутки вконтакте и других социальных сетях
                     <small>V 2.0</small>
                 </h1>
-<!--                <ol class="breadcrumb">-->
-<!--                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>-->
-<!--                    <li class="active">Dashboard</li>-->
-<!--                </ol>-->
+                <!--                <ol class="breadcrumb">-->
+                <!--                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>-->
+                <!--                    <li class="active">Dashboard</li>-->
+                <!--                </ol>-->
             </section>
 
             <!-- Main content -->

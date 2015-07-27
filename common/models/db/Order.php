@@ -214,16 +214,6 @@
             return $this->getInstOrTwitterOrAskFMSetParams();
         }
 
-        protected function getTwitterSetParams()
-        {
-            return $this->getInstOrTwitterOrAskFMSetParams();
-        }
-
-        protected function getAskFMSetParams()
-        {
-            return $this->getInstOrTwitterOrAskFMSetParams();
-        }
-
         protected function getInstOrTwitterOrAskFMSetParams()
         {
             $task = [];
@@ -249,6 +239,16 @@
             $task['task_limit_attributes'] = $task_limit;
 
             return $task;
+        }
+
+        protected function getTwitterSetParams()
+        {
+            return $this->getInstOrTwitterOrAskFMSetParams();
+        }
+
+        protected function getAskFMSetParams()
+        {
+            return $this->getInstOrTwitterOrAskFMSetParams();
         }
 
         protected function __construct1($type)

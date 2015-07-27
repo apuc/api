@@ -13,7 +13,6 @@
 <div class="service-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
         <?= Html::a('На главную', \yii\helpers\Url::toRoute('/adminpage/admin/view'), ['class' => 'btn btn-info']) ?>
@@ -23,12 +22,11 @@
         'dataProvider' => $dataProvider,
         //'filterModel'  => $searchModel,
         'columns'      => [
-            //['class' => 'yii\grid\SerialColumn'],
-
-            //'id',
             'model_name',
             'name',
-            'minimum_all_likes',
+            [
+                'attribute'=>'minimum_all_likes',
+            ],
             'minimum_tasks',
             'minimum_likes_per_task',
             'price_per_one_task',

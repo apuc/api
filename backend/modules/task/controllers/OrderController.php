@@ -129,7 +129,15 @@
             $model = $this->findModel($id);
 
             if (isset($model->foreign_id)) {
-                $result = Api::deleteTask($model->foreign_id);
+                $network = $model->service->network;
+                if ($network == Service::VK)
+                    $id = VK::deleteTask($model->foreign_id);
+                if ($network == Service::INSTAGRAM)
+                    $id = Instagram::deleteTask($model->foreign_id);
+                if ($network == Service::TWITTER)
+                    $id = Twitter::deleteTask($model->foreign_id);
+                if ($network == Service::ASKFM)
+                    $id = AskFM::deleteTask($model->foreign_id);
 
                 return $this->redirect(['index']);
             }
