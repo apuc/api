@@ -5,7 +5,7 @@
     use common\modules\statistics\models\Order;
     use yii\base\Widget;
 
-    class StatisticsFull extends Widget
+    class StatisticsVK extends Widget
     {
         public function run()
         {
@@ -14,7 +14,7 @@
             $statsForOneMonth = $this->getStatistics30();
             $statsForAllTime = $this->getStatisticsAll();
 
-            return $this->render('full', [
+            return $this->render('vk', [
                 'statsForOneDay'    => $statsForOneDay,
                 'statsForSevenDays' => $statsForSevenDays,
                 'statsForOneMonth'  => $statsForOneMonth,

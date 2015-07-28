@@ -65,7 +65,7 @@
                 if (!isset($payment)) {//что-бы не прислали проведенный платеж еще раз
                     $payment = new Payment();
                     $cash_id = $information['ik_pm_no'];
-                    $money = $information['ik_ps_price'];
+                    $money = $information['ik_am'];
 
                     $payment->cash_id;
                     $payment->money = $money;

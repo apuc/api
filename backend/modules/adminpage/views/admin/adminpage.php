@@ -10,7 +10,7 @@
         <?= \backend\modules\adminpage\widgets\Stats::widget() ?>
     </div>
     <div>
-        <?= \common\modules\statistics\widgets\StatisticsFull::widget() ?>
+        <?= \common\modules\statistics\widgets\StatisticsVK::widget() ?>
     </div>
 
 </div>
