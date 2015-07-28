@@ -23,7 +23,7 @@
             <td><?= $statsForAllTime['doneAll']; ?></td>
         </tr>
         <tr>
-            <td>Пставлено зайков:</td>
+            <td>Поставлено лайков:</td>
             <td><?= $statsForOneDay['like1']; ?></td>
             <td><?= $statsForSevenDays['like7']; ?></td>
             <td><?= $statsForOneMonth['like30']; ?></td>
@@ -72,7 +72,7 @@
                         Сумма, руб:
                     </td>
                     <td><?= $statsForOneDay['sum1'] ?></td>
-                    <td><?= $statsForSevenDays['sum7'] ?>]</td>
+                    <td><?= $statsForSevenDays['sum7'] ?></td>
                     <td><?= $statsForOneMonth['sum30'] ?></td>
                     <td><?= $statsForAllTime['sumAll'] ?></td>
                 </tr>

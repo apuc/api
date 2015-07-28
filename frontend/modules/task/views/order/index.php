@@ -14,11 +14,12 @@
             <div class="col-md-12">
                 <form role="form">
                     <div class="box-body">
+                        <div role="form">
                         <?php
                             echo \yii\grid\GridView::widget([
                                 'dataProvider' => $provider,
                                 'tableOptions' => [
-                                    'class' => 'table-striped table-bordered',
+                                    'class' => 'table table-striped table-bordered',
                                 ],
                                 'columns'      => [
                                     [
@@ -46,6 +47,7 @@
                                 ]
                             ])
                         ?>
+                        </div>
                     </div>
                 </form>
             </div>
