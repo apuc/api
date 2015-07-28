@@ -29,15 +29,17 @@
                 ],
 
                 ['minimum_likes_per_task', 'integer', 'min' => 2, 'on' => ['SubscriberVK', 'SubscriberTwitter']],
-                ['minimum_all_likes', 'integer', 'min' => 50, 'on' => 'SubscriberVK'],
 
                 ['minimum_likes_per_task', 'integer', 'min' => 3, 'on' => 'SubscriberInstagram'],
 
                 ['minimum_likes_per_task', 'integer', 'min' => 5, 'on' => ['FriendVK', 'RepostVK', 'CommentVK']],
-                ['minimum_all_likes', 'integer', 'min' => 50, 'on' => ['FriendVK', 'RepostVK', 'CommentVK']],
+                ['minimum_all_likes', 'integer', 'min' => 50, 'on' => ['SubscriberVK',
+                                                                       'FriendVK',
+                                                                       'RepostVK',
+                                                                       'CommentVK',
+                                                                       'InterviewVK']],
 
-                ['minimum_likes_per_task', 'integer', 'min' => 5, 'on' => 'InterviewVK'],
-                ['minimum_all_likes', 'integer', 'min' => 50, 'on' => 'InterviewVK'],
+                ['minimum_likes_per_task', 'integer', 'min' => 3, 'max' => 3, 'on' => 'InterviewVK'],
             ];
         }
     }

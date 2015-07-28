@@ -3,7 +3,6 @@
     namespace backend\modules\task\controllers;
 
     use backend\controllers\BackendController;
-    use backend\modules\api\classes\Api;
     use backend\modules\api\classes\AskFM;
     use backend\modules\api\classes\Instagram;
     use backend\modules\api\classes\Twitter;
@@ -59,6 +58,12 @@
             return $this->redirect(['index']);
         }
 
+        /**
+         * @param $id
+         * @return \yii\web\Response
+         * @throws Exception
+         * @throws NotFoundHttpException
+         */
         public function actionApply($id)
         {
             $model = $this->findModel($id);
@@ -68,19 +73,20 @@
             $model->status = Order::PROCESSED;
 
             $network = $model->service->network;
+
             $transaction = $db->beginTransaction();
             try {
                 $model->save();
 
                 $id = false;
-
-                if ($network == Service::VK)
+                if ($network == Service::VK) {
                     $id = VK::setTask($model);
-                if ($network == Service::INSTAGRAM)
+                }
+                elseif ($network == Service::INSTAGRAM)
                     $id = Instagram::setTask($model);
-                if ($network == Service::TWITTER)
+                elseif ($network == Service::TWITTER)
                     $id = Twitter::setTask($model);
-                if ($network == Service::ASKFM)
+                elseif ($network == Service::ASKFM)
                     $id = AskFM::setTask($model);
 
                 if ($id == false)

@@ -24,6 +24,7 @@
             $result = curl_exec($curl);
 
             curl_close($curl);
+
             $resultObj = json_decode($result);
             $id = $resultObj->id ? $resultObj->id : false;
             return $id;
