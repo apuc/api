@@ -72,14 +72,27 @@
         public function rules()
         {
             return [
+                [['date', 'status', 'kind', 'title', 'url', 'members_count', 'cost',
+                  'tag_list', 'sex', 'age_min', 'age_max', 'friends_count', 'country', 'city_text',
+                  'city', 'minute_1', 'minutes_5', 'hour_1', 'hours_4', 'day_1',
+                  'sum', 'min_followers', 'min_media'], 'trim'],
+
+                [['date', 'status', 'kind', 'title', 'url', 'members_count', 'cost',
+                  'tag_list', 'sex', 'age_min', 'age_max', 'friends_count', 'country', 'city_text',
+                  'city', 'minute_1', 'minutes_5', 'hour_1', 'hours_4', 'day_1',
+                  'sum', 'min_followers', 'min_media'], 'default'],
+
                 [['user_id', 'service_id', 'date', 'status', 'kind', 'title', 'url', 'members_count', 'cost', 'sum'],
                  'required'],
+
                 [['user_id', 'service_id', 'foreign_id', 'date', 'status', 'kind', 'members_count', 'cost', 'sex',
                   'age_min',
                   'age_max', 'friends_count', 'country', 'city', 'minute_1', 'minutes_5', 'hour_1', 'hours_4', 'day_1',
                   'min_followers', 'min_media'],
                  'integer'],
+
                 [['title', 'tag_list'], 'string', 'max' => 250],
+                
                 [['url', 'city_text'], 'string', 'max' => 255],
                 ['has_avatar', 'boolean'],
 
@@ -188,7 +201,7 @@
             $task['members_count'] = $this->members_count;
             $task['cost'] = $this->cost;
             $task['tag_list'] = $this->tag_list;
-            $task['sex'] = $this->sex;
+            $task['sex'] = trim($this->sex);
             $task['age_min'] = $this->age_min;
             $task['age_max'] = $this->age_max;
             $task['friends_count'] = $this->friends_count;

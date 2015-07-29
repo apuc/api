@@ -17,7 +17,7 @@
             $statsForOneMonthTwit = $this->getStatistics30();
             $statsForAllTimeTwit = $this->getStatisticsAll();
 
-            return $this->render('TWITTER', [
+            return $this->render('twitter', [
                 'statsForOneDayTwit'    => $statsForOneDayTwit,
                 'statsForSevenDaysTwit' => $statsForSevenDaysTwit,
                 'statsForOneMonthTwit'  => $statsForOneMonthTwit,

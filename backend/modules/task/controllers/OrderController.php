@@ -79,9 +79,8 @@
                 $model->save();
 
                 $id = false;
-                if ($network == Service::VK) {
+                if ($network == Service::VK)
                     $id = VK::setTask($model);
-                }
                 elseif ($network == Service::INSTAGRAM)
                     $id = Instagram::setTask($model);
                 elseif ($network == Service::TWITTER)
