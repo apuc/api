@@ -2,14 +2,9 @@
 namespace frontend\modules\login\models\forms;
 
 use frontend\modules\login\models\db\User;
-use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Yii;
-use yii\base\ErrorException;
 use yii\base\Model;
 
-/**
- * Login form
- */
 class LoginForm extends Model
 {
     public $email;

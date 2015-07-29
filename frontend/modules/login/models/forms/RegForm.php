@@ -1,6 +1,6 @@
 <?php
 
-    namespace forntend\modules\login\models\forms;
+    namespace frontend\modules\login\models\forms;
 
     use Yii;
     use yii\db\ActiveRecord;
@@ -17,16 +17,12 @@
         public $password;
         public $email;
 
-        public static function tableName()
-        {
-            return 'user';
-        }
-
         public function rules()
         {
             return [
                 // username and password are both required
                 [['username', 'password', 'email'], 'required'],
+                ['email', 'email'],
                 // rememberMe must be a boolean value
 
             ];

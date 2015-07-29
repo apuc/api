@@ -1,23 +1,20 @@
 <?php
 /**
- * Created by PhpStorm.
  * User: Кирилл
- * Date: 17.07.2015
- * Time: 13:55
  */
 
 namespace frontend\modules\login\controllers;
 
+use frontend\modules\login\models\forms\RegForm;
 use Yii;
-use common\classes\Debag;
 use common\classes\Email;
-use common\models\RegForm;
 use frontend\modules\login\models\db\User;
 use yii\web\Controller;
 
 class RegController extends Controller
 {
     public $layout = 'no_login';
+
     public function actionIndex()
     {
         $model = new RegForm();
