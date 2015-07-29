@@ -92,7 +92,7 @@
                  'integer'],
 
                 [['title', 'tag_list'], 'string', 'max' => 250],
-                
+
                 [['url', 'city_text'], 'string', 'max' => 255],
                 ['has_avatar', 'boolean'],
 

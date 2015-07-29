@@ -40,6 +40,7 @@
         {
             return [
                 // username and password are both required
+                ['email', 'trim'],
                 [['username', 'password', 'email'], 'required'],
                 [['money', 'cash_id'], 'safe']
                 // rememberMe must be a boolean value

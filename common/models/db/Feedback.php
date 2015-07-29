@@ -52,6 +52,7 @@
         public function rules()
         {
             return [
+                ['email', 'trim'],
                 [['email', 'name', 'text'], 'required'],
                 [['text'], 'string'],
                 [['created_at', 'updated_at'], 'integer'],
