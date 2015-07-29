@@ -53,6 +53,10 @@ AppAsset::register($this);
         <div class="container-fluid">
             <div class="col-lg-2">
                 <div class="admin-left-menu">
+                    <h3>Профайл</h3>
+                    <div>
+                        <?= \backend\modules\adminpage\widgets\Stats::widget() ?>
+                    </div>
                     <h3>Меню</h3>
                     <ul>
                         <li><?= Html::a('Главная', ['/']); ?></li>

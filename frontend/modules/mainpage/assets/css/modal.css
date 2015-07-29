@@ -1,0 +1,19 @@
+.modal-window-nologin {
+    position: relative;
+    display: none;
+    margin: -100px auto auto;
+    z-index: 1000;
+    width: 350px;
+    height: 120px;
+}
+
+.modal-layout-nologin {
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: none;
+    z-index: 999;
+}
