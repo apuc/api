@@ -68,7 +68,7 @@ AppAsset::register($this);
                     </ul>
                 </div>
             </div>
-            <div class="col-lg-10">
+            <div class="col-lg-10" style="margin-top: 60px;">
                 <?= Breadcrumbs::widget([
                     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
                 ]) ?>
