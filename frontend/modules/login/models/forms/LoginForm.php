@@ -13,10 +13,6 @@ class LoginForm extends Model
 
     private $_user = false;
 
-
-    /**
-     * @inheritdoc
-     */
     public function rules()
     {
         return [

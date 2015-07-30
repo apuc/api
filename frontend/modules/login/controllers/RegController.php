@@ -22,7 +22,6 @@ class RegController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             // данные в $model удачно проверены
             $user = new User();
-            //Debag::prn($user);
             $user->username = $model->username;
             $user->email = $model->email;
             $user->generatePassword($model->password);
@@ -32,6 +31,8 @@ class RegController extends Controller
             $user->getAuthKey();
             $user->save();
 
+            $user->cash_id = md5($user->id);
+            $user->save();
 
             $authManager = \Yii::$app->authManager;
             $role = $authManager->getRole(User::TYPE_USER);
