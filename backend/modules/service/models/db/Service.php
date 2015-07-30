@@ -13,17 +13,31 @@
                 [['price_per_one_task', 'minimum_price_per_task'], 'number'],
                 [['model_name', 'name'], 'string', 'max' => 255],
 
-                ['minimum_tasks', 'integer', 'min' => 10, 'on' => 'Like'],
-                ['minimum_likes_per_task', 'integer', 'min' => 1, 'on' => 'Like'],
+                ['minimum_tasks', 'integer', 'min' => 10, 'on' => ['LikeVK',
+                                                                   'LikeInstagram',
+                                                                   'SubscriberInstagram',
+                                                                   'SubscriberTwitter',
+                                                                   'RetwitTwitter',
+                                                                   'FavoriteTwitter',
+                                                                   'LikeAskFM',]
+                ],
+                ['minimum_likes_per_task', 'integer', 'min' => 1, 'on' => ['LikeVK',
+                                                                           'LikeInstagram',
+                                                                           'RetwitTwitter',
+                                                                           'FavoriteTwitter',
+                                                                           'LikeAskFM',]
+                ],
 
-                ['minimum_likes_per_task', 'integer', 'min' => 2, 'on' => 'Subscriber'],
-                ['minimum_all_likes', 'integer', 'min' => 50, 'on' => 'Subscriber'],
+                ['minimum_likes_per_task', 'integer', 'min' => 2, 'on' => ['SubscriberVK', 'SubscriberTwitter']],
+                ['minimum_all_likes', 'integer', 'min' => 50, 'on' => 'SubscriberVK'],
 
-                ['minimum_likes_per_task', 'integer', 'min' => 5, 'on' => ['Friend', 'Repost', 'Comment']],
-                ['minimum_all_likes', 'integer', 'min' => 50, 'on' => ['Friend', 'Repost', 'Comment']],
+                ['minimum_likes_per_task', 'integer', 'min' => 3, 'on' => 'SubscriberInstagram'],
 
-                ['minimum_likes_per_task', 'integer', 'min' => 5, 'on' => 'Interview'],
-                ['minimum_all_likes', 'integer', 'min' => 50, 'on' => 'Interview'],
+                ['minimum_likes_per_task', 'integer', 'min' => 5, 'on' => ['FriendVK', 'RepostVK', 'CommentVK']],
+                ['minimum_all_likes', 'integer', 'min' => 50, 'on' => ['FriendVK', 'RepostVK', 'CommentVK']],
+
+                ['minimum_likes_per_task', 'integer', 'min' => 5, 'on' => 'InterviewVK'],
+                ['minimum_all_likes', 'integer', 'min' => 50, 'on' => 'InterviewVK'],
             ];
         }
     }

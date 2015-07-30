@@ -66,7 +66,7 @@
             'user'         => [
                 'identityClass'   => 'common\models\db\User',
                 'enableAutoLogin' => true,
-                'loginUrl'        => 'login',
+                'loginUrl'        => 'secure/login',
             ],
             'log'          => [
                 'traceLevel' => YII_DEBUG ? 3 : 0,

@@ -1,9 +1,9 @@
 <?php
 
-    use yii\db\Schema;
     use yii\db\Migration;
+    use yii\db\Schema;
 
-    class m150718_105504_create_user_nable extends Migration
+    class m150718_105504_create_user_table extends Migration
     {
         public function up()
         {
@@ -15,7 +15,7 @@
 
             $this->createTable('user', [
                 'id'         => Schema::TYPE_PK,
-                'money'      => Schema::TYPE_BOOLEAN,
+                'money'      => Schema::TYPE_DOUBLE . ' NOT NULL DEFAULT 0',
                 'cash_id'    => Schema::TYPE_STRING,
                 'email'      => Schema::TYPE_STRING . ' NOT NULL',
                 'password'   => Schema::TYPE_STRING . ' NOT NULL',
@@ -26,6 +26,22 @@
                 'username'   => Schema::TYPE_STRING . ' NOT NULL',
                 'auth_key'   => Schema::TYPE_STRING,
             ], $tableOptions);
+
+            $salt = sha1(time() . '76s3d');
+
+            $password = hash_hmac('sha512', 'api', $salt);
+
+            $this->insert('user', [
+                'money'      => 500,
+                'cash_id'    => md5(1),
+                'email'      => 'api@mail.ru',
+                'password'   => $password,
+                'created_at' => time(),
+                'updated_at' => time(),
+                'salt'       => $salt,
+                'status'     => 1,
+                'username'   => 'ApiTestUser',
+            ]);
         }
 
         public function down()

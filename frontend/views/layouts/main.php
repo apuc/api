@@ -126,7 +126,7 @@
                                         \yii\helpers\Url::to(
                                             [
                                                 '/task/order/view-page',
-                                                'type' => 'subscriber'
+                                                'type' => 'SubscriberVK'
                                             ]
                                         )
                                     )
@@ -139,7 +139,7 @@
                                         \yii\helpers\Url::to(
                                             [
                                                 '/task/order/view-page',
-                                                'type' => 'repost'
+                                                'type' => 'RepostVK'
                                             ]
                                         )
                                     )
@@ -153,7 +153,7 @@
                                         \yii\helpers\Url::to(
                                             [
                                                 '/task/order/view-page',
-                                                'type' => 'like'
+                                                'type' => 'LikeVK'
                                             ]
                                         )
                                     )
@@ -166,7 +166,7 @@
                                         \yii\helpers\Url::to(
                                             [
                                                 '/task/order/view-page',
-                                                'type' => 'interview'
+                                                'type' => 'InterviewVK'
                                             ]
                                         )
                                     )
@@ -179,7 +179,7 @@
                                         \yii\helpers\Url::to(
                                             [
                                                 '/task/order/view-page',
-                                                'type' => 'comment'
+                                                'type' => 'CommentVK'
                                             ]
                                         )
                                     )
@@ -192,7 +192,7 @@
                                         \yii\helpers\Url::to(
                                             [
                                                 '/task/order/view-page',
-                                                'type' => 'friend'
+                                                'type' => 'FriendVK'
                                             ]
                                         )
                                     )
@@ -207,8 +207,45 @@
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="#"><i class="fa fa-circle-o"></i> Ретвиты</a></li>
-                            <li><a href="#"><i class="fa fa-circle-o"></i> Подписчики</a></li>
+                            <li>
+                                <?=
+                                    \yii\helpers\Html::a(
+                                        '<i class="fa fa-circle-o"></i> Ретвиты',
+                                        \yii\helpers\Url::to(
+                                            [
+                                                '/task/order/view-page',
+                                                'type' => 'RetwitTwitter'
+                                            ]
+                                        )
+                                    )
+                                ?>
+                            </li>
+                            <li>
+                                <?=
+                                    \yii\helpers\Html::a(
+                                        '<i class="fa fa-circle-o"></i> Подписчики',
+                                        \yii\helpers\Url::to(
+                                            [
+                                                '/task/order/view-page',
+                                                'type' => 'SubscriberTwitter'
+                                            ]
+                                        )
+                                    )
+                                ?>
+                            </li>
+                            <li>
+                                <?=
+                                    \yii\helpers\Html::a(
+                                        '<i class="fa fa-circle-o"></i> Избранное',
+                                        \yii\helpers\Url::to(
+                                            [
+                                                '/task/order/view-page',
+                                                'type' => 'FavoriteTwitter'
+                                            ]
+                                        )
+                                    )
+                                ?>
+                            </li>
                         </ul>
                     </li>
 
@@ -219,8 +256,32 @@
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="#"><i class="fa fa-circle-o"></i>Лайки</a></li>
-                            <li><a href="#"><i class="fa fa-circle-o"></i>Подписчики</a></li>
+                            <li>
+                                <?=
+                                    \yii\helpers\Html::a(
+                                        '<i class="fa fa-circle-o"></i> Лайки',
+                                        \yii\helpers\Url::to(
+                                            [
+                                                '/task/order/view-page',
+                                                'type' => 'LikeInstagram'
+                                            ]
+                                        )
+                                    )
+                                ?>
+                            </li>
+                            <li>
+                                <?=
+                                    \yii\helpers\Html::a(
+                                        '<i class="fa fa-circle-o"></i> Подписчики',
+                                        \yii\helpers\Url::to(
+                                            [
+                                                '/task/order/view-page',
+                                                'type' => 'SubscriberInstagram'
+                                            ]
+                                        )
+                                    )
+                                ?>
+                            </li>
                         </ul>
                     </li>
                     <li class="treeview">
@@ -229,7 +290,19 @@
                             <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="#"><i class="fa fa-circle-o"></i> Лайки</a></li>
+                            <li>
+                                <?=
+                                    \yii\helpers\Html::a(
+                                        '<i class="fa fa-circle-o"></i> Лайки',
+                                        \yii\helpers\Url::to(
+                                            [
+                                                '/task/order/view-page',
+                                                'type' => 'LikeAskFM'
+                                            ]
+                                        )
+                                    )
+                                ?>
+                            </li>
                         </ul>
                     </li>
                 </ul>
@@ -237,7 +310,7 @@
                     <li class="header">Меню</li>
                     <li class="treeview">
                         <a href=<?= Yii::$app->urlManager->createUrl('/task/order/view-all'); ?>
-                            <i class="fa fa-shopping-cart"></i>
+                           <i class="fa fa-shopping-cart"></i>
                             <span>История заказов</span>
                         </a>
                     </li>
@@ -273,10 +346,10 @@
                     Автоматический сервис накрутки вконтакте и других социальных сетях
                     <small>V 2.0</small>
                 </h1>
-<!--                <ol class="breadcrumb">-->
-<!--                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>-->
-<!--                    <li class="active">Dashboard</li>-->
-<!--                </ol>-->
+                <!--                <ol class="breadcrumb">-->
+                <!--                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>-->
+                <!--                    <li class="active">Dashboard</li>-->
+                <!--                </ol>-->
             </section>
 
             <!-- Main content -->

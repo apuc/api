@@ -11,7 +11,7 @@ namespace frontend\modules\login\controllers;
 use Yii;
 use common\classes\Debag;
 use common\classes\Email;
-use common\models\RegForm;
+use frontend\modules\login\models\forms\RegForm;
 use frontend\modules\login\models\db\User;
 use yii\web\Controller;
 

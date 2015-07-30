@@ -2,8 +2,8 @@
 
     namespace console\controllers;
 
-    use common\constants\UserType;
-    use common\models\User;
+
+    use common\models\db\User;
     use yii\console\Controller;
 
     class RbacController extends Controller
