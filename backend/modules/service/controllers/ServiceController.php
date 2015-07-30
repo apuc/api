@@ -35,19 +35,6 @@ class ServiceController extends BackendController
         ]);
     }
 
-//    public function actionCreate()
-//    {
-//        $model = new Service();
-//
-//        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-//            return $this->redirect(['view', 'id' => $model->id]);
-//        } else {
-//            return $this->render('create', [
-//                'model' => $model,
-//            ]);
-//        }
-//    }
-
     public function actionUpdate($type)
     {
         $model = $this->findModel($type);
@@ -61,13 +48,6 @@ class ServiceController extends BackendController
             ]);
         }
     }
-
-//    public function actionDelete($id)
-//    {
-//        $this->findModel($id)->delete();
-//
-//        return $this->redirect(['index']);
-//    }
 
     /**
      * @param $name

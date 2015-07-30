@@ -16,8 +16,6 @@
         {
             parent::init();
 
-            $this->type;
-
             $services = Service::getDb()->cache(function () {
                 return Service::find()->all();
             }, 60 * 60 * 24 * 7);
