@@ -24,8 +24,7 @@
             curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($query));
 
             $result = curl_exec($curl);
-            Debag::prn($result);
-            die;
+
             curl_close($curl);
 
             $resultObj = json_decode($result);

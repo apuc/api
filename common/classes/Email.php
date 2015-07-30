@@ -51,7 +51,7 @@
             $id = $data['feedback-id'];
             $id = $data['feedback-id'];
 
-            return mail($data['email'], 'Ответ отсюда', $data['response']);
+            return mail($data['email'], 'Ответ от: ' . $_SERVER['HTTP_HOST'] , $data['response']);
         }
 
         /**

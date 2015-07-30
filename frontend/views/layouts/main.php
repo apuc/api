@@ -114,12 +114,12 @@
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu">
                     <li class="header">Социальные сети</li>
-                    <li class="active treeview">
+                    <li class="treeview">
                         <a href="#">
                             <i class="fa fa-vk"></i> <span>Вконтакте</span> <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
-                            <li class="active">
+                            <li>
                                 <?=
                                     \yii\helpers\Html::a(
                                         '<i class="fa fa-circle-o"></i> Подписчики в группу',
@@ -172,7 +172,7 @@
                                     )
                                 ?>
                             </li>
-                            <li>
+                            <li func(, comment)>
                                 <?=
                                     \yii\helpers\Html::a(
                                         '<i class="fa fa-circle-o"></i> Комментарии',
