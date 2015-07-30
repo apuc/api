@@ -362,9 +362,9 @@
                 <div class="row">
                     <!-- Left col -->
                     <div class="col-md-8">
-                        <?= Breadcrumbs::widget([
-                            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-                        ]) ?>
+<!--                        --><?//= Breadcrumbs::widget([
+//                            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+//                        ]) ?>
 
                         <div id="modal-window-interkassa" class="well modal-window-interkassa">
                             <a class="close-modal-interkassa btn btn-default pull-right" href="#">x</a>

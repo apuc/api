@@ -5,8 +5,6 @@
 $this->title = 'Профиль '.$model->username;
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<h2>Ваш профиль</h2>
-
 <div class="box">
     <div class="box-header with-border">
         <h3 class="box-title">Ваш профиль</h3>
