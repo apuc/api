@@ -8,6 +8,8 @@ namespace frontend\modules\login\controllers;
 use frontend\modules\login\models\forms\RegForm;
 use Yii;
 use common\classes\Email;
+
+
 use frontend\modules\login\models\db\User;
 use yii\web\Controller;
 

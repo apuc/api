@@ -3,6 +3,7 @@
     namespace frontend\modules\login\models\forms;
 
     use Yii;
+    use yii\base\Model;
     use yii\db\ActiveRecord;
 
     /**
@@ -11,7 +12,7 @@
      * @property string $password
      * @property string $username
      */
-    class RegForm extends ActiveRecord
+    class RegForm extends Model
     {
         public $username;
         public $password;

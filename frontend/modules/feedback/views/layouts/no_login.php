@@ -15,6 +15,7 @@ AppAsset::register($this);
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
 <head>
+    <meta name="interkassa-verification" content="20a6e6203abeee743ba065eee429c803" />
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
@@ -57,8 +58,8 @@ AppAsset::register($this);
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
-                        <li><?= Html::a('Вход', ['/loginto']) ?></li>
-                        <li><?= Html::a('Регистрация', ['/registration']) ?></li>
+                       <li><?= Html::a('Вход', ['/loginto']) ?></li>
+                       <li><?= Html::a('Регистрация', ['/registrate']) ?></li>
                     </ul>
                 </li>
                 <!-- Control Sidebar Toggle Button -->
@@ -109,10 +110,10 @@ AppAsset::register($this);
             Автоматический сервис накрутки вконтакте и других социальных сетях
             <small>V 2.0</small>
         </h1>
-<!--        <ol class="breadcrumb">-->
-<!--            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>-->
-<!--            <li class="active">Dashboard</li>-->
-<!--        </ol>-->
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Dashboard</li>
+        </ol>
     </section>
 
     <!-- Main content -->

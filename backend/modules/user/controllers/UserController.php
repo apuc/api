@@ -52,6 +52,9 @@
             ]);
         }
 
+
+
+
         /**
          * Displays a single User model.
          * @param integer $id
@@ -89,7 +92,21 @@
         {
             $model = new User();
 
-            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+                $model->generatePassword($model->password);
+                $model->created_at = time();
+                $model->updated_at = time();
+                $model->status = 1;
+                $model->getAuthKey();
+                $model->save();
+
+                $model->cash_id = md5($model->id);
+                $model->save();
+
+                $authManager = \Yii::$app->authManager;
+                $role = $authManager->getRole(User::TYPE_USER);
+                $authManager->assign($role, $model->id);
+
                 return $this->redirect(['view', 'id' => $model->id]);
             } else {
                 return $this->render('create', [

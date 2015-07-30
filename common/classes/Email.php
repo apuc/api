@@ -22,13 +22,14 @@
          */
         public static function sendActivateMail($model)
         {
-            $mailMsg = new EmailMsg();
-            $tpl = $mailMsg::findOne(['key' => 'reg']);
+            /*$mailMsg = new EmailMsg();
+            $tpl = $mailMsg::findOne(['key' => 'reg']);*/
 
-            $keyRepl = "{activate_link}";
+            /*$keyRepl = "{activate_link}";*/
             $link = Additional::genActivateLink($model);
             //$link = Email::genActivateLink($model);
-            $msg = preg_replace("/$keyRepl/", $link, $tpl->text);
+            /*$msg = preg_replace("/$keyRepl/", $link, $tpl->text);*/
+            $msg = "Для активации аккаунта перейдите по ссылке $link";
 
             /* echo "<br><br><br><br>";
              Debag::prn($msg);*/

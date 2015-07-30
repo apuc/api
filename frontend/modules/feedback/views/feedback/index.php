@@ -9,9 +9,7 @@
 
     $this->title = 'Обратная связь';
     $this->params['breadcrumbs'][] = $this->title;
-?>
 
-<?php
     if (Yii::$app->session->hasFlash('message')) {
         $message = Yii::$app->session->getFlash('message');
         echo Growl::widget([
