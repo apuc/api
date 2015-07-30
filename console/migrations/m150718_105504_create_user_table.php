@@ -32,9 +32,9 @@
             $password = hash_hmac('sha512', 'api', $salt);
 
             $this->insert('user', [
-                'money'      => 500,
+                'money'      => 5000,
                 'cash_id'    => md5(1),
-                'email'      => 'api@mail.ru',
+                'email'      => 'admin@api.ru',
                 'password'   => $password,
                 'created_at' => time(),
                 'updated_at' => time(),
@@ -48,15 +48,4 @@
         {
             $this->dropTable('user');
         }
-
-        /*
-        // Use safeUp/safeDown to run migration code within a transaction
-        public function safeUp()
-        {
-        }
-
-        public function safeDown()
-        {
-        }
-        */
     }

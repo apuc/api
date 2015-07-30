@@ -20,7 +20,7 @@
                 'ik_inv_id' => Schema::TYPE_INTEGER,
             ], $tableOptions);
 
-            $this->addForeignKey('user_cash_id_fk', 'payment', 'cash_id', 'user', 'id');
+            $this->addForeignKey('user_cash_id_fk', 'payment', 'cash_id', 'user', 'id', 'RESTRICT', 'CASCADE');
         }
 
         public function down()

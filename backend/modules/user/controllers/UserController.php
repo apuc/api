@@ -52,9 +52,6 @@
             ]);
         }
 
-
-
-
         /**
          * Displays a single User model.
          * @param integer $id
