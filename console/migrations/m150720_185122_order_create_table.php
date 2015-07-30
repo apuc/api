@@ -45,7 +45,7 @@
                 'foreign_id'    => Schema::TYPE_INTEGER,
             ], $tableOptions);
 
-            $this->createIndex('order_foreign_id_index', 'order', 'foreign_id', true);
+            $this->createIndex('order_foreign_id_index', 'order', 'foreign_id', false);
 
             $this->addForeignKey('user_order_fk', 'order', 'user_id', 'user', 'id', 'RESTRICT', 'CASCADE');
             $this->addForeignKey('service_order_fk', 'order', 'service_id', 'service', 'id', 'RESTRICT', 'CASCADE');

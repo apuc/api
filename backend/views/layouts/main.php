@@ -53,6 +53,10 @@ AppAsset::register($this);
         <div class="container-fluid">
             <div class="col-lg-2">
                 <div class="admin-left-menu">
+                    <h3>Профайл</h3>
+                    <div>
+                        <?= \backend\modules\adminpage\widgets\Stats::widget() ?>
+                    </div>
                     <h3>Меню</h3>
                     <ul>
                         <li><?= Html::a('Главная', ['/']); ?></li>
@@ -64,7 +68,7 @@ AppAsset::register($this);
                     </ul>
                 </div>
             </div>
-            <div class="col-lg-10">
+            <div class="col-lg-10" style="margin-top: 60px;">
                 <?= Breadcrumbs::widget([
                     'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
                 ]) ?>

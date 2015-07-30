@@ -1,7 +1,7 @@
 <?php
 
-    use yii\helpers\Html;
     use yii\grid\GridView;
+    use yii\helpers\Html;
 
     /* @var $this yii\web\View */
     /* @var $searchModel backend\modules\service\models\form\ServiceSearch */
@@ -24,13 +24,12 @@
         'columns'      => [
             'model_name',
             'name',
-            [
-                'attribute'=>'minimum_all_likes',
-            ],
-            'minimum_tasks',
-            'minimum_likes_per_task',
-            'price_per_one_task',
 
+            'minimum_tasks',
+            //'minimum_likes_per_task',
+            //'price_per_one_task',
+            'minimum_all_likes',
+            'minimum_price_per_task',
             [
                 'class'  => \yii\grid\DataColumn::className(),
                 'header' => 'Действия',

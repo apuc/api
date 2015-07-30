@@ -63,7 +63,7 @@
                         Yii::$app->urlManager->createUrl(['feedback/feedback/delete', 'id' => $model->id]),
                         [
                             'class' => 'btn btn-default',
-                            'title' => 'Обработано без ответа',
+                            'title' => 'Удалить',
                         ]);
 
                     $buttons =

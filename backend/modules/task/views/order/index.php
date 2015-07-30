@@ -24,15 +24,6 @@
         'dataProvider' => $dataProvider,
         'filterModel'  => $searchModel,
         'columns'      => [
-
-            //'id',
-            //            [
-            //                'attribute' => 'user_id',
-            //                'format'    => 'text',
-            //                'value'     => function ($model) {
-            //                    return $model->user->username;
-            //                }
-            //            ],
             [
                 'attribute' => 'service_id',
                 'format'    => 'text',
@@ -40,7 +31,6 @@
                     return $model->service->name;
                 }
             ],
-            //'date:datetime',
             [
                 'attribute' => 'status',
                 'format'    => 'text',

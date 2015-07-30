@@ -27,9 +27,9 @@
         const ASKFM = 4;
 
         const LIKE_VK = 1;
-        const FRIEND_VK = 2;
-        const SUBSCRIBER_VK = 3;
-        const REPOST_VK = 4;
+        const SUBSCRIBER_VK = 2;
+        const REPOST_VK = 3;
+        const FRIEND_VK = 4;
         const COMMENT_VK = 5;
         const INTERVIEW_VK = 6;
         const LIKE_INSTAGRAM = 7;

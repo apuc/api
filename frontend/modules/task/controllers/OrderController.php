@@ -34,6 +34,7 @@
 
             $provider = new ActiveDataProvider([
                 'query'      => Order::find()->where(['user_id' => $userId]),
+                'sort'       => ['defaultOrder' => ['id' => SORT_DESC]],
                 'pagination' => [
                     'pageSize' => 20,
                 ]

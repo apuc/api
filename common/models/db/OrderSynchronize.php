@@ -2,12 +2,14 @@
 
     namespace common\models\db;
 
+    use backend\modules\api\classes\AskFM;
+    use backend\modules\api\classes\Instagram;
+    use backend\modules\api\classes\Twitter;
     use backend\modules\api\classes\VK;
     use Yii;
+    use yii\helpers\ArrayHelper;
 
     /**
-     * This is the model class for table "order_synchronize".
-     *
      * @property integer $id
      * @property integer $time
      */
@@ -24,6 +26,9 @@
         public static function synchronizeStatuses()
         {
             $tasks = Vk::getTasks();
+            $tasks = ArrayHelper::merge($tasks, Instagram::getTasks());
+            $tasks = ArrayHelper::merge($tasks, Twitter::getTasks());
+            $tasks = ArrayHelper::merge($tasks, AskFM::getTasks());
 
             foreach ($tasks as $task) {
                 if ($task->finished) {

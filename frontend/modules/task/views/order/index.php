@@ -14,11 +14,12 @@
             <div class="col-md-12">
                 <form role="form">
                     <div class="box-body">
+                        <div class="table-responsive">
                         <?php
                             echo \yii\grid\GridView::widget([
                                 'dataProvider' => $provider,
                                 'tableOptions' => [
-                                    'class' => 'table-striped table-bordered',
+                                    'class' => 'table table-striped table-bordered',
                                 ],
                                 'columns'      => [
                                     [
@@ -27,25 +28,26 @@
                                             return $model->service->name;
                                         }
                                     ],
-                                    'date:datetime',
+                                    //'date:datetime',
                                     [
                                         'attribute' => 'status',
                                         'value'     => function ($model) {
                                             return $model::getStatuses()[$model->status];
                                         }
                                     ],
-                                    'title',
+                                    //'url',
                                     [
-                                        'attribute' => 'url',
+                                        'attribute' => 'title',
                                         'format'    => 'raw',
                                         'value'     => function ($model) {
-                                            return '<a href="' . $model->url . '" target=_blank>' . $model->url . '</a>';
+                                            return '<a href="' . $model->url . '" target=_blank>' . $model->title . '</a>';
                                         }
                                     ],
                                     'sum',
                                 ]
                             ])
                         ?>
+                        </div>
                     </div>
                 </form>
             </div>

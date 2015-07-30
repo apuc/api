@@ -31,6 +31,7 @@
 
             // VK
             $this->insert('service', [
+                'id'                     => 1,
                 'model_name'             => 'LikeVK',
                 'name'                   => 'Лайки',
                 'minimum_all_likes'      => 0,
@@ -38,9 +39,10 @@
                 'minimum_likes_per_task' => 0,
                 'price_per_one_task'     => 100,
                 'minimum_price_per_task' => 0,
-                'network'                => '1',
+                'network'                => 1,
             ]);
             $this->insert('service', [
+                'id'                     => 4,
                 'model_name'             => 'FriendVK',
                 'name'                   => 'Друзья',
                 'minimum_all_likes'      => 0,
@@ -48,9 +50,10 @@
                 'minimum_likes_per_task' => 0,
                 'price_per_one_task'     => 100,
                 'minimum_price_per_task' => 0,
-                'network'                => '1',
+                'network'                => 1,
             ]);
             $this->insert('service', [
+                'id'                     => 2,
                 'model_name'             => 'SubscriberVK',
                 'name'                   => 'Подписчики',
                 'minimum_all_likes'      => 0,
@@ -61,6 +64,7 @@
                 'network'                => '1',
             ]);
             $this->insert('service', [
+                'id'                     => 3,
                 'model_name'             => 'RepostVK',
                 'name'                   => 'Репосты',
                 'minimum_all_likes'      => 0,
@@ -71,6 +75,7 @@
                 'network'                => '1',
             ]);
             $this->insert('service', [
+                'id'                     => 5,
                 'model_name'             => 'CommentVK',
                 'name'                   => 'Комментарии',
                 'minimum_all_likes'      => 0,
@@ -81,6 +86,7 @@
                 'network'                => '1',
             ]);
             $this->insert('service', [
+                'id'                     => 6,
                 'model_name'             => 'InterviewVK',
                 'name'                   => 'Опрос',
                 'minimum_all_likes'      => 0,

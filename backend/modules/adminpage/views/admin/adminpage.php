@@ -1,16 +1,31 @@
 <div class="adminpage-default-index">
-    <div class="admin-menu">
-        <ul>
-            <li>
-                <a href="<?= \yii\helpers\Url::to('email/email') ?>">Шаблоны писем</a>
-            </li>
-        </ul>
-    </div>
-    <div>
-        <?= \backend\modules\adminpage\widgets\Stats::widget() ?>
-    </div>
-    <div>
-        <?= \common\modules\statistics\widgets\StatisticsFull::widget() ?>
-    </div>
+    <div role="form">
+        <?php
+            use kartik\tabs\TabsX;
 
+            $items = [
+                [
+                    'label'   => 'Вконтакте',
+                    'content' => \common\modules\statistics\widgets\StatisticsVK::widget(),
+                ],
+                [
+                    'label'   => 'Instagram',
+                    'content' => \common\modules\statistics\widgets\StatisticsInstagram::widget(),
+                ],
+                [
+                    'label'   => 'Twitter',
+                    'content' => \common\modules\statistics\widgets\StatisticsTwitter::widget(),
+                ],
+                [
+                    'label'   => 'Ask',
+                    'content' => \common\modules\statistics\widgets\StatisticsAsk::widget(),
+                ],
+            ];
+            echo TabsX::widget([
+                'items'        => $items,
+                'position'     => TabsX::POS_ABOVE,
+                'encodeLabels' => false
+            ]);
+        ?>
+    </div>
 </div>

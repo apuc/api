@@ -14,6 +14,7 @@
         'aliases'             => [
             'taskAssets'       => Yii::getAlias('@frontend') . '/modules/task/assets',
             'interkassaAssets' => Yii::getAlias('@frontend') . '/modules/interkassa/assets',
+            'mainAssets' => Yii::getAlias('@frontend') . '/modules/mainpage/assets',
         ],
         'modules'             => [
             'login'      => [

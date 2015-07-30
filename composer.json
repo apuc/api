@@ -26,7 +26,8 @@
     "mihaildev/yii2-ckeditor": "*",
     "mihaildev/yii2-elfinder": "@dev",
     "kartik-v/yii2-widget-alert": "*",
-    "kartik-v/yii2-widget-growl": "@dev"
+    "kartik-v/yii2-widget-growl": "@dev",
+    "kartik-v/yii2-tabs-x": "*"
   },
   "require-dev": {
     "yiisoft/yii2-codeception": "*",
