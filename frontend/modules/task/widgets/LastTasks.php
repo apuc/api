@@ -28,7 +28,7 @@
 
             $userId = \Yii::$app->user->getId();
 
-            $orders = Order::find()->where(['user_id' => $userId])->limit(4)->all();
+            $orders = Order::find()->where(['user_id' => $userId])->orderBy('id DESC')->limit(4)->all();
 
 
             if (count($orders))
