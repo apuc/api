@@ -45,4 +45,4 @@
     </div>
 </div>
 
-<?= \frontend\modules\task\widgets\LastTasks::widget() ?>
+<?= \frontend\modules\task\widgets\LastTasks::widget(['type' => $type]) ?>
