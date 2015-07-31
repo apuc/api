@@ -13,8 +13,6 @@
         {
             self::checkToken();
 
-
-
             if ($model->service_id === Service::FAVORITE_TWITTER)
                 return self::setFavoritesTask($model->getQueryParams());
 
@@ -38,7 +36,9 @@
             $result = curl_exec($curl);
 
             curl_close($curl);
+
             $resultObj = json_decode($result);
+
             $id = $resultObj->id ? $resultObj->id : false;
 
             return $id;

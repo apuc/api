@@ -9,7 +9,6 @@
     use backend\modules\api\classes\VK;
     use backend\modules\task\models\db\Order;
     use backend\modules\task\models\form\OrderSearch;
-    use common\classes\Debag;
     use common\models\db\OrderSynchronize;
     use common\models\db\Service;
     use Yii;
@@ -59,6 +58,7 @@
         }
 
         /**
+         * @var \common\modules\statistics\models\Order $model
          * @param $id
          * @return \yii\web\Response
          * @throws Exception
@@ -68,36 +68,24 @@
         {
             $model = $this->findModel($id);
 
-            $db = Yii::$app->db;
-
-            $model->status = Order::PROCESSED;
-
             $network = $model->service->network;
 
-            $transaction = $db->beginTransaction();
-            try {
-                $model->save();
+            $id = NULL;
 
-                $id = false;
-                if ($network == Service::VK)
-                    $id = VK::setTask($model);
-                elseif ($network == Service::INSTAGRAM)
-                    $id = Instagram::setTask($model);
-                elseif ($network == Service::TWITTER)
-                    $id = Twitter::setTask($model);
-                elseif ($network == Service::ASKFM)
-                    $id = AskFM::setTask($model);
+            if ($network == Service::VK)
+                $id = VK::setTask($model);
+            elseif ($network == Service::INSTAGRAM)
+                $id = Instagram::setTask($model);
+            elseif ($network == Service::TWITTER)
+                $id = Twitter::setTask($model);
+            elseif ($network == Service::ASKFM)
+                $id = AskFM::setTask($model);
 
-                if ($id == false)
-                    throw new Exception('Упали');
-
-                $transaction->commit();
-            } catch (\Exception $e) {
-                $transaction->rollBack();
+            if ($id !== NULL) {
+                $model->status = Order::PROCESSED;
+                $model->foreign_id = $id;
+                $model->save(false);
             }
-
-            $model->foreign_id = $id;
-            $model->save();
 
             return $this->redirect(['index']);
         }
@@ -108,7 +96,8 @@
          * @param integer $id
          * @return mixed
          */
-        public function actionCancel($id)
+        public
+        function actionCancel($id)
         {
             $model = $this->findModel($id);
             $user = $model->user;
@@ -129,7 +118,8 @@
             return $this->redirect(['index']);
         }
 
-        public function actionDelete($id)
+        public
+        function actionDelete($id)
         {
             $model = $this->findModel($id);
 
