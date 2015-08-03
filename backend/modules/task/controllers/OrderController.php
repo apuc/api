@@ -96,8 +96,7 @@
          * @param integer $id
          * @return mixed
          */
-        public
-        function actionCancel($id)
+        public function actionCancel($id)
         {
             $model = $this->findModel($id);
             $user = $model->user;
@@ -118,8 +117,7 @@
             return $this->redirect(['index']);
         }
 
-        public
-        function actionDelete($id)
+        public function actionDelete($id)
         {
             $model = $this->findModel($id);
 
