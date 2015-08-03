@@ -22,4 +22,11 @@ class NewsController extends Controller{
         ]);
 
     }
+
+    public function actionOneNews($id){
+        $onenews = News::findOne($id);
+        return $this->render('one', [
+            'onenews' => $onenews,
+        ]);
+    }
 } 

@@ -15,7 +15,7 @@ use mihaildev\ckeditor\CKEditor;
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
-
+    <?= $form->field($model, 'short_text')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'content')->widget(CKEditor::className(), [
         'editorOptions' => \mihaildev\elfinder\ElFinder::ckeditorOptions('elfinder', [
             'preset' => 'standard',
@@ -28,7 +28,7 @@ use mihaildev\ckeditor\CKEditor;
     <?= $form->field($model, 'tags')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Сохранить' : 'Обновить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
