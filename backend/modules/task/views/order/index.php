@@ -1,7 +1,7 @@
 <?php
 
-    use yii\helpers\Html;
     use yii\grid\GridView;
+    use yii\helpers\Html;
 
     /* @var $model \backend\modules\task\models\db\Order
     /* @var $this yii\web\View */
@@ -60,29 +60,46 @@
                             'class' => 'btn btn-default',
                             'title' => 'Принять',
                         ]);
-                    $cancel = Html::a(
+                    $rejected = Html::a(
                         "<span class='glyphicon glyphicon-minus'></span>",
-                        Yii::$app->urlManager->createUrl(['task/order/cancel', 'id' => $model->id]),
+                        Yii::$app->urlManager->createUrl(['task/order/cancel', ['id'   => $model->id,
+                                                                                'type' => \backend\modules\task\models\db\Order::REJECTED]
+                        ]),
                         [
                             'class' => 'btn btn-default',
                             'title' => 'Отклонить',
                         ]);
 
-                    $delete = Html::a(
+                    $doneAndHide = Html::a(
                         "<span class='glyphicon glyphicon-remove'></span>",
-                        Yii::$app->urlManager->createUrl(['task/order/delete', 'id' => $model->id]),
+                        Yii::$app->urlManager->createUrl(['task/order/cancel', ['id'   => $model->id,
+                                                                                'type' => \backend\modules\task\models\db\Order::DONE_AND_HIDE]
+                        ]),
                         [
                             'class' => 'btn btn-default',
                             'title' => 'Удалить',
                         ]);
 
+                    $stopped = Html::a(
+                        "<span class='glyphicon glyphicon-remove'></span>",
+                        Yii::$app->urlManager->createUrl(['task/order/cancel', ['id'   => $model->id,
+                                                                                'type' => \backend\modules\task\models\db\Order::STOPPED]
+                        ]),
+                        [
+                            'class' => 'btn btn-default',
+                            'title' => 'Остановить и вернуть все деньги.',
+                        ]);
+
                     $buttons = '';
 
                     if ($model->status == \backend\modules\task\models\db\Order::NOT_MODERATED)
-                        $buttons = $apply . $cancel;
+                        $buttons = $apply . $rejected;
 
                     if ($model->status == \backend\modules\task\models\db\Order::DONE)
-                        $buttons = $delete;
+                        $buttons = $doneAndHide;
+
+                    if ($model->status == \backend\modules\task\models\db\Order::PROCESSED)
+                        $buttons = $stopped;
 
                     return $buttons;
                 }

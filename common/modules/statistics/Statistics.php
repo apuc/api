@@ -1,6 +1,6 @@
 <?php
 
-namespace common\modules\stastistics;
+namespace common\modules\statistics;
 
 class Statistics extends \yii\base\Module
 {
@@ -9,7 +9,5 @@ class Statistics extends \yii\base\Module
     public function init()
     {
         parent::init();
-
-        // custom initialization code goes here
     }
 }

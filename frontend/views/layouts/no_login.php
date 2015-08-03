@@ -192,65 +192,8 @@
             <!-- Main content -->
             <section class="content">
                 <!-- Info boxes -->
-                <div class="row">
-                    <div class="col-md-3 col-sm-6 col-xs-12">
-                        <div class="info-box">
-                            <span class="info-box-icon bg-aqua"><i class="ion ion-person-stalker"></i></span>
 
-                            <div class="info-box-content">
-                                <span class="info-box-text">Исполнителей</span>
-                                <span class="info-box-number">635 933</span>
-                            </div>
-                            <!-- /.info-box-content -->
-                        </div>
-                        <!-- /.info-box -->
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-md-3 col-sm-6 col-xs-12">
-                        <div class="info-box">
-                            <span class="info-box-icon bg-red"><i class="ion ion-checkmark"></i></span>
-
-                            <div class="info-box-content">
-                                <span class="info-box-text">Заказов выполнено за 24 часа</span>
-                                <span class="info-box-number">1560</span>
-                            </div>
-                            <!-- /.info-box-content -->
-                        </div>
-                        <!-- /.info-box -->
-                    </div>
-                    <!-- /.col -->
-
-                    <!-- fix for small devices only -->
-                    <div class="clearfix visible-sm-block"></div>
-
-                    <div class="col-md-3 col-sm-6 col-xs-12">
-                        <div class="info-box">
-                            <span class="info-box-icon bg-green"><i class="ion ion-heart"></i></span>
-
-                            <div class="info-box-content">
-                                <span class="info-box-text">Лайков поставлено за 24 часа</span>
-                                <span class="info-box-number">760 221</span>
-                            </div>
-                            <!-- /.info-box-content -->
-                        </div>
-                        <!-- /.info-box -->
-                    </div>
-                    <!-- /.col -->
-                    <div class="col-md-3 col-sm-6 col-xs-12">
-                        <div class="info-box">
-                            <span class="info-box-icon bg-yellow"><i class="ion ion-arrow-return-left"></i></span>
-
-                            <div class="info-box-content">
-                                <span class="info-box-text">Репостов за 24 часа</span>
-                                <span class="info-box-number">43 005</span>
-                            </div>
-                            <!-- /.info-box-content -->
-                        </div>
-                        <!-- /.info-box -->
-                    </div>
-                    <!-- /.col -->
-                </div>
-                <!-- /.row -->
+                <?= \common\modules\statistics\widgets\StatisticsMenu::widget() ?>u8
 
                 <!-- MAIN -->
                 <div class="row">

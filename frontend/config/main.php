@@ -14,7 +14,8 @@
         'aliases'             => [
             'taskAssets'       => Yii::getAlias('@frontend') . '/modules/task/assets',
             'interkassaAssets' => Yii::getAlias('@frontend') . '/modules/interkassa/assets',
-            'mainAssets' => Yii::getAlias('@frontend') . '/modules/mainpage/assets',
+            'mainAssets'       => Yii::getAlias('@frontend') . '/modules/mainpage/assets',
+            'statisticsAssets' => Yii::getAlias('@common') . '/modules/statistics/assets',
         ],
         'modules'             => [
             'login'      => [
@@ -32,9 +33,6 @@
             'feedback'   => [
                 'class' => 'frontend\modules\feedback\Feedback',
             ],
-            'statistics' => [
-                'class' => 'frontend\modules\statistics\Statistics',
-            ],
             'interkassa' => [
                 'class' => 'frontend\modules\interkassa\Interkassa',
             ],
@@ -47,17 +45,17 @@
                 'enablePrettyUrl' => true,
                 'showScriptName'  => false,
                 'rules'           => [
-                    'loginto'            => 'login/login/view',
-                    'logout'             => 'login/login/logout',
-                    'registration'       => 'login/reg',
-                    'profile'            => 'profile/profile',
-                    'profile/edit'       => 'profile/profile/edit',
-                    'forgot'             => 'login/reg/forgot',
-                    'addphoto'           => 'profile/profile/addphoto',
-                    ''                   => 'mainpage/mainpage/',
-                    'feedback'           => 'feedback/feedback',
-                    'order'              => 'task/order/view-page',
-                    'order/all'          => 'task/order/view-all',
+                    'loginto'             => 'login/login/view',
+                    'logout'              => 'login/login/logout',
+                    'registration'        => 'login/reg',
+                    'profile'             => 'profile/profile',
+                    'profile/edit'        => 'profile/profile/edit',
+                    'forgot'              => 'login/reg/forgot',
+                    'addphoto'            => 'profile/profile/addphoto',
+                    ''                    => 'mainpage/mainpage/',
+                    'feedback'            => 'feedback/feedback',
+                    'order'               => 'task/order/view-page',
+                    'order/all'           => 'task/order/view-all',
                     'interkassa/<action>' => 'interkassa/interkassa/<action>',
                 ],
             ],

@@ -1,6 +1,7 @@
 <?php
     namespace common\modules\statistics\widgets;
 
+    use common\models\db\Wrap;
     use common\modules\statistics\models\Order;
     use yii\base\Widget;
 
@@ -8,28 +9,50 @@
     {
         private $cacheTime = 0;
 
-        public function init(){
+        public function init()
+        {
             parent::init();
 
             $this->cacheTime = \Yii::$app->params['statsWidgetCacheTime'];
         }
 
+        /**
+         * @var Wrap $wrap
+         * @return string
+         * @throws \Exception
+         */
         public function run()
         {
-            $done = '';
-            if (\Yii::$app->cache->exists('done'))
-                $done = \Yii::$app->cache->get('done');
-            else {
-                $done = Order::getDb()->cache(function () {
-                    return Order::find(['status' => Order::DONE])->count();
-                }, $this->cacheTime);
+            $wrap = '';
 
-                \Yii::$app->cache->set('done', $done);
+            if (\Yii::$app->cache->exists('wrap')) {
+                $wrap = unserialize(\Yii::$app->cache->get('wrap'));
+            } else {
+                $wrap = Wrap::findOne(1);
+
+                $wrap->done_wrap_vk += rand(1, 4);
+                $wrap->like_wrap_vk += rand(7, 15);
+                $wrap->repost_wrap_vk += rand(5, 15);
+                $wrap->subscriber_wrap_vk += rand(5, 15);
+
+                $wrap->save();
+
+                \Yii::$app->cache->set('wrap', serialize($wrap), rand(20, 40));
             }
 
-            $like = $this->getCount('like',1);
-            $subscriber = $this->getCount('subscriber',3);
-            $repost = $this->getCount('repost',4);
+            $done = Order::getDb()->cache(function () {
+                return Order::find(['status' => Order::DONE])->count();
+            }, $this->cacheTime);
+            $done += $wrap->done_wrap_vk;
+            \Yii::$app->cache->set('done', $done);
+
+            $like = $this->getCount('like', 1);
+            $subscriber = $this->getCount('subscriber', 3);
+            $repost = $this->getCount('repost', 4);
+
+            $like+=$wrap->like_wrap_vk ;
+            $subscriber+=$wrap->repost_wrap_vk;
+            $repost+=$wrap->subscriber_wrap_vk;
 
             return $this->render('menu', [
                 'done'       => isset($done) ? $done : 0,
@@ -46,7 +69,7 @@
             if (\Yii::$app->cache->exists($type))
                 $result = \Yii::$app->cache->get($type);
             else {
-                $result = Order::getDb()->cache(function () use($kind){
+                $result = Order::getDb()->cache(function () use ($kind) {
                     return Order::find(['status' => Order::DONE])
                         ->where(['>', 'date', mktime(strftime('-1 day', time()))])
                         ->andWhere(['kind' => $kind])

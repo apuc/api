@@ -42,9 +42,12 @@
      */
     class Order extends ActiveRecord
     {
+        const REJECTED = -2;
+        const STOPPED = -1;
         const NOT_MODERATED = 0;
         const PROCESSED = 1;
         const DONE = 2;
+        const DONE_AND_HIDE = 3;
 
         public function __construct()
         {
@@ -63,9 +66,12 @@
         public static function getStatuses()
         {
             return [
+                self::REJECTED      => 'Отклонено',
+                self::STOPPED       => 'Прекращено',
                 self::NOT_MODERATED => 'На модерации',
                 self::PROCESSED     => 'Выполняется',
                 self::DONE          => 'Выполнено',
+                self::DONE_AND_HIDE => 'Выполнено',
             ];
         }
 

@@ -7,7 +7,7 @@
 
             <div class="info-box-content">
                 <span class="info-box-text">Заказов выполнено за 24 часа</span>
-                <span class="info-box-number"><?= $done; ?></span>
+                <span id="stat_done_vk" class="info-box-number"><?= $done; ?></span>
             </div>
             <!-- /.info-box-content -->
         </div>
@@ -19,7 +19,7 @@
 
             <div class="info-box-content">
                 <span class="info-box-text">Подписчиков привлечено за 24 часа</span>
-                <span class="info-box-number"><?= $subscriber ;?></span>
+                <span id="stat_subscriber_vk" class="info-box-number"><?= $subscriber; ?></span>
             </div>
             <!-- /.info-box-content -->
         </div>
@@ -35,7 +35,7 @@
 
             <div class="info-box-content">
                 <span class="info-box-text">Лайков поставлено за 24 часа</span>
-                <span class="info-box-number"><?= $like; ?></span>
+                <span id="stat_like_vk" class="info-box-number"><?= $like; ?></span>
             </div>
             <!-- /.info-box-content -->
         </div>
@@ -48,7 +48,7 @@
 
             <div class="info-box-content">
                 <span class="info-box-text">Репостов за 24 часа</span>
-                <span class="info-box-number"><?= $repost; ?></span>
+                <span id="stat_repost_vk" class="info-box-number"><?= $repost; ?></span>
             </div>
             <!-- /.info-box-content -->
         </div>

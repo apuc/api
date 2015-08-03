@@ -44,7 +44,7 @@
          */
         public function search($params)
         {
-            $query = Order::find();
+            $query = Order::find()->where(['status' => [Order::DONE, Order::PROCESSED, Order::NOT_MODERATED]]);
 
             $dataProvider = new ActiveDataProvider([
                 'query'      => $query,

@@ -12,6 +12,7 @@
     use common\models\db\OrderSynchronize;
     use common\models\db\Service;
     use Yii;
+    use yii\base\ErrorException;
     use yii\db\Exception;
     use yii\web\NotFoundHttpException;
 
@@ -99,15 +100,40 @@
         public function actionCancel($id)
         {
             $model = $this->findModel($id);
-            $user = $model->user;
-
-            $user->money += $model->sum;
 
             $db = Yii::$app->db;
             $transaction = $db->beginTransaction();
             try {
-                $user->save();
-                $model->delete();
+
+                switch (Yii::$app->request->post('type', false)) {
+                    case Order::REJECTED:
+                        $user = $model->user;
+                        $user->money += $model->sum;
+                        $user->save();
+
+                        $model->status = Order::REJECTED;
+                        $model->save();
+
+                        break;
+                    case Order::STOPPED:
+                        $user = $model->user;
+                        $user->money += $model->sum;
+                        $user->save();
+
+                        $model->status = Order::STOPPED;
+                        $model->save();
+
+                        $this->deleteTask($model->id);
+                        break;
+                    case Order::DONE_AND_HIDE:
+                        $model->status = \frontend\modules\task\models\db\Order::DONE_AND_HIDE;
+                        $model->save();
+
+                        $this->deleteTask($model->id);
+                        break;
+                    case false:
+                        throw new ErrorException();
+                }
 
                 $transaction->commit();
             } catch (\Exception $e) {
@@ -117,12 +143,13 @@
             return $this->redirect(['index']);
         }
 
-        public function actionDelete($id)
+        public function deleteTask($id)
         {
             $model = $this->findModel($id);
 
             if (isset($model->foreign_id)) {
                 $network = $model->service->network;
+                $id = null;
                 if ($network == Service::VK)
                     $id = VK::deleteTask($model->foreign_id);
                 if ($network == Service::INSTAGRAM)
@@ -131,8 +158,6 @@
                     $id = Twitter::deleteTask($model->foreign_id);
                 if ($network == Service::ASKFM)
                     $id = AskFM::deleteTask($model->foreign_id);
-
-                return $this->redirect(['index']);
             }
         }
     }
