@@ -13,6 +13,7 @@
      * @property string $content
      * @property string $tags
      * @property integer $status
+     * @property string $short_text
      */
     class News extends \yii\db\ActiveRecord
     {
@@ -30,10 +31,10 @@
         public function rules()
         {
             return [
-                [['title', 'content', 'tags'], 'required'],
+                [['title', 'content', 'tags','short_text'], 'required'],
                 [['dt_add', 'status'], 'integer'],
                 [['content'], 'string'],
-                [['title', 'tags'], 'string', 'max' => 255]
+                [['title', 'tags','short_text'], 'string', 'max' => 255]
             ];
         }
 
@@ -49,6 +50,7 @@
                 'content' => 'Текст новости',
                 'tags'    => 'Тэги',
                 'status'  => 'Статус',
+                'short_text'=> 'Анонс новости'
             ];
         }
     }

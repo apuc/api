@@ -22,9 +22,9 @@
                         <img src="dist/img/default-50x50.gif" alt="Product Image">
                     </div>-->
                     <div class="product-info">
-                        <a href="javascript::;" class="product-title"><?php echo $new->title;?></a>
+                        <a href="<?=Yii::$app->urlManager->createUrl("news/news/one-news?id=$new->id");?>" class="product-title"><?php echo $new->title;?></a>
                         <span class="product-description">
-                          <?php echo $new->content;?>
+                          <?php echo $new->short_text;?>
                         </span>
                     </div>
                 </li><!-- /.item -->

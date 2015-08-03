@@ -36,6 +36,9 @@
             'interkassa' => [
                 'class' => 'frontend\modules\interkassa\Interkassa',
             ],
+            'news' => [
+                'class' => 'frontend\modules\news\News',
+            ],
         ],
         'components'          => [
             'request'      => [
