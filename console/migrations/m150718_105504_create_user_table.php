@@ -29,18 +29,18 @@
 
             $salt = sha1(time() . '76s3d');
 
-            $password = hash_hmac('sha512', 'api', $salt);
+            $password = hash_hmac('sha512', 'admin', $salt);
 
             $this->insert('user', [
                 'money'      => 5000,
                 'cash_id'    => md5(1),
-                'email'      => 'admin@api.ru',
+                'email'      => 'admin@smm-promoter.ru',
                 'password'   => $password,
                 'created_at' => time(),
                 'updated_at' => time(),
                 'salt'       => $salt,
                 'status'     => 1,
-                'username'   => 'ApiTestUser',
+                'username'   => 'admin',
             ]);
         }
 
