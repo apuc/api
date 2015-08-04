@@ -2,6 +2,8 @@
     namespace backend\modules\api\classes;
 
 
+    use common\classes\Debag;
+
     class AskFM extends Api
     {
         static function setTask($model)
@@ -37,9 +39,7 @@
         static function getTasks()
         {
             self::checkToken();
-
-            $result = file_get_contents('https://like4u.ru/likes/askfm/tasks.json=' . self::$token);
-
+            $result = file_get_contents('https://like4u.ru/likes/askfm/tasks.json?token=' . self::$token);
             return json_decode($result);
         }
 

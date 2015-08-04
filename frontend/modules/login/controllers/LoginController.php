@@ -21,7 +21,7 @@
 
             if ($model->load(\Yii::$app->request->post()) && $model->login()) {
                 //$this->goHome();
-                \Yii::$app->getResponse()->redirect(Url::to('profile'));
+                \Yii::$app->getResponse()->redirect(\Yii::$app->urlManager->createUrl(''));
             } else
                 return $this->render('login', ['model' => $model,]);
         }

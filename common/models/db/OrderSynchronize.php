@@ -6,7 +6,9 @@
     use backend\modules\api\classes\Instagram;
     use backend\modules\api\classes\Twitter;
     use backend\modules\api\classes\VK;
+    use common\classes\Debag;
     use Yii;
+    use yii\debug\models\search\Debug;
     use yii\helpers\ArrayHelper;
 
     /**
@@ -34,7 +36,7 @@
                 if ($task->finished) {
                     $order = Order::findOne(['foreign_id' => $task->id]);
                     if (isset($order->status)) {
-                        if ($order->status != Order::DONE) {
+                        if ($order->status != Order::DONE || $order->status != Order::DONE_AND_HIDE) {
                             $order->status = Order::DONE;
                             $order->save();
                         }
@@ -43,9 +45,6 @@
             }
         }
 
-        /**
-         * @inheritdoc
-         */
         public function rules()
         {
             return [
