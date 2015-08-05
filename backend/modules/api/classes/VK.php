@@ -14,8 +14,6 @@
             $query = $model->getQueryParams();
             $query['token'] = self::$token;
 
-            Debag::prn($query);
-
             $curl = curl_init();
 
             curl_setopt($curl, CURLOPT_URL, 'https://like4u.ru/tasks.json');

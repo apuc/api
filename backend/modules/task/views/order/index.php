@@ -62,8 +62,8 @@
                         ]);
                     $rejected = Html::a(
                         "<span class='glyphicon glyphicon-minus'></span>",
-                        Yii::$app->urlManager->createUrl(['task/order/cancel', ['id'   => $model->id,
-                                                                                'type' => \backend\modules\task\models\db\Order::REJECTED]
+                        Yii::$app->urlManager->createUrl(['task/order/cancel', 'id'   => $model->id,
+                                                                                'type' => \backend\modules\task\models\db\Order::REJECTED
                         ]),
                         [
                             'class' => 'btn btn-default',
@@ -72,8 +72,8 @@
 
                     $doneAndHide = Html::a(
                         "<span class='glyphicon glyphicon-remove'></span>",
-                        Yii::$app->urlManager->createUrl(['task/order/cancel', ['id'   => $model->id,
-                                                                                'type' => \backend\modules\task\models\db\Order::DONE_AND_HIDE]
+                        Yii::$app->urlManager->createUrl(['task/order/cancel', 'id'   => $model->id,
+                                                                                'type' => \backend\modules\task\models\db\Order::DONE_AND_HIDE
                         ]),
                         [
                             'class' => 'btn btn-default',
@@ -82,8 +82,8 @@
 
                     $stopped = Html::a(
                         "<span class='glyphicon glyphicon-remove'></span>",
-                        Yii::$app->urlManager->createUrl(['task/order/cancel', ['id'   => $model->id,
-                                                                                'type' => \backend\modules\task\models\db\Order::STOPPED]
+                        Yii::$app->urlManager->createUrl(['task/order/cancel', 'id'   => $model->id,
+                                                                                'type' => \backend\modules\task\models\db\Order::STOPPED
                         ]),
                         [
                             'class' => 'btn btn-default',

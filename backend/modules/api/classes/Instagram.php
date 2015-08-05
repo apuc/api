@@ -2,7 +2,6 @@
 
     namespace backend\modules\api\classes;
 
-    use common\classes\Debag;
     use common\models\db\Service;
 
     class Instagram extends Api

@@ -9,6 +9,7 @@
     use backend\modules\api\classes\VK;
     use backend\modules\task\models\db\Order;
     use backend\modules\task\models\form\OrderSearch;
+    use common\classes\Debag;
     use common\models\db\OrderSynchronize;
     use common\models\db\Service;
     use Yii;
@@ -97,15 +98,14 @@
          * @param integer $id
          * @return mixed
          */
-        public function actionCancel($id)
+        public function actionCancel($id, $type)
         {
             $model = $this->findModel($id);
 
             $db = Yii::$app->db;
             $transaction = $db->beginTransaction();
             try {
-
-                switch (Yii::$app->request->post('type', false)) {
+                switch ($type) {
                     case Order::REJECTED:
                         $user = $model->user;
                         $user->money += $model->sum;
@@ -132,7 +132,7 @@
                         $this->deleteTask($model->id);
                         break;
                     case false:
-                        throw new ErrorException();
+                        throw new ErrorException('Ошибка');
                 }
 
                 $transaction->commit();

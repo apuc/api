@@ -1,9 +1,6 @@
 <?php
     namespace backend\modules\api\classes;
 
-
-    use common\classes\Debag;
-
     class AskFM extends Api
     {
         static function setTask($model)
