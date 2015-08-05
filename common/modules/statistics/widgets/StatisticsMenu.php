@@ -23,32 +23,23 @@
          */
         public function run()
         {
-            $wrap = '';
+            if (!\Yii::$app->cache->exists('wrap')) {
+                Wrap::addWrap();
 
-            if (\Yii::$app->cache->exists('wrap')) {
-                $wrap = unserialize(\Yii::$app->cache->get('wrap'));
-            } else {
-                $wrap = Wrap::findOne(1);
-
-                $wrap->done_wrap_vk += rand(1, 4);
-                $wrap->like_wrap_vk += rand(7, 15);
-                $wrap->repost_wrap_vk += rand(5, 15);
-                $wrap->subscriber_wrap_vk += rand(5, 15);
-
-                $wrap->save();
-
-                \Yii::$app->cache->set('wrap', serialize($wrap), rand(20, 40));
+                \Yii::$app->cache->set('wrap', 0, rand(30, 70));
             }
 
+            $wrap = Wrap::getStat();
+
             $done = Order::find(['status' => Order::DONE])->count();
+            $like = self::getCount(1);
+            $subscriber = self::getCount(3);
+            $repost = self::getCount(4);
 
-            $like = $this->getCount('like', 1);
-            $subscriber = $this->getCount('subscriber', 3);
-            $repost = $this->getCount('repost', 4);
-
-            $like+=$wrap->like_wrap_vk ;
-            $subscriber+=$wrap->repost_wrap_vk;
-            $repost+=$wrap->subscriber_wrap_vk;
+            $done += $wrap->done_wrap_vk;
+            $like += $wrap->like_wrap_vk;
+            $repost += $wrap->repost_wrap_vk;
+            $subscriber += $wrap->subscriber_wrap_vk;
 
             return $this->render('menu', [
                 'done'       => isset($done) ? $done : 0,
@@ -58,12 +49,12 @@
             ]);
         }
 
-        private function getCount($type, $kind)
+        public static function getCount($kind)
         {
-                $result = Order::find(['status' => Order::DONE])
-                        ->where(['>', 'date', mktime(strftime('-1 day', time()))])
-                        ->andWhere(['kind' => $kind])
-                        ->sum('members_count');
+            $result = Order::find(['status' => Order::DONE])
+                ->where(['>', 'date', mktime(strftime('-1 day', time()))])
+                ->andWhere(['kind' => $kind])
+                ->sum('members_count');
 
             return $result;
         }

@@ -1,14 +1,14 @@
 <?php
 
-use yii\helpers\Html;
-use yii\widgets\DetailView;
+    use yii\helpers\Html;
+    use yii\widgets\DetailView;
 
-/* @var $this yii\web\View */
-/* @var $model common\models\User */
+    /* @var $this yii\web\View */
+    /* @var $model common\models\User */
 
-$this->title = $model->username . " - " . $model->email;
-$this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+    $this->title = $model->username . " - " . $model->email;
+    $this->params['breadcrumbs'][] = ['label' => 'Users', 'url' => ['index']];
+    $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-view">
 
@@ -18,27 +18,26 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
-            'data' => [
+            'data'  => [
                 'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
+                'method'  => 'post',
             ],
         ]) ?>
     </p>
 
     <?= DetailView::widget([
-        'model' => $model,
+        'model'      => $model,
         'attributes' => [
-            'id',
             'money',
-            //'cash_id',
             'email:email',
-            //'password',
-            'created_at',
-            //'updated_at',
-            //'salt',
-            'status',
+            'created_at:datetime',
+            [
+                'attribute' => 'status',
+                'format'    => 'raw',
+                'value'     => ($model->status) ? 'Подтвержден' : 'Не подтвержден'
+            ],
             'username',
-            //'auth_key',
+            //todo оце не робит, но надо бы
             'photo',
         ],
     ]) ?>

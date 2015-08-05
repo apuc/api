@@ -1,14 +1,14 @@
 <?php
 
-use yii\helpers\Html;
-use yii\grid\GridView;
+    use yii\grid\GridView;
+    use yii\helpers\Html;
 
-/* @var $this yii\web\View */
-/* @var $searchModel backend\modules\user\models\UserSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
+    /* @var $this yii\web\View */
+    /* @var $searchModel backend\modules\user\models\UserSearch */
+    /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Пользователи';
-$this->params['breadcrumbs'][] = $this->title;
+    $this->title = 'Пользователи';
+    $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-index">
 
@@ -21,19 +21,63 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
+        'filterModel'  => $searchModel,
+        'columns'      => [
             ['class' => 'yii\grid\SerialColumn'],
 
             //'id',
             'money',
             //'cash_id',
             'email:email',
-             'created_at:datetime',
-             'status',
-             'username',
+            'created_at:datetime',
+            [
+                'attribute' => 'status',
+                'value' => function($model){
+                    return $model->status ? 'Подтвержден' : 'Не подтвержден';
+                },
+            ],
+            'username',
+            [
+                'class'  => \yii\grid\DataColumn::className(),
+                'header' => 'Действия',
+                'format' => 'html',
+                'value'  => function ($model, $index, $widget) {
+                    $view = Html::a(
+                        "<span class='glyphicon glyphicon-eye-open'></span>",
+                        Yii::$app->urlManager->createUrl(['user/user/view', 'id' => $model->id]),
+                        [
+                            'class' => 'btn btn-default',
+                            'title' => 'Показать',
+                        ]);
+                    $edit = Html::a(
+                        "<span class='glyphicon glyphicon-pencil'></span>",
+                        Yii::$app->urlManager->createUrl(['user/user/update', 'id' => $model->id]),
+                        [
+                            'class' => 'btn btn-default',
+                            'title' => 'Изменить',
+                        ]);
 
-            ['class' => 'yii\grid\ActionColumn'],
+                    $delete = Html::a(
+                        "<span class='glyphicon glyphicon-remove-circle'></span>",
+                        Yii::$app->urlManager->createUrl(['user/user/delete', 'id' => $model->id]),
+                        [
+                            'class' => 'btn btn-default',
+                            'title' => 'Удалить',
+                        ]);
+
+                    $money = Html::a(
+                        "<span class='glyphicon glyphicon-ruble'></span>",
+                        Yii::$app->urlManager->createUrl(['user/user/set-money', 'id' => $model->id]),
+                        [
+                            'class' => 'btn btn-default',
+                            'title' => 'Указать кол-во денег на счету',
+                        ]);
+
+                    $buttons = $money . $view . $edit . $delete;
+
+                    return $buttons;
+                }
+            ],
         ],
     ]); ?>
 

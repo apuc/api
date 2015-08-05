@@ -31,10 +31,10 @@
         public function rules()
         {
             return [
-                [['title', 'content', 'tags','short_text'], 'required'],
+                [['title', 'content', 'tags', 'short_text'], 'required'],
                 [['dt_add', 'status'], 'integer'],
                 [['content'], 'string'],
-                [['title', 'tags','short_text'], 'string', 'max' => 255]
+                [['title', 'tags', 'short_text'], 'string', 'max' => 255]
             ];
         }
 
@@ -44,13 +44,13 @@
         public function attributeLabels()
         {
             return [
-                'id'      => 'ID',
-                'title'   => 'Заголовок',
-                'dt_add'  => 'Дата создания',
-                'content' => 'Текст новости',
-                'tags'    => 'Тэги',
-                'status'  => 'Статус',
-                'short_text'=> 'Анонс новости'
+                'id'         => 'ID',
+                'title'      => 'Заголовок',
+                'dt_add'     => 'Дата создания',
+                'content'    => 'Текст новости',
+                'tags'       => 'Тэги',
+                'status'     => 'Статус',
+                'short_text' => 'Анонс новости'
             ];
         }
     }

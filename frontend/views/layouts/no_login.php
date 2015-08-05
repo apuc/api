@@ -160,7 +160,7 @@
                         </a>
                     </li>
                     <li class="treeview">
-                        <a href="#">
+                        <a href="/news/news/all-news">
                             <i class="fa fa-newspaper-o"></i>
                             <span>Полезные статьи</span>
                         </a>

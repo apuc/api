@@ -2,40 +2,18 @@
 
     namespace backend\modules\user\controllers;
 
+    use backend\controllers\BackendController;
+    use backend\modules\user\models\forms\SetMoney;
     use backend\modules\user\models\UserSearch;
     use common\models\db\User;
     use Yii;
-    use yii\filters\AccessControl;
-    use yii\filters\VerbFilter;
-    use yii\web\Controller;
     use yii\web\NotFoundHttpException;
 
     /**
      * UserController implements the CRUD actions for User model.
      */
-    class UserController extends Controller
+    class UserController extends BackendController
     {
-        public function behaviors()
-        {
-            return [
-                'access' => [
-                    'class' => AccessControl::className(),
-                    'rules' => [
-                        [
-                            'allow' => true,
-                            'roles' => ['administrator'],
-                        ],
-                        // everything else is denied
-                    ],
-                ],
-                'verbs'  => [
-                    'class'   => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['post'],
-                    ],
-                ],
-            ];
-        }
 
         /**
          * Lists all User models.
@@ -143,5 +121,19 @@
             $this->findModel($id)->delete();
 
             return $this->redirect(['index']);
+        }
+
+        public function actionSetMoney($id)
+        {
+            $setMoney = new SetMoney();
+
+            if ($setMoney->load(Yii::$app->request->post()) && $setMoney->validate()){
+
+                $setMoney->apply();
+
+                return $this->redirect('index');
+            }
+
+            return $this->render('set_money', ['user' => User::findOne($id), 'model' => new SetMoney()]);
         }
     }

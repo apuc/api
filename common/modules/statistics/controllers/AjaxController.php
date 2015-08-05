@@ -3,18 +3,26 @@
 
 
     use common\models\db\Wrap;
+    use common\modules\statistics\models\Order;
+    use common\modules\statistics\widgets\StatisticsMenu;
     use yii\web\Controller;
 
     class AjaxController extends Controller
     {
         public function actionGet()
         {
-            $wrap = Wrap::findOne(1);
+            //костыль
+            $done = Order::find(['status' => Order::DONE])->count();
+            $like = StatisticsMenu::getCount(1);
+            $subscriber = StatisticsMenu::getCount(3);
+            $repost = StatisticsMenu::getCount(4);
 
-            $data['stat_done_vk'] = $wrap->done_wrap_vk;
-            $data['stat_like_vk'] = $wrap->like_wrap_vk;
-            $data['stat_repost_vk'] = $wrap->repost_wrap_vk;
-            $data['stat_subscriber_vk'] = $wrap->subscriber_wrap_vk;
+            $wrap = Wrap::getStat();
+
+            $data['stat_done_vk'] = $done + $wrap->done_wrap_vk;
+            $data['stat_like_vk'] = $like + $wrap->like_wrap_vk;
+            $data['stat_repost_vk'] = $repost + $wrap->repost_wrap_vk;
+            $data['stat_subscriber_vk'] = $subscriber + $wrap->subscriber_wrap_vk;
 
             echo json_encode($data);
         }
