@@ -11,9 +11,9 @@
             self::checkToken();
 
             if ($model->service_id === Service::SUBSCRIBER_INSTAGRAM)
-                return self::setSubscriberTask($model->getQueryParams());
+                return self::setSubscriberTask(Api::getQueryParams($model));
 
-            return self::setLikeTask($model->getQueryParams());
+            return self::setLikeTask(Api::getQueryParams($model));
         }
 
         protected static function setSubscriberTask($params)

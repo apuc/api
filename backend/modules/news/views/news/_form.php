@@ -1,13 +1,13 @@
 <?php
 
-use yii\helpers\Html;
-use yii\widgets\ActiveForm;
-use mihaildev\ckeditor\CKEditor;
+    use mihaildev\ckeditor\CKEditor;
+    use yii\helpers\Html;
+    use yii\widgets\ActiveForm;
 
 
-/* @var $this yii\web\View */
-/* @var $model backend\modules\news\models\db\News */
-/* @var $form yii\widgets\ActiveForm */
+    /* @var $this yii\web\View */
+    /* @var $model backend\modules\news\models\db\News */
+    /* @var $form yii\widgets\ActiveForm */
 ?>
 
 <div class="news-form">
@@ -15,12 +15,19 @@ use mihaildev\ckeditor\CKEditor;
     <?php $form = ActiveForm::begin(); ?>
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
-    <?= $form->field($model, 'short_text')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'short_text')->widget(CKEditor::className(), [
+        'editorOptions' => \mihaildev\elfinder\ElFinder::ckeditorOptions('elfinder', [
+            'preset' => 'basic',
+            'inline' => false,
+            'path'   => 'frontend/web/image/upload',
+        ]),
+
+    ]) ?>
     <?= $form->field($model, 'content')->widget(CKEditor::className(), [
         'editorOptions' => \mihaildev\elfinder\ElFinder::ckeditorOptions('elfinder', [
             'preset' => 'standard',
             'inline' => false,
-            'path' => 'frontend/web/image/upload',
+            'path'   => 'frontend/web/image/upload',
         ]),
 
     ]) ?>

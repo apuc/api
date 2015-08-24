@@ -42,7 +42,8 @@
             'frontend\\modules\\task\\assets\\TaskAsset',
             'frontend\\modules\\interkassa\\assets\\InterkassaAsset',
             'frontend\\modules\\mainpage\\assets\\MainAsset',
-            'common\\modules\\statistics\\assets\\StatisticsAsset'
+            'common\\modules\\statistics\\assets\\StatisticsAsset',
+            'frontend\\modules\\promotion\\assets\\PromotionAsset',
         ];
         public $img = [
             'img/user2-160x160.jpg'

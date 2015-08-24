@@ -26,7 +26,11 @@
                 $feedback->email = $model->email;
                 $feedback->text = $model->text;
 
-                Yii::$app->session->setFlash('feedBackDone', 'Сообщение отправленно');
+                Yii::$app->session->setFlash('message', [
+                        'type'    => 'success',
+                        'message' => 'Сообщение отправлено',
+                    ]
+                );
                 $feedback->save();
                 Email::sendFeedBackToUser($feedback);
                 $model = new FeedbackForm();

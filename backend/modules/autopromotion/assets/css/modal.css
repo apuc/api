@@ -1,0 +1,19 @@
+.modal-window-rejected {
+    position: relative;
+    display: none;
+    margin: -200px auto auto;
+    z-index: 10;
+    width: 350px;
+    height: 250px;
+}
+
+.modal-layout-rejected {
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: none;
+    z-index: 5;
+}

@@ -193,7 +193,7 @@
             <section class="content">
                 <!-- Info boxes -->
 
-                <?= \common\modules\statistics\widgets\StatisticsMenu::widget() ?>u8
+                <?= \common\modules\statistics\widgets\StatisticsMenu::widget() ?>
 
                 <!-- MAIN -->
                 <div class="row">

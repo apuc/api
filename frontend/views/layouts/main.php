@@ -2,18 +2,37 @@
     use frontend\assets\AppAsset;
     use frontend\modules\news;
     use frontend\widgets\Alert;
+    use kartik\growl\Growl;
     use yii\helpers\Html;
-    use yii\widgets\Breadcrumbs;
 
     /* @var $this \yii\web\View */
     /* @var $content string */
 
     AppAsset::register($this);
+
     $user = Yii::$app->user->identity;
     if (empty($user->photo)) {
         $user->photo = "img/avatar5.png";
     }
 
+    if (Yii::$app->session->hasFlash('message')) {
+        $message = Yii::$app->session->getFlash('message');
+        echo Growl::widget([
+            'type'          => $message['type'],
+            'title'         => 'Уведомление',
+            'icon'          => 'fa fa-info',
+            'body'          => $message['message'],
+            'showSeparator' => true,
+            'delay'         => 500,
+            'pluginOptions' => [
+                'delay'     => 4000, //This delay is how long the message shows for
+                'placement' => [
+                    'from'  => 'bottom',
+                    'align' => 'right',
+                ]
+            ]
+        ]);
+    }
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -172,7 +191,7 @@
                                     )
                                 ?>
                             </li>
-                            <li func(, comment)>
+                            <li>
                                 <?=
                                     \yii\helpers\Html::a(
                                         '<i class="fa fa-circle-o"></i> Комментарии',
@@ -306,6 +325,29 @@
                         </ul>
                     </li>
                 </ul>
+
+                <ul class="sidebar-menu">
+                    <li class="header">Автопродвижение</li>
+                    <li class="treeview">
+                        <a href=<?= Yii::$app->urlManager->createUrl(''); ?>
+                           <i class="fa fa-circle-o"> </i>
+                            <span>Вконакте</span>
+                        </a>
+                    </li>
+                    <li class="treeview">
+                        <a href=<?= Yii::$app->urlManager->createUrl(''); ?>
+                           <i class="fa fa-circle-o"> </i>
+                            <span>Twitter</span>
+                        </a>
+                    </li>
+                    <li class="treeview">
+                        <a href=<?= Yii::$app->urlManager->createUrl(''); ?>
+                           <i class="fa fa-circle-o"> </i>
+                            <span>Instagram</span>
+                        </a>
+                    </li>
+                </ul>
+
                 <ul class="sidebar-menu">
                     <li class="header">Меню</li>
                     <li class="treeview">
@@ -362,9 +404,9 @@
                 <div class="row">
                     <!-- Left col -->
                     <div class="col-md-8">
-<!--                        --><?//= Breadcrumbs::widget([
-//                            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-//                        ]) ?>
+                        <!--                        --><? //= Breadcrumbs::widget([
+                            //                            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                            //                        ]) ?>
 
                         <div id="modal-window-interkassa" class="well modal-window-interkassa">
                             <a class="close-modal-interkassa btn btn-default pull-right" href="#">x</a>
