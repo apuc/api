@@ -36,7 +36,7 @@
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini"><b>SMM</b></span>
                 <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg"><b>SMM</b> PROMOTER</span>
+                <span class="logo-lg">AUTO<b>SMM</b></span>
             </a>
 
             <!-- Header Navbar: style can be found in header.less -->
@@ -148,28 +148,30 @@
                             <span>Тех. поддержка</span>
                         </a>
                     </li>
-					<li class="treeview">
+                </ul>
+                <!-- sidebar menu END:-->
+
+                <ul class="sidebar-menu">
+                    <li class="header">Меню</li>
+                    <li class="treeview">
                         <a href="/loginto">
                             <i class="fa fa-check"></i>
                             <span>Вход</span>
                         </a>
                     </li>
-					<li class="header">Контакты</li>
-					<li class="treeview">
-                        <a href="mail-to:colorof@gmail.com">
-                            <i class="fa fa-envelope-o"></i>
-                            <span>colorof@gmail.com</span>
+                    <li class="treeview">
+                        <a href="/news/news/all-news">
+                            <i class="fa fa-newspaper-o"></i>
+                            <span>Полезные статьи</span>
                         </a>
                     </li>
-					<li class="treeview">
-                        <a href="#">
-                            <i class="fa fa-tty"></i>
-                            <span>+7 (966) 025-72-04</span>
+                    <li class="treeview">
+                        <a href="/feedback">
+                            <i class="fa fa-question"></i>
+                            <span>Тех. поддержка</span>
                         </a>
                     </li>
                 </ul>
-                <!-- sidebar menu END:-->
-
             </section>
             <!-- /.sidebar -->
         </aside>
@@ -178,7 +180,7 @@
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h1>
-                    Автоматический сервис продвижения вконтакте,Twitter,Instagram и ask.fm
+                    Автоматический сервис накрутки вконтакте и других социальных сетях
                     <small>V 2.0</small>
                 </h1>
                 <!--        <ol class="breadcrumb">-->
@@ -196,8 +198,10 @@
                 <!-- MAIN -->
                 <div class="row">
                     <!-- Left col -->
-                    <div class="col-md-12">
-
+                    <div class="col-md-8">
+                        <?= Breadcrumbs::widget([
+                            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                        ]) ?>
                         <?= Alert::widget() ?>
 
                         <div id="modal-window-nologin" class="well modal-window-nologin">
@@ -209,129 +213,9 @@
                             </div>
                         </div>
 
-						<div class="col-md-6">
-							<div class="box box-solid">
-								<div class="box-header with-border">
-								<i class="fa fa-video-camera"></i>
-									<h3 class="box-title">Видео презентация</h3>
-								</div>
-								<div class="box-body no-padding">
-									<div class="row">
-										<div class="col-md-12">
-											<iframe width="100%" height="400px" src="https://www.youtube.com/embed/O5hQ7Di7fes" frameborder="0" allowfullscreen></iframe>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="box box-solid">
-								<div class="box-header with-border bg-red">
-									<h3 class="box-title">Как происходит продвижение в социальных сетях?</h3>
-								</div>
-								<div class="box-body">
-									<div class="row">
-										<div class="col-md-12">
-											Продвижение <strong>офферами</strong> представляет из себя выполнение заданий людьми за вознаграждение. Оно позволяет нарастить показатели и первичную активность в ваших социальных сетях. Многие из вступивших являются живыми людьми и активными пользователями.
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-md-6">
-
-							<div class="row">
-
-							<div class="col-md-6">
-
-								<div class="small-box bg-blue">
-									<div class="inner">
-										<h3><span class="old-price">300р</span>90р.</h3>
-										<p>1000 вступлений</p>
-									</div>
-									<div class="icon">
-										<i class="fa fa-vk"></i>
-									</div>
-									<a href="/loginto" class="small-box-footer">Накрутка вконтакте<i class="fa fa-arrow-circle-right"></i></a>
-								</div>
-								<div class="small-box bg-blue">
-									<div class="inner">
-										<h3><span class="old-price">150р</span>45р.</h3>
-										<p>1000 лайков</p>
-									</div>
-									<div class="icon">
-										<i class="fa fa-vk"></i>
-									</div>
-									<a href="/loginto" class="small-box-footer">Накрутка вконтакте<i class="fa fa-arrow-circle-right"></i></a>
-								</div>
-								<div class="small-box bg-blue">
-									<div class="inner">
-										<h3><span class="old-price">600р</span>180р.</h3>
-										<p>1000 репостов</p>
-									</div>
-									<div class="icon">
-										<i class="fa fa-vk"></i>
-									</div>
-									<a href="/loginto" class="small-box-footer">Накрутка вконтакте<i class="fa fa-arrow-circle-right"></i></a>
-								</div>
-								<div class="small-box bg-blue">
-									<div class="inner">
-										<h3><span class="old-price">600р</span>180р.</h3>
-										<p>1000 друзей</p>
-									</div>
-									<div class="icon">
-										<i class="fa fa-vk"></i>
-									</div>
-									<a href="/loginto" class="small-box-footer">Накрутка вконтакте<i class="fa fa-arrow-circle-right"></i></a>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="small-box bg-teal">
-									<div class="inner">
-										<h3><span class="old-price">500р</span>150р.</h3>
-										<p>1000 ретвитов</p>
-									</div>
-									<div class="icon">
-										<i class="fa fa-twitter"></i>
-									</div>
-									<a href="/loginto" class="small-box-footer">Накрутить Twitter<i class="fa fa-arrow-circle-right"></i></a>
-								</div>							
-								<div class="small-box bg-teal">
-									<div class="inner">
-										<h3><span class="old-price">660р</span>200р.</h3>
-										<p>1000 подписчиков</p>
-									</div>
-									<div class="icon">
-										<i class="fa fa-twitter"></i>
-									</div>
-									<a href="/loginto" class="small-box-footer">Накрутить Twitter<i class="fa fa-arrow-circle-right"></i></a>
-								</div>
-								<div class="small-box bg-yellow">
-									<div class="inner">
-										<h3><span class="old-price">300р</span>45р.</h3>
-										<p>1000 лайков</p>
-									</div>
-									<div class="icon">
-										<i class="fa fa-instagram"></i>
-									</div>
-									<a href="/loginto" class="small-box-footer">Накрутить instagram<i class="fa fa-arrow-circle-right"></i></a>
-								</div>
-								<div class="small-box bg-yellow">
-									<div class="inner">
-										<h3><span class="old-price">830р</span>180р.</h3>
-										<p>1000 подписчиков</p>
-									</div>
-									<div class="icon">
-										<i class="fa fa-instagram"></i>
-									</div>
-									<a href="/loginto" class="small-box-footer">Накрутить instagram<i class="fa fa-arrow-circle-right"></i></a>
-								</div>									
-							</div>
-							</div>
-						</div>
+                        <?= $content ?>
                     </div>
-
                 </div>
-			</section>
         </div>
         <?php
             /*            NavBar::begin([
@@ -367,8 +251,8 @@
             <div class="pull-right hidden-xs">
                 <b>Version</b> 2.2.0
             </div>
-              <span style="float:left;line-height: 40px;"><strong>Copyright &copy; 2014-2015 
-</span> <img src="img/priem.jpg">
+            <strong>Copyright &copy; 2014-2015 <a href="http://autosmm.org">autosmm.org</a>.</strong> Все права
+            защищены.
         </footer>
 
 

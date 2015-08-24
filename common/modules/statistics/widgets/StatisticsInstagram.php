@@ -21,8 +21,8 @@
             return $this->render('instagram', [
                 'statsForOneDayIns'    => $statsForOneDayIns,
                 'statsForSevenDaysIns' => $statsForSevenDaysIns,
-                'statsForOneMonthIns'     => $statsForOneMonthIns,
-                'statsForAllTimeIns'      => $statsForAllTimeIns,
+                'statsForOneMonthIns'  => $statsForOneMonthIns,
+                'statsForAllTimeIns'   => $statsForAllTimeIns,
             ]);
         }
 
@@ -36,7 +36,7 @@
                 $stat1 = \Yii::$app->cache->get('statIns1');
             else {
                 $done1 = Order::getDb()->cache(function () {
-                    return Order::find(['status' => Order::DONE])
+                    return Order::find(['status' => [Order::DONE, Order::DONE_AND_HIDE]])
                         ->leftJoin('service', 'service.id = order.service_id')
                         ->where('service.network = ' . Service::INSTAGRAM)
                         ->andWhere(['>', 'date', mktime(strftime('-1 day', time()))])
@@ -78,7 +78,7 @@
                 $stat7 = \Yii::$app->cache->get('statIns7');
             else {
                 $done7 = Order::getDb()->cache(function () {
-                    return Order::find(['status' => Order::DONE])
+                    return Order::find(['status' => [Order::DONE, Order::DONE_AND_HIDE]])
                         ->leftJoin('service', 'service.id = order.service_id')
                         ->where('service.network = ' . Service::INSTAGRAM)
                         ->andWhere(['>', 'date', mktime(strftime('-7 day', time()))])
@@ -120,7 +120,7 @@
                 $stat30 = \Yii::$app->cache->get('statIns30');
             else {
                 $done30 = Order::getDb()->cache(function () {
-                    return Order::find(['status' => Order::DONE])
+                    return Order::find(['status' => [Order::DONE, Order::DONE_AND_HIDE]])
                         ->leftJoin('service', 'service.id = order.service_id')
                         ->where('service.network = ' . Service::INSTAGRAM)
                         ->andWhere(['>', 'date', mktime(strftime('-30 day', time()))])
@@ -162,7 +162,7 @@
                 $statAll = \Yii::$app->cache->get('statInsAll');
             else {
                 $doneAll = Order::getDb()->cache(function () {
-                    return Order::find(['status' => Order::DONE])
+                    return Order::find(['status' => [Order::DONE, Order::DONE_AND_HIDE]])
                         ->leftJoin('service', 'service.id = order.service_id')
                         ->where('service.network = ' . Service::INSTAGRAM)
                         ->sum('order.sum');

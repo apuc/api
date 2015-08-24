@@ -37,7 +37,6 @@
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
-        <?= Alert::widget() ?>
         <?= $content ?>
 
 

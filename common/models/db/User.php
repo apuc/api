@@ -171,4 +171,17 @@
             return $string;
         }
 
+        /**
+         * @param $money
+         */
+        public function addMoney($money){
+            $this->money += $money;
+        }
+
+        /**
+         * @param $money
+         */
+        public function debitMoney($money){
+            $this->money -= $money;
+        }
     }

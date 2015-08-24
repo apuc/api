@@ -28,5 +28,7 @@
             'yii\bootstrap\BootstrapAsset',
             'backend\\modules\\feedback\\assets\\FeedbackAsset',
             'backend\\modules\\service\\assets\\ServiceAsset',
+            'backend\\modules\\task\\assets\\TaskAsset',
+            'backend\\modules\\autopromotion\\assets\\AutoPromotionAsset',
         ];
     }

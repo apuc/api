@@ -39,6 +39,7 @@
      *
      * @property Service $service
      * @property User $user
+     * @property RejectedComment $rejectedComment
      */
     class Order extends ActiveRecord
     {
@@ -119,27 +120,28 @@
                 'date'          => 'Дата',
                 'status'        => 'Статус',
                 'kind'          => 'Kind',
-                'title'         => 'Название задания(для истории)',
+                'title'         => 'Название',
                 'url'           => 'Ссылка на задание',
-                'members_count' => 'Кол-во',
+                'members_count' => 'Количество выполнений',
                 'cost'          => 'Cost',
                 'tag_list'      => 'Теги',
                 'sex'           => 'Пол',
-                'age_min'       => 'Возраст от',
-                'age_max'       => 'Возраст до',
-                'friends_count' => 'Друзей от',
+                'age_min'       => 'Минимальный возраст',
+                'age_max'       => 'Максимальный возраст',
+                'friends_count' => 'Минимальное количество друзей',
                 'country'       => 'Страна',
                 'city_text'     => 'Город',
                 'city'          => 'City',
-                'minute_1'      => 'за 1 минуту',
-                'minutes_5'     => 'за 5 минут',
-                'hour_1'        => 'за 1 час',
-                'hours_4'       => 'за 4 часа',
-                'day_1'         => 'за 1 сутки',
-                'sum'           => 'Сумма, р',
-                'min_followers' => 'Мин.кол-во подписчиков',
+                'minute_1'      => 'Кол-во выполнений за 1 минуту',
+                'minutes_5'     => 'Кол-во выполнений за 5 минут',
+                'hour_1'        => 'Кол-во выполнений за 1 час',
+                'hours_4'       => 'Кол-во выполнений за 4 часа',
+                'day_1'         => 'Кол-во выполнений за 1 сутки',
+                'sum'           => 'Сумма, руб',
+                'min_followers' => 'Мин.коли-во подписчиков',
                 'min_media'     => 'Мин. кол-во записей',
-                'has_avatar'    => 'Наличие аватара',            ];
+                'has_avatar'    => 'Наличие аватара',
+            ];
         }
 
         public function getService()
@@ -152,13 +154,18 @@
             return $this->hasOne(User::className(), ['id' => 'user_id']);
         }
 
+        public function getRejectedComment()
+        {
+            return$this->hasMany(RejectedComment::className(), ['order_id' => 'id']);
+        }
+
         public function addTask()
         {
             $db = Yii::$app->db;
 
             $user = User::findOne(['id' => $this->user_id]);
 
-            $user->money = $user->money - $this->sum;
+            $user->debitMoney($this->sum);
 
             $transaction = $db->beginTransaction();
             try {
@@ -175,103 +182,14 @@
             return true;
         }
 
-        public function getQueryParams()
-        {
-            $network = $this->service->network;
-
-            if ($network === Service::VK)
-                return $this->getVKSetParams();
-
-            if ($network === Service::INSTAGRAM)
-                return $this->getInstagramSetParams();
-
-            if ($network === Service::TWITTER)
-                return $this->getTwitterSetParams();
-
-            if ($network === Service::ASKFM)
-                return $this->getAskFMSetParams();
-        }
-
-        protected function getVKSetParams()
-        {
-            $query = [];
-            $task = [];
-            $task_limit = [];
-
-            $text = $this->title;
-
-            $task['kind'] = $this->kind;
-            $task['title'] = iconv(mb_detect_encoding($text, mb_detect_order(), true), "UTF-8", $text);
-            $task['url'] = $this->url;
-            $task['members_count'] = $this->members_count;
-            $task['cost'] = $this->cost;
-            $task['tag_list'] = $this->tag_list;
-            $task['sex'] = trim($this->sex);
-            $task['age_min'] = $this->age_min;
-            $task['age_max'] = $this->age_max;
-            $task['friends_count'] = $this->friends_count;
-            $task['country'] = $this->country;
-            $task['city_text'] = $this->city_text;
-            $task['city'] = $this->city;
-
-            $task_limit['minute_1'] = $this->minute_1;
-            $task_limit['minutes_5'] = $this->minutes_5;
-            $task_limit['hour_1'] = $this->hour_1;
-            $task_limit['hours_4'] = $this->hours_4;
-            $task_limit['day_1'] = $this->day_1;
-
-            $query['task_limit'] = $task_limit;
-
-            $query['task'] = $task;
-
-            return $query;
-        }
-
-        protected function getInstagramSetParams()
-        {
-            return $this->getInstOrTwitterOrAskFMSetParams();
-        }
-
-        protected function getInstOrTwitterOrAskFMSetParams()
-        {
-            $task = [];
-            $task_limit = [];
-
-            $text = $this->title;
-
-            $task['title'] = iconv(mb_detect_encoding($text, mb_detect_order(), true), "UTF-8", $text);
-            $task['url'] = $this->url;
-            $task['members_count'] = $this->members_count;
-            $task['cost'] = $this->cost;
-            $task['tag_list'] = $this->tag_list;
-            $task['min_followers'] = $this->min_followers;
-            $task['min_media'] = $this->min_media;
-            $task['has_avatar'] = $this->has_avatar;
-
-            $task_limit['minute_1'] = $this->minute_1;
-            $task_limit['minutes_5'] = $this->minutes_5;
-            $task_limit['hour_1'] = $this->hour_1;
-            $task_limit['hours_4'] = $this->hours_4;
-            $task_limit['day_1'] = $this->day_1;
-
-            $task['task_limit_attributes'] = $task_limit;
-
-            return $task;
-        }
-
-        protected function getTwitterSetParams()
-        {
-            return $this->getInstOrTwitterOrAskFMSetParams();
-        }
-
-        protected function getAskFMSetParams()
-        {
-            return $this->getInstOrTwitterOrAskFMSetParams();
-        }
 
         protected function __construct1($type)
         {
+            $this->initOrder($type);
+        }
 
+        protected function initOrder($type)
+        {
             $this->service_id = Service::findOne(['model_name' => $type])->id;
             $this->kind = $this->service_id;
 

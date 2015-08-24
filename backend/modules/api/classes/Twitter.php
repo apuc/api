@@ -12,12 +12,12 @@
             self::checkToken();
 
             if ($model->service_id === Service::FAVORITE_TWITTER)
-                return self::setFavoritesTask($model->getQueryParams());
+                return self::setFavoritesTask(Api::getQueryParams($model));
 
             if ($model->service_id === Service::SUBSCRIBER_TWITTER)
-                return self::setSubscriberTask($model->getQueryParams());
+                return self::setSubscriberTask(Api::getQueryParams($model));
 
-            return self::setRetwitTask($model->getQueryParams());
+            return self::setRetwitTask(Api::getQueryParams($model));
         }
 
         protected static function setRetwitTask($params){
