@@ -11,8 +11,8 @@
     {
         public function actionGet()
         {
-            //todo поправить костыль
-            $done = Order::find(['status' => [Order::DONE, Order::DONE_AND_HIDE]])->count();
+            //костыль
+            $done = Order::find(['status' => Order::DONE])->count();
             $like = StatisticsMenu::getCount(1);
             $subscriber = StatisticsMenu::getCount(3);
             $repost = StatisticsMenu::getCount(4);

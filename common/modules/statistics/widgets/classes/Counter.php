@@ -10,7 +10,7 @@
             $result = Order::getDb()->cache(function () use ($kind, $days) {
                 $time = "-" . $days . " day";
 
-                return Order::find(['status' => [Order::DONE, Order::DONE_AND_HIDE]])
+                return Order::find(['status' => Order::DONE])
                     ->where(['>', 'date', mktime(strftime($time, time()))])
                     ->andWhere(['kind' => $kind])
                     ->sum('members_count');
@@ -22,7 +22,7 @@
         private function getCountAll($type, $kind, $cacheTime)
         {
             $result = Order::getDb()->cache(function () use ($kind) {
-                return Order::find(['status' => [Order::DONE, Order::DONE_AND_HIDE]])
+                return Order::find(['status' => Order::DONE])
                     ->where(['kind' => $kind])
                     ->sum('members_count');
             }, $cacheTime);

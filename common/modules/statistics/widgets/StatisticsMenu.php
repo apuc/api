@@ -31,7 +31,7 @@
 
             $wrap = Wrap::getStat();
 
-            $done = Order::find(['status' => [Order::DONE, Order::DONE_AND_HIDE]])->count();
+            $done = Order::find(['status' => Order::DONE])->count();
             $like = self::getCount(1);
             $subscriber = self::getCount(3);
             $repost = self::getCount(4);
@@ -51,7 +51,7 @@
 
         public static function getCount($kind)
         {
-            $result = Order::find(['status' => [Order::DONE, Order::DONE_AND_HIDE]])
+            $result = Order::find(['status' => Order::DONE])
                 ->where(['>', 'date', mktime(strftime('-1 day', time()))])
                 ->andWhere(['kind' => $kind])
                 ->sum('members_count');

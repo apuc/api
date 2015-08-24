@@ -53,9 +53,9 @@ class Wrap extends \yii\db\ActiveRecord
         $wrap = new Wrap();
 
         $wrap->done_wrap_vk = rand(1, 2);
-        $wrap->like_wrap_vk = rand(25, 45);
+        $wrap->like_wrap_vk = rand(350, 550);
         $wrap->repost_wrap_vk = rand(25, 35);
-        $wrap->subscriber_wrap_vk = rand(15, 30);
+        $wrap->subscriber_wrap_vk = rand(250, 500);
 
         $wrap->date = time();
 

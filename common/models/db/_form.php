@@ -116,7 +116,7 @@
 
     </div>
     <div class="box-footer">
-        <?= Html::submitButton('<i class="fa fa-thumbs-o-up" style="margin-right:15px;"></i> Приступить к выполнению', ['class' => 'btn btn-success btn-lg']); ?>
+        <?= Html::submitButton('<i class="fa fa-cart-plus"></i> Отправить заказ', ['class' => 'btn btn-success btn-lg']); ?>
     </div>
     <?php $form->end(); ?>
 </div>

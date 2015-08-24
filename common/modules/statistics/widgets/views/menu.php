@@ -1,8 +1,8 @@
-<div class="row">
+<div class="row stats" style="margin: 20px 0px;">
     <!-- /.col -->
     <div class="col-md-3 col-sm-6 col-xs-12">
         <div class="info-box">
-            <span class="info-box-icon bg-red"><i class="ion ion-checkmark"></i></span>
+            <span class="info-box-icon bg-aqua"><i class="ion ion-checkmark"></i></span>
 
 
             <div class="info-box-content">
@@ -31,7 +31,7 @@
 
     <div class="col-md-3 col-sm-6 col-xs-12">
         <div class="info-box">
-            <span class="info-box-icon bg-green"><i class="ion ion-heart"></i></span>
+            <span class="info-box-icon bg-aqua"><i class="ion ion-heart"></i></span>
 
             <div class="info-box-content">
                 <span class="info-box-text">Лайков поставлено за 24 часа</span>
@@ -44,7 +44,7 @@
     <!-- /.col -->
     <div class="col-md-3 col-sm-6 col-xs-12">
         <div class="info-box">
-            <span class="info-box-icon bg-yellow"><i class="ion ion-arrow-return-left"></i></span>
+            <span class="info-box-icon bg-aqua"><i class="ion ion-arrow-return-left"></i></span>
 
             <div class="info-box-content">
                 <span class="info-box-text">Репостов за 24 часа</span>

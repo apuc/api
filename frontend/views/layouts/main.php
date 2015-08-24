@@ -2,37 +2,18 @@
     use frontend\assets\AppAsset;
     use frontend\modules\news;
     use frontend\widgets\Alert;
-    use kartik\growl\Growl;
     use yii\helpers\Html;
+    use yii\widgets\Breadcrumbs;
 
     /* @var $this \yii\web\View */
     /* @var $content string */
 
     AppAsset::register($this);
-
     $user = Yii::$app->user->identity;
     if (empty($user->photo)) {
         $user->photo = "img/avatar5.png";
     }
 
-    if (Yii::$app->session->hasFlash('message')) {
-        $message = Yii::$app->session->getFlash('message');
-        echo Growl::widget([
-            'type'          => $message['type'],
-            'title'         => 'Уведомление',
-            'icon'          => 'fa fa-info',
-            'body'          => $message['message'],
-            'showSeparator' => true,
-            'delay'         => 500,
-            'pluginOptions' => [
-                'delay'     => 4000, //This delay is how long the message shows for
-                'placement' => [
-                    'from'  => 'bottom',
-                    'align' => 'right',
-                ]
-            ]
-        ]);
-    }
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -61,7 +42,7 @@
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini"><b>SMM</b></span>
                 <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg">AUTO<b>SMM</b></span>
+                <span class="logo-lg"><b>SMM</b> PROMOTER</span>
             </a>
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top" role="navigation">
@@ -124,7 +105,7 @@
                     </div>
                     <div class="pull-left info">
                         Баланс
-                        <p><a href="#"> <?= $user->money; ?> р.<br>
+                        <p><a href="#"> <?= $user->money; ?> <br>
                                 <small id="view-interkassa-modal">Пополнить</small>
                             </a></p>
 
@@ -191,7 +172,7 @@
                                     )
                                 ?>
                             </li>
-                            <li>
+                            <li func(, comment)>
                                 <?=
                                     \yii\helpers\Html::a(
                                         '<i class="fa fa-circle-o"></i> Комментарии',
@@ -325,39 +306,16 @@
                         </ul>
                     </li>
                 </ul>
-
-                <ul class="sidebar-menu">
-                    <li class="header">Автопродвижение</li>
-                    <li class="treeview">
-                        <a href=<?= Yii::$app->urlManager->createUrl(''); ?>
-                           <i class="fa fa-circle-o"> </i>
-                            <span>Вконакте</span>
-                        </a>
-                    </li>
-                    <li class="treeview">
-                        <a href=<?= Yii::$app->urlManager->createUrl(''); ?>
-                           <i class="fa fa-circle-o"> </i>
-                            <span>Twitter</span>
-                        </a>
-                    </li>
-                    <li class="treeview">
-                        <a href=<?= Yii::$app->urlManager->createUrl(''); ?>
-                           <i class="fa fa-circle-o"> </i>
-                            <span>Instagram</span>
-                        </a>
-                    </li>
-                </ul>
-
                 <ul class="sidebar-menu">
                     <li class="header">Меню</li>
                     <li class="treeview">
-                        <a href=<?= Yii::$app->urlManager->createUrl('/task/order/view-all'); ?>
+                        <a href=<?= Yii::$app->urlManager->createUrl('/task/order/view-all'); ?>>
                            <i class="fa fa-shopping-cart"></i>
                             <span>История заказов</span>
                         </a>
                     </li>
                     <li class="treeview">
-                        <a href="#">
+                        <a href=<?= \Yii::$app->urlManager->createUrl('news/news/all-news');?>>
                             <i class="fa fa-newspaper-o"></i>
                             <span>Полезные статьи</span>
                         </a>
@@ -385,7 +343,7 @@
 
 
                 <h1>
-                    Автоматический сервис накрутки вконтакте и других социальных сетях
+                    Автоматический сервис продвижения вконтакте и других социальных сетях
                     <small>V 2.0</small>
                 </h1>
                 <!--                <ol class="breadcrumb">-->
@@ -403,10 +361,11 @@
                 <!-- MAIN -->
                 <div class="row">
                     <!-- Left col -->
-                    <div class="col-md-8">
-                        <!--                        --><? //= Breadcrumbs::widget([
-                            //                            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-                            //                        ]) ?>
+                    <div class="col-md-7">
+                        <?= Breadcrumbs::widget([
+                            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                        ]) ?>
+                        <?= Alert::widget() ?>
 
                         <div id="modal-window-interkassa" class="well modal-window-interkassa">
                             <a class="close-modal-interkassa btn btn-default pull-right" href="#">x</a>
@@ -421,7 +380,59 @@
                         <?= $content ?>
                     </div>
 
-                    <div class="col-md-4"><?= news\widgets\LastNews::widget() ?></div>
+                    <div class="col-md-5">
+						<div class="box box-solid">
+							<div class="box-header with-border bg-yellow">
+							<i class="fa fa-warning"></i>
+								<h3 class="box-title">Предупреждаем!</h3>
+							</div>
+							<div class="box-body">
+								<div class="row">
+									<div class="col-md-12">
+										Продвижение ведется по системе офферов - выполнение заданий за вознаграждение. Мы не гарантируем, что люди, подписавшиеся на ваши группы не отпишутся или не удалят репосты ваших сообщений</li>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="box box-solid">
+							<div class="box-header with-border bg-red-gradient">
+							<i class="fa fa-warning"></i>
+								<h3 class="box-title">Запрещается!</h3>
+							</div>
+							<div class="box-body">
+								<div class="row">
+									<div class="col-md-12">
+										<ul>
+											<li>Продвижение по темам: секс, порно, эротика и запрещенные правилами Вконтакте</li>
+											<li>Ставить задания на закрытые группы и несуществующие записи</li>
+											<li>Продвижение сообществ младше 2ух недель</li>
+											<li>Продвижение сообществ имеющих менее 5ти записей на стене</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+	
+						<div class="box box-solid">
+							<div class="box-header with-border bg-green">
+							<i class="fa fa-warning"></i>
+								<h3 class="box-title">Советуем!</h3>
+							</div>
+							<div class="box-body">
+								<div class="row">
+									<div class="col-md-12">
+										<ul>
+											<li>Продвигать сразу 3-5 групп одной тематики с разными названиями(ключевыми словами)</li>
+											<li>Ограничивать исполнение заданий : 10 в минуту и 500 выполнений в сутки</li>
+											<li>Использовать <strong>дополнительные критерии только в крайних случаях</strong> и в минимально необходимом количестве. Дополнительные критерии могут значительно замедлить продвижение</li>
+											<li>Не чистить сообщества от "собак" ранее, чем через 3 месяца после окончания накрутки, бльшая часть из них перестанет быть "собаками".</li>
+											<li>В случае большого процента выхода людей из групп(более 50%) советуем сделать паузу в продвижении на несколько месяцев.</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>							
+					</div>
                 </div>
             </section>
         </div>
@@ -460,8 +471,9 @@
             <div class="pull-right hidden-xs">
                 <b>Version</b> 2.2.0
             </div>
-            <strong>Copyright &copy; 2014-2015 <a href="http://autosmm.org">autosmm.org</a>.</strong> Все права
-            защищены.
+	              <span style="float:left;line-height: 40px;"><strong>Copyright &copy; 2014-2015 <a href="http://smm-promoter.ru">smm-promoter</a>.</strong> Все права
+            защищены.</span> <img src="img/priem.jpg">
+
         </footer>
 
 

@@ -30,11 +30,10 @@
         {
             $cache = \Yii::$app->cache;
 
-            //todo плохой вариант, лучше на крон это
             if (!$cache->exists('synchronize')) {
                 OrderSynchronize::synchronizeStatuses();
                 $updateStatusesCacheTime = \Yii::$app->params['updateStatusesCacheTime'];
-                $cache->set('synchronize', true, $updateStatusesCacheTime);
+                $cache->set('synchronize', $updateStatusesCacheTime);
             }
 
             $userId = \Yii::$app->user->getId();

@@ -7,7 +7,7 @@
         {
             self::checkToken();
 
-            return self::setLikeTask(Api::getQueryParams($model));
+            return self::setLikeTask($model->getQueryParams());
         }
 
 

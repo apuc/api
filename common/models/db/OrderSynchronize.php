@@ -36,7 +36,7 @@
                 if ($task->finished) {
                     $order = Order::findOne(['foreign_id' => $task->id]);
                     if (isset($order->status)) {
-                        if ($order->status == Order::PROCESSED) {
+                        if ($order->status != Order::DONE || $order->status != Order::DONE_AND_HIDE) {
                             $order->status = Order::DONE;
                             $order->save();
                         }

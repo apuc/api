@@ -11,7 +11,7 @@
         {
             self::checkToken();
 
-            $query = Api::getQueryParams($model);
+            $query = $model->getQueryParams();
             $query['token'] = self::$token;
 
             $curl = curl_init();
