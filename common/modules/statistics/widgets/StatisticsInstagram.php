@@ -21,8 +21,8 @@
             return $this->render('instagram', [
                 'statsForOneDayIns'    => $statsForOneDayIns,
                 'statsForSevenDaysIns' => $statsForSevenDaysIns,
-                'statsForOneMonthIns'  => $statsForOneMonthIns,
-                'statsForAllTimeIns'   => $statsForAllTimeIns,
+                'statsForOneMonthIns'     => $statsForOneMonthIns,
+                'statsForAllTimeIns'      => $statsForAllTimeIns,
             ]);
         }
 

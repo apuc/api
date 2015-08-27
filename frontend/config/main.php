@@ -16,7 +16,7 @@
             'interkassaAssets' => Yii::getAlias('@frontend') . '/modules/interkassa/assets',
             'mainAssets'       => Yii::getAlias('@frontend') . '/modules/mainpage/assets',
             'statisticsAssets' => Yii::getAlias('@common') . '/modules/statistics/assets',
-            'promotionAssets' => Yii::getAlias('@frontend') . '/modules/promotion/assets',
+            'promotionAssets'  => Yii::getAlias('@frontend') . '/modules/promotion/assets',
         ],
         'modules'             => [
             'login'      => [
@@ -38,7 +38,7 @@
                 'class' => 'frontend\modules\interkassa\Interkassa',
             ],
             'news'       => [
-                'class' => 'frontend\modules\news\News'
+                'class' => 'frontend\modules\news\News',
             ],
             'promotion'  => [
                 'class' => 'frontend\modules\promotion\Promotion',
@@ -65,6 +65,7 @@
                     'order/all'           => 'task/order/view-all',
                     'interkassa/<action>' => 'interkassa/interkassa/<action>',
                     'autopromotion'       => 'promotion/promotion/view-promotion',
+                    'autopromotion/list'  => 'promotion/promotion/view-all',
                 ],
             ],
             'user'         => [

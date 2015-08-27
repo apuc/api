@@ -1,13 +1,13 @@
 <?php
 
-    use mihaildev\ckeditor\CKEditor;
-    use yii\helpers\Html;
-    use yii\widgets\ActiveForm;
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
+use mihaildev\ckeditor\CKEditor;
 
 
-    /* @var $this yii\web\View */
-    /* @var $model backend\modules\news\models\db\News */
-    /* @var $form yii\widgets\ActiveForm */
+/* @var $this yii\web\View */
+/* @var $model backend\modules\news\models\db\News */
+/* @var $form yii\widgets\ActiveForm */
 ?>
 
 <div class="news-form">
@@ -27,7 +27,7 @@
         'editorOptions' => \mihaildev\elfinder\ElFinder::ckeditorOptions('elfinder', [
             'preset' => 'standard',
             'inline' => false,
-            'path'   => 'frontend/web/image/upload',
+            'path' => 'frontend/web/image/upload',
         ]),
 
     ]) ?>

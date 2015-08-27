@@ -23,15 +23,11 @@
          */
         public function run()
         {
-            if (!\Yii::$app->cache->exists('wrap')) {
-                Wrap::addWrap();
-
-                \Yii::$app->cache->set('wrap', 0, rand(30, 70));
-            }
-
             $wrap = Wrap::getStat();
 
-            $done = Order::find(['status' => [Order::DONE, Order::DONE_AND_HIDE]])->count();
+            $done = Order::find(['status' => [Order::DONE, Order::DONE_AND_HIDE]])
+                ->where(['>', 'date', mktime(strftime('-1 day', time()))])
+                ->count();
             $like = self::getCount(1);
             $subscriber = self::getCount(3);
             $repost = self::getCount(4);

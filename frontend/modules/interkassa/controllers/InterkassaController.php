@@ -3,6 +3,8 @@
     namespace frontend\modules\interkassa\controllers;
 
 
+    use common\models\db\ReferralMoney;
+    use common\models\db\Settings;
     use frontend\modules\interkassa\models\db\Payment;
     use frontend\modules\interkassa\models\db\User;
     use yii\filters\VerbFilter;
@@ -76,6 +78,27 @@
                     $user = User::findOne(['cash_id' => $cash_id]);
                     $user->money += $money;
                     $user->save();
+
+                    if (isset($user->parent_referral_link)) {
+                        $refMoney = ReferralMoney::find()->where(['user_id' => $user->id])->count();
+
+                        $maxPayments = Settings::findOne(['latin_name' => 'referral_pay_num']);
+
+                        if ($refMoney < $maxPayments) {
+                            $percent = Settings::findOne(['latin_name' => 'referral_percent'])->value;
+
+                            $ref = new ReferralMoney();
+
+                            $refUser = User::findOne(['my_referral_link' => $user->parent_referral_link]);
+                            $ref->user_id = $refUser->id;
+                            $ref->referral_percent = ($money / 100) * $percent;
+                            $ref->payment_sum = $money;
+                            $ref->save();
+
+                            $refUser->addMoney($ref->referral_percent);
+                            $refUser->save();
+                        }
+                    }
                 }
             }
         }

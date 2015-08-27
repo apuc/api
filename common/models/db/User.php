@@ -19,6 +19,8 @@
      * @property integer $status
      * @property string $username
      * @property string $auth_key
+     * @property string $my_referral_link
+     * @property string $parent_referral_link
      */
     class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
@@ -42,7 +44,7 @@
                 // username and password are both required
                 ['email', 'trim'],
                 [['username', 'password', 'email'], 'required'],
-                [['money', 'cash_id'], 'safe']
+                [['money', 'cash_id', 'my_referral_link'], 'safe']
                 // rememberMe must be a boolean value
 
             ];

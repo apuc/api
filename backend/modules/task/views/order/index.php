@@ -29,7 +29,7 @@
                 'format'    => 'text',
                 'value'     => function ($model) {
                     return $model->service->name;
-                }
+                },
             ],
             [
                 'attribute' => 'status',
@@ -37,7 +37,7 @@
                 'filter'    => \backend\modules\task\models\db\Order::getStatuses(),
                 'value'     => function ($model) {
                     return \backend\modules\task\models\db\Order::getStatuses()[$model->status];
-                }
+                },
             ],
             'title',
             [
@@ -45,7 +45,7 @@
                 'format'    => 'raw',
                 'value'     => function ($model) {
                     return '<a href="' . $model->url . '" target=_blank>' . $model->url . '</a>';
-                }
+                },
             ],
             'sum',
             [
@@ -63,7 +63,7 @@
                     $rejected = Html::a(
                         "<span class='glyphicon glyphicon-minus'></span>",
                         Yii::$app->urlManager->createUrl(['task/ajax/rejected',
-                                                          'id' => $model->id
+                            'id' => $model->id,
                         ]),
                         [
                             'class' => 'btn btn-default view-rejected-modal',
@@ -72,8 +72,8 @@
 
                     $doneAndHide = Html::a(
                         "<span class='glyphicon glyphicon-remove'></span>",
-                        Yii::$app->urlManager->createUrl(['task/order/cancel', 'id' => $model->id,
-                                                          'type'                    => \backend\modules\task\models\db\Order::DONE_AND_HIDE
+                        Yii::$app->urlManager->createUrl(['task/order/cancel', 'id'   => $model->id,
+                                                                               'type' => \backend\modules\task\models\db\Order::DONE_AND_HIDE,
                         ]),
                         [
                             'class' => 'btn btn-default',
@@ -82,8 +82,8 @@
 
                     $stopped = Html::a(
                         "<span class='glyphicon glyphicon-remove'></span>",
-                        Yii::$app->urlManager->createUrl(['task/order/cancel', 'id' => $model->id,
-                                                          'type'                    => \backend\modules\task\models\db\Order::STOPPED
+                        Yii::$app->urlManager->createUrl(['task/order/cancel', 'id'   => $model->id,
+                                                                               'type' => \backend\modules\task\models\db\Order::STOPPED,
                         ]),
                         [
                             'class' => 'btn btn-default',
@@ -93,7 +93,7 @@
                     $buttons = '';
 
                     if ($model->status == \backend\modules\task\models\db\Order::NOT_MODERATED)
-                    $buttons = $apply . $rejected;
+                        $buttons = $apply . $rejected;
 
                     if ($model->status == \backend\modules\task\models\db\Order::DONE)
                         $buttons = $doneAndHide;
@@ -102,36 +102,9 @@
                         $buttons = $stopped;
 
                     return $buttons;
-                }
+                },
             ],
         ],
     ]); ?>
-    <div id="modal-window-rejected" class="well modal-window-rejected">
 
-
-        <div class="content">
-            <a class="close-modal-rejected btn btn-default pull-right" href="#">x</a>
-
-            <div class="row">
-                <div class="col-sm-8">
-                    <?= 'Введите причину отказа:' ?>
-                </div>
-
-            </div>
-
-            <div>
-                <?= Html::beginForm('', 'post', ['id' => 'modal-form-rejected']) ?>
-            </div>
-            <div class="row">
-                <?= Html::textarea('rejected-text', '', ['id' => 'rejected-text', 'class' => 'form-control']) ?>
-            </div>
-            <div class="row">
-                <?= Html::submitButton('Отправить', ['class' => 'btn btn-success']) ?>
-            </div>
-            <div>
-                <?= Html::endForm() ?>
-            </div>
-        </div>
-    </div>
-    <div class="modal-layout-rejected"></div>
 </div>

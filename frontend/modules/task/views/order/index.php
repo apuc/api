@@ -88,7 +88,7 @@
                                                 ) {
                                                     return "<div class='row text-center'>" .
                                                     $repeat
-                                                    . "</div>";;
+                                                    . "</div>";
                                                 }
 
                                                 if ($model->status == \frontend\modules\task\models\db\Order::REJECTED)

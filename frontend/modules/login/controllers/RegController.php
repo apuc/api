@@ -31,8 +31,9 @@ class RegController extends Controller
             $user->updated_at = time();
             $user->status = 0;
             $user->getAuthKey();
+            $user->my_referral_link = md5(time() . $user->email);
+            $user->parent_referral_link = $model->parent_referral_link? $model->parent_referral_link : null;
             $user->save();
-
             $user->cash_id = md5($user->id);
             $user->save();
 

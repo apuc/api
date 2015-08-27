@@ -7,11 +7,13 @@
     use common\models\db\Service;
     use common\models\db\Task;
     use Exception;
+    use yii\base\ErrorException;
     use yii\base\Model;
 
     class VK extends Model
     {
         //public $kind;
+        public $id;
         public $title;
         public $url;
 
@@ -51,6 +53,115 @@
         public $hours_4_comment;
         public $day_1_comment;
 
+        public $isNewRecord = true;
+
+        public function __construct($id = null)
+        {
+            if ($id) {
+                $this->isNewRecord = false;
+                $this->id = $id;
+
+                $userId = \Yii::$app->user->getId();
+
+                $promotion = Promotion::findOne(['id' => $id]);
+
+                if ($userId != $promotion->user_id)
+                    throw new ErrorException();
+
+                $this->url = $promotion->url;
+
+                $tasks = $promotion->tasks;
+
+                foreach ($tasks as $task) {
+                    $query = json_decode($task->task, true);
+
+                    if ($query['task']['kind'] == Service::LIKE_VK) {
+                        $this->setLikeAttributes($query);
+                        break;
+                    }
+                }
+                foreach ($tasks as $task) {
+                    $query = json_decode($task->task, true);
+
+                    if ($query['task']['kind'] == Service::REPOST_VK) {
+                        $this->setRepostAttributes($query);
+                        break;
+                    }
+                }
+                foreach ($tasks as $task) {
+                    $query = json_decode($task->task, true);
+
+                    if ($query['task']['kind'] == Service::COMMENT_VK) {
+                        $this->setCommentAttributes($query);
+                        break;
+                    }
+                }
+            }
+        }
+
+        protected function setLikeAttributes($query)
+        {
+            $this->title = $query['task']['title'];
+            $this->members_count_like = $query['task']['members_count'];
+            $this->tag_list = $query['task']['tag_list'];
+            $this->sex = $query['task']['sex'];
+            $this->age_min = $query['task']['age_min'];
+            $this->age_max = $query['task']['age_max'];
+            $this->friends_count = $query['task']['friends_count'];
+            $this->country = $query['task']['country'];
+            $this->city_text = $query['task']['city_text'];
+            $this->city = $query['task']['city'];
+
+
+            $this->minute_1_like = $query['task_limit']['minute_1'];
+            $this->minutes_5_like = $query['task_limit']['minutes_5'];
+            $this->hour_1_like = $query['task_limit']['hour_1'];
+            $this->hours_4_like = $query['task_limit']['hours_4'];
+            $this->day_1_like = $query['task_limit']['day_1'];
+        }
+
+        protected function setRepostAttributes($query)
+        {
+            $this->title = $query['task']['title'];
+            $this->members_count_repost = $query['task']['members_count'];
+            $this->tag_list = $query['task']['tag_list'];
+            $this->sex = $query['task']['sex'];
+            $this->age_min = $query['task']['age_min'];
+            $this->age_max = $query['task']['age_max'];
+            $this->friends_count = $query['task']['friends_count'];
+            $this->country = $query['task']['country'];
+            $this->city_text = $query['task']['city_text'];
+            $this->city = $query['task']['city'];
+
+
+            $this->minute_1_repost = $query['task_limit']['minute_1'];
+            $this->minutes_5_repost = $query['task_limit']['minutes_5'];
+            $this->hour_1_repost = $query['task_limit']['hour_1'];
+            $this->hours_4_repost = $query['task_limit']['hours_4'];
+            $this->day_1_repost = $query['task_limit']['day_1'];
+        }
+
+        protected function setCommentAttributes($query)
+        {
+            $this->title = $query['task']['title'];
+            $this->members_count_comment = $query['task']['members_count'];
+            $this->tag_list = $query['task']['tag_list'];
+            $this->sex = $query['task']['sex'];
+            $this->age_min = $query['task']['age_min'];
+            $this->age_max = $query['task']['age_max'];
+            $this->friends_count = $query['task']['friends_count'];
+            $this->country = $query['task']['country'];
+            $this->city_text = $query['task']['city_text'];
+            $this->city = $query['task']['city'];
+
+
+            $this->minute_1_comment = $query['task_limit']['minute_1'];
+            $this->minutes_5_comment = $query['task_limit']['minutes_5'];
+            $this->hour_1_comment = $query['task_limit']['hour_1'];
+            $this->hours_4_comment = $query['task_limit']['hours_4'];
+            $this->day_1_comment = $query['task_limit']['day_1'];
+        }
+
         public function rules()
         {
             return [
@@ -78,6 +189,8 @@
                     'min' => Service::findOne(['model_name' => 'RepostVK'])->minimum_tasks],
                 ['members_count_comment', 'integer',
                     'min' => Service::findOne(['model_name' => 'CommentVK'])->minimum_tasks],
+
+                ['isNewRecord', 'safe'],
 
                 //                                [['title', 'url', 'members_count_like', 'cost_like', 'members_count_repost',
                 //                                  'cost_repost', 'members_count_comment', 'cost_comment', 'tag_list',
@@ -140,16 +253,24 @@
             if (!$this->validate())
                 return false;
 
-
             $db = \Yii::$app->db;
             $transaction = $db->beginTransaction();
             try {
-                $promotion = new Promotion();
+                $promotion = null;
+
+                if ($this->isNewRecord)
+                    $promotion = new Promotion();
+                else
+                    $promotion = Promotion::findOne(['id' => $this->id]);
+
                 $promotion->user_id = \Yii::$app->user->getId();
                 $promotion->url = $this->url;
                 $promotion->page_id = VKApi::getGroupIdByUrl($this->url);
                 $promotion->status = Promotion::NOT_MODERATED;
                 $promotion->save();
+
+                foreach ($promotion->tasks as $task)
+                    $task->delete();
 
                 if ($this->hasLikeQuery()) {
                     $likeTask = new Task();

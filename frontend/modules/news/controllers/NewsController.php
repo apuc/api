@@ -1,35 +1,32 @@
 <?php
 
 
-    namespace frontend\modules\news\controllers;
+namespace frontend\modules\news\controllers;
 
     use frontend\modules\news\models\News;
     use yii\data\Pagination;
     use yii\web\Controller;
 
-    class NewsController extends Controller
-    {
-        public function actionAllNews()
-        {
-            $news = News::find()->orderBy('dt_add DESC');
-            $countQuery = clone $news;
-            $pages = new Pagination(['totalCount' => $countQuery->count(), 'pageSize' => 2]);
-            $news = $news->offset($pages->offset)
-                ->limit($pages->limit)
-                ->all();
+class NewsController extends Controller{
+    public function actionAllNews(){
+        $news = News::find()->orderBy('dt_add DESC');
+        $countQuery = clone $news;
+        $pages = new Pagination(['totalCount' =>  $countQuery->count(), 'pageSize' => 10]);
+        $news = $news->offset($pages->offset)
+            ->limit($pages->limit)
+            ->all();
 
-            return $this->render('all', [
-                'news'  => $news,
-                'pages' => $pages,
-            ]);
+        return $this->render('all', [
+            'news' => $news,
+            'pages' => $pages,
+        ]);
 
-        }
-
-        public function actionOneNews($id)
-        {
-            $onenews = News::findOne($id);
-            return $this->render('one', [
-                'onenews' => $onenews,
-            ]);
-        }
     }
+
+    public function actionOneNews($id){
+        $oneNews = News::findOne($id);
+        return $this->render('one', [
+            'onenews' => $oneNews,
+        ]);
+    }
+} 

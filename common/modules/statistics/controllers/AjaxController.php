@@ -12,7 +12,9 @@
         public function actionGet()
         {
             //todo поправить костыль
-            $done = Order::find(['status' => [Order::DONE, Order::DONE_AND_HIDE]])->count();
+            $done = Order::find(['status' => [Order::DONE, Order::DONE_AND_HIDE]])
+                ->where(['>', 'date', mktime(strftime('-1 day', time()))])
+                ->count();
             $like = StatisticsMenu::getCount(1);
             $subscriber = StatisticsMenu::getCount(3);
             $repost = StatisticsMenu::getCount(4);

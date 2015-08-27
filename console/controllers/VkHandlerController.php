@@ -21,15 +21,15 @@
                     foreach ($wall as $post) {
                         //если пост подходит по времени
                         if ($post['date'] > $parsingPeriod) {
-                            //формирум урл поста https://vk.com/feed?w=wall-57424472_71791
 
+                            //формирум урл поста https://vk.com/club89526364?w=wall-89526364_13%2Fall
                             $dbPost = new Post();
 
                             $dbPost->post_id = $post['id'];
-                            $dbPost->promotion_id = $group->page_id;
+                            $dbPost->promotion_id = $group->id;
+                            $dbPost->url = $group->url . '?w=wall-' . $group->page_id . '_' . $post['id'] . '%2Fall';
+                            print_r($dbPost->url);
                             $dbPost->save();
-
-                            $postUrl = 'https://vk.com/feed?w=wall' . $group->page_id . '_' . $post['id'];
 
                             //получаем таски
 
@@ -37,10 +37,10 @@
 
                             foreach ($tasks as $task) {
 
-                                $taskArr = json_decode($task->task);
+                                $taskArr = json_decode($task->task, true);
 
                                 //дописываем в урл и цену лайков
-                                $taskArr['task']['url'] = $postUrl;
+                                $taskArr['task']['url'] = $dbPost->url;
                                 $taskArr['task']['cost'] = $task->service->minimum_likes_per_task;
 
                                 //получаем цену таска

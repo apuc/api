@@ -8,7 +8,7 @@
     /* @var $searchModel backend\modules\task\models\form\OrderSearch */
     /* @var $dataProvider yii\data\ActiveDataProvider */
 
-    $this->title = 'Orders';
+    $this->title = 'Автопродвижение';
     $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="order-index">

@@ -4,19 +4,19 @@
 
     use Yii;
     use yii\base\Model;
-    use yii\db\ActiveRecord;
 
     /**
-     * @property integer $id
      * @property string $email
      * @property string $password
      * @property string $username
+     * @property string $parent_referral_link
      */
     class RegForm extends Model
     {
         public $username;
         public $password;
         public $email;
+        public $parent_referral_link;
 
         public function rules()
         {
@@ -24,6 +24,7 @@
                 // username and password are both required
                 [['username', 'password', 'email'], 'required'],
                 ['email', 'email'],
+                ['parent_referral_link', 'string']
                 // rememberMe must be a boolean value
 
             ];
@@ -32,16 +33,10 @@
         public function attributeLabels()
         {
             return [
-                'id'         => 'ID',
-                'money'      => 'Money',
-                'cash_id'    => 'Cash ID',
-                'email'      => 'Email',
-                'password'   => 'Пароль',
-                'created_at' => 'Created At',
-                'updated_at' => 'Updated At',
-                'salt'       => 'Salt',
-                'status'     => 'Status',
-                'username'   => 'Имя',
+                'username'             => 'ФИО',
+                'email'                => 'Email',
+                'password'             => 'Пароль',
+                'parent_referral_link' => 'Реферальный код',
             ];
         }
     }

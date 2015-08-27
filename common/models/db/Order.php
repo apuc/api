@@ -120,28 +120,27 @@
                 'date'          => 'Дата',
                 'status'        => 'Статус',
                 'kind'          => 'Kind',
-                'title'         => 'Название',
+                'title'         => 'Название задания(для истории)',
                 'url'           => 'Ссылка на задание',
-                'members_count' => 'Количество выполнений',
+                'members_count' => 'Кол-во',
                 'cost'          => 'Cost',
                 'tag_list'      => 'Теги',
                 'sex'           => 'Пол',
-                'age_min'       => 'Минимальный возраст',
-                'age_max'       => 'Максимальный возраст',
-                'friends_count' => 'Минимальное количество друзей',
+                'age_min'       => 'Возраст от',
+                'age_max'       => 'Возраст до',
+                'friends_count' => 'Друзей от',
                 'country'       => 'Страна',
                 'city_text'     => 'Город',
                 'city'          => 'City',
-                'minute_1'      => 'Кол-во выполнений за 1 минуту',
-                'minutes_5'     => 'Кол-во выполнений за 5 минут',
-                'hour_1'        => 'Кол-во выполнений за 1 час',
-                'hours_4'       => 'Кол-во выполнений за 4 часа',
-                'day_1'         => 'Кол-во выполнений за 1 сутки',
-                'sum'           => 'Сумма, руб',
-                'min_followers' => 'Мин.коли-во подписчиков',
+                'minute_1'      => 'за 1 минуту',
+                'minutes_5'     => 'за 5 минут',
+                'hour_1'        => 'за 1 час',
+                'hours_4'       => 'за 4 часа',
+                'day_1'         => 'за 1 сутки',
+                'sum'           => 'Сумма, р',
+                'min_followers' => 'Мин.кол-во подписчиков',
                 'min_media'     => 'Мин. кол-во записей',
-                'has_avatar'    => 'Наличие аватара',
-            ];
+                'has_avatar'    => 'Наличие аватара',            ];
         }
 
         public function getService()
@@ -165,7 +164,7 @@
 
             $user = User::findOne(['id' => $this->user_id]);
 
-            $user->debitMoney($this->sum);
+            $user->money = $user->money - $this->sum;
 
             $transaction = $db->beginTransaction();
             try {
@@ -181,7 +180,6 @@
 
             return true;
         }
-
 
         protected function __construct1($type)
         {

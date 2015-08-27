@@ -30,8 +30,8 @@ class Post extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['service_id', 'promotion_id', 'url'], 'required'],
-            [['service_id', 'promotion_id', 'post_id'], 'integer'],
+            [['promotion_id', 'url'], 'required'],
+            [['promotion_id', 'post_id'], 'integer'],
             [['url'], 'string', 'max' => 255]
         ];
     }

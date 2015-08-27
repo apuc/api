@@ -19,35 +19,38 @@
             'autopromotionAssets' => Yii::getAlias('@backend') . '/modules/autopromotion/assets',
         ],
         'modules'             => [
-            'api'           => [
+            'api'       => [
                 'class' => 'backend\modules\api\Api',
             ],
-            'email'         => [
+            'email'     => [
                 'class' => 'backend\modules\email\Email',
             ],
-            'login'         => [
+            'login'     => [
                 'class' => 'backend\modules\login\Login',
             ],
-            'adminpage'     => [
+            'adminpage' => [
                 'class' => 'backend\modules\adminpage\AdminPage',
             ],
-            'feedback'      => [
+            'feedback'  => [
                 'class' => 'backend\modules\feedback\Feedback',
             ],
-            'service'       => [
+            'service'   => [
                 'class' => 'backend\modules\service\Service',
             ],
-            'task'          => [
+            'task'      => [
                 'class' => 'backend\modules\task\Task',
             ],
-            'news'          => [
+            'news'      => [
                 'class' => 'backend\modules\news\News',
             ],
-            'user'          => [
+            'user'      => [
                 'class' => 'backend\modules\user\User',
             ],
             'autopromotion' => [
                 'class' => 'backend\modules\autopromotion\AutoPromotion',
+            ],
+            'settings' => [
+                'class' => 'backend\modules\settings\Settings',
             ],
         ],
 

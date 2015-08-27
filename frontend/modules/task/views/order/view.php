@@ -11,7 +11,7 @@
     <div class="box-header with-border">
         <h3 class="box-title">Накрутка - <?= $this->title; ?></h3>
     </div>
-    <div class="box-body no-padding">
+    <div class="box-body">
         <div class="row">
             <div class="col-md-12">
                 <?= $this->render('_form', ['model' => $model]) ?>
