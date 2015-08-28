@@ -2,6 +2,7 @@
 
     namespace frontend\modules\login\models\forms;
 
+    use common\models\db\User;
     use Yii;
     use yii\base\Model;
 
@@ -22,10 +23,16 @@
         {
             return [
                 // username and password are both required
+                ['email', 'filter', 'filter' => 'trim'],
+                [
+                    'email',
+                    'unique',
+                    'targetClass' => User::className(),
+                    'message'     => 'Этот email адрес уже занят.',
+                ],
                 [['username', 'password', 'email'], 'required'],
                 ['email', 'email'],
                 ['parent_referral_link', 'string']
-                // rememberMe must be a boolean value
 
             ];
         }

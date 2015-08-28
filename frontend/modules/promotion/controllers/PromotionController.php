@@ -6,10 +6,27 @@
     use Yii;
     use yii\base\Model;
     use yii\data\ActiveDataProvider;
+    use yii\filters\AccessControl;
     use yii\web\Controller;
 
     class PromotionController extends Controller
     {
+        public function behaviors()
+        {
+            return [
+                'access' => [
+                    'class' => AccessControl::className(),
+                    'rules' => [
+                        [
+                            //'actions' => ['view-page', 'view-all', 'repeat', 'update'],
+                            'allow'   => true,
+                            'roles'   => ['@'],
+                        ],
+                    ],
+                ],
+            ];
+        }
+
         public function actionViewAll()
         {
             $userId = \Yii::$app->user->getId();
